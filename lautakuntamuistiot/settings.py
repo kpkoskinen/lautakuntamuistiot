@@ -7,8 +7,9 @@ Shared settings: where output goes and how the scripts identify themselves.
 """
 import os
 
-OUT = os.environ.get("LAUTAKUNTA_OUT") or os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "output")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUT = os.environ.get("LAUTAKUNTA_OUT") or os.path.join(ROOT, "output")
+DATA = os.path.join(ROOT, "data")             # published snapshot (read-only for the tools)
 
 _contact = os.environ.get("LAUTAKUNTA_CONTACT")
 USER_AGENT = "lautakuntamuistiot/1.0" + (f" ({_contact})" if _contact else "")

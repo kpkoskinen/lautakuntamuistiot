@@ -8,8 +8,9 @@ running a multi-hour scrape. Everything here can be regenerated with the scripts
 
 | file | what it is |
 |------|------------|
-| `plans_dataset.json` | Committee plan decisions, 2013 → snapshot date: heading, summary, date, plan type, location and links to the decision and the plan drawing. Plans that couldn't be located are in its `unlocated` list. |
+| `plans_dataset.json` | Committee plan decisions, 2013 → snapshot date: heading, summary, date, plan type, location and links to the decision and the plan drawing. Each record's `stage` says whether the committee approved the plan or only proposed it (most zoning plans). Plans that couldn't be located are in its `unlocated` list. |
 | `kerrokantasi_dataset.json` | Plan-related Kerro kantasi public consultations, 2014 → snapshot date, with their drawings. |
+| `geocode_cache.json` | Every place name looked up for the snapshot and its Nominatim result. The scrapers start from it, so a re-run doesn't repeat those lookups. |
 | `helsinki_plans.kml` | The map built from both datasets with `python3 -m lautakuntamuistiot.build_kml`: one layer per plan type plus a consultation layer. Import it into Google My Maps or any GIS tool. |
 
 The snapshot date is in each JSON's `generated` field. A snapshot does not update itself;
@@ -24,8 +25,16 @@ Check against the linked hel.fi documents before relying on anything.
 
 ## Licence
 
-The MIT licence of the code does **not** cover this data. It keeps its sources' licences:
+The MIT licence of the code does **not** cover this data. It keeps its sources' terms
+(details in the main README, **Data sources and licences**):
 
-- Decision, consultation and plan content: © City of Helsinki, **CC BY 4.0**. Credit the
-  City of Helsinki.
-- Coordinates geocoded with Nominatim: © OpenStreetMap contributors, **ODbL**.
+- **Decision titles and excerpts:** City of Helsinki decisions, not protected by
+  copyright under section 9 of the Finnish Copyright Act (404/1961). Drawings and other
+  attachments are only linked.
+- **Consultation titles and abstracts:** from Kerro kantasi, whose terms publish its data
+  under ODbL. The originals are linked.
+- **Coordinates and `geocode_cache.json`:** geocoded with Nominatim, © OpenStreetMap
+  contributors, **ODbL**.
+
+This dataset is independent of the City of Helsinki. The original documents on hel.fi
+are authoritative.

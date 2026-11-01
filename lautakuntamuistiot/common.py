@@ -42,6 +42,36 @@ def classify(title_lc):
     return None
 
 
+# What the committee did with the plan. Committees approve street, park and most
+# traffic plans themselves, but a zoning plan is only PROPOSED by the committee and
+# approved later by the City Board or Council, so most zoning pins are proposals.
+STAGES = {
+    "approved": "approved by the committee",
+    "proposal": "proposal or draft (approved later by the City Board / Council)",
+    "returned": "returned for further preparation or tabled",
+    "other":    "decision (stage not stated in the title or summary)",
+    "consultation": "public consultation (Kerro kantasi), not a decision",
+}
+_RETURNED = re.compile(r'palaut\w* asian? uudelleen valmisteltavaksi|pöydälle', re.I)
+_PROPOSAL = re.compile(r'\besity|\besittää|ehdotu|luonno|muistutu', re.I)
+_APPROVED = re.compile(r'hyväksy', re.I)
+
+
+def plan_stage(rec):
+    """approved | proposal | returned | other — keyword heuristic over the title and
+    heading first, then the 'Päätös' summary (see STAGES)."""
+    head = f'{rec.get("title") or ""} {rec.get("heading") or ""}'
+    summary = rec.get("summary") or ""
+    if _RETURNED.search(summary):
+        return "returned"
+    for text in (head, summary):
+        if _PROPOSAL.search(text):
+            return "proposal"
+        if _APPROVED.search(text):
+            return "approved"
+    return "other"
+
+
 def fetch(url):
     try:
         with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=25) as r:

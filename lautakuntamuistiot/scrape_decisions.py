@@ -27,8 +27,8 @@ can't be located are kept in the dataset's "unlocated" list rather than dropped.
 """
 import urllib.request, json, re, argparse, time, os
 
-from .common import classify, EXCLUDE, TYPES, decision_page, decision_fields, load_json, DATASET, GCACHE
-from .locate import locate, save_cache
+from .common import classify, plan_stage, EXCLUDE, TYPES, decision_page, decision_fields, load_json, DATASET, GCACHE
+from .locate import locate, load_cache, save_cache
 from .settings import USER_AGENT
 
 ES = "https://paatokset-elastic-proxy.api.hel.ninja/paatokset_decisions/_search"
@@ -79,7 +79,7 @@ def main():
 
     ds = load_json(args.dataset, {"generated": None, "records": [], "unlocated": []})
     ds.setdefault("unlocated", [])
-    cache = load_json(args.cache, {})
+    cache = load_cache(args.cache)
     bykey = {(r["dm"], r["asia_id"], r["plan_type"]): i for i, r in enumerate(ds["records"])}
     unloc = {(u["dm"], u["asia_id"], u["plan_type"]): u for u in ds["unlocated"]}
 
@@ -113,6 +113,7 @@ def main():
                     plan_type_label=LABEL[key], heading=heading or subject, title=subject,
                     summary=summary, date=date, year=t.tm_year, month=t.tm_mon,
                     decision_url=decision_url, map_url=map_url)
+        base["stage"] = plan_stage(base)
         if lat is None:
             unloc[k] = base; nloc += 1
         else:

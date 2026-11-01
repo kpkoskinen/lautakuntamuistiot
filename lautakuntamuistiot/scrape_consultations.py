@@ -17,8 +17,8 @@ drawings: every PDF attachment and every image that isn't just a photo.
 """
 import urllib.request, json, re, argparse, time, os, html
 
-from .common import classify, load_json, GCACHE
-from .locate import locate, save_cache, HKI_BBOX
+from .common import classify, GCACHE
+from .locate import locate, load_cache, save_cache, HKI_BBOX
 from .settings import OUT, USER_AGENT
 
 API = "https://kerrokantasi.api.hel.fi/v1/hearing/"
@@ -142,7 +142,7 @@ def main():
     ap.add_argument("--dataset", default=DATASET)
     ap.add_argument("--cache", default=GCACHE)
     args = ap.parse_args()
-    cache = load_json(args.cache, {})
+    cache = load_cache(args.cache)
 
     lst, url = [], API + "?limit=100"
     while url:
@@ -157,7 +157,7 @@ def main():
         summary = text(fi(h.get("abstract")))
         t = time.strptime(h["open_at"][:10], "%Y-%m-%d")
         close = h.get("close_at") and time.strftime("%d.%m.%Y", time.strptime(h["close_at"][:10], "%Y-%m-%d"))
-        base = dict(committee="Kerro kantasi", dm="kerrokantasi", asia_id="kk-" + h["id"],
+        base = dict(committee="Kerro kantasi", dm="kerrokantasi", asia_id="kk-" + h["id"], stage="consultation",
                     plan_type="kerrokantasi", subtype=classify(title.lower()),
                     heading=title, title=title, summary=summary,
                     date=time.strftime("%d.%m.%Y", t), close_date=close,

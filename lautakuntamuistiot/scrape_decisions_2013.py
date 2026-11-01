@@ -24,7 +24,7 @@ default so you can review before merging into plans_dataset.json.
 """
 import urllib.request, re, json, argparse, os, time, html as _html
 
-from .common import classify, EXCLUDE, TYPES
+from .common import classify, plan_stage, EXCLUDE, TYPES, GCACHE
 from .locate import locate, load_cache, save_cache
 from .settings import OUT, USER_AGENT
 
@@ -40,7 +40,6 @@ COMMITTEES = {
                  wbdir="Yleisten%20toiden%20lautakunta_52100", pref="HKR", abbr="Ytlk", dm="52100"),
 }
 DATASET = f"{OUT}/plans_pre2017_dataset.json"
-GCACHE = f"{OUT}/geocode_cache.json"
 
 # strip committee/"esitys"/"lausunto" boilerplate so the area is first in the title
 _PREFIX = re.compile(r'^(?:Kaupunkisuunnittelulautakunnan|Yleisten töiden lautakunnan)?\s*'
@@ -160,6 +159,7 @@ def main():
                        year=int(yr), month=mo, location=loc, lat=lat, lon=lon, geocode=conf,
                        decision_url=dec_url, map_url=best_drawing(liites),
                        attachments=liites)
+            rec["stage"] = plan_stage(rec)
             k = (cfg["dm"], dec_url)
             if lat is None:                     # keep it visible for review, off the map
                 unloc[k] = rec; nloc += 1; continue

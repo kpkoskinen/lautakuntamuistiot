@@ -5,6 +5,16 @@ drawings** — street, traffic, park and zoning plans, plus public consultations
 turn them into **map layers (KML)** for Google My Maps or any GIS tool. Each pin links
 the plan drawing (PDF) and the decision or consultation page it came from.
 
+> **Helsingin suunnitelmapäätökset kartalla.** Työkalu kokoaa Helsingin lautakuntien
+> katu-, liikenne-, puisto- ja asemakaavapäätökset (2013 →) sekä Kerro kantasi
+> -kuulemiset kartalle. Jokainen merkintä linkittää alkuperäiseen päätökseen ja
+> suunnitelmapiirustukseen. Sijainnit ja luokittelut on päätelty automaattisesti, joten
+> tarkista tiedot aina alkuperäisestä asiakirjasta. Työkalu on riippumaton Helsingin
+> kaupungista eikä ole kaupungin virallinen palvelu.
+>
+> *Helsinki's plan decisions on a map. An independent tool, not affiliated with the City
+> of Helsinki.*
+
 > ### ⚠️ Experimental tool
 >
 > This is an **experimental extraction tool, not an official or authoritative dataset**.
@@ -41,13 +51,57 @@ the plan drawing (PDF) and the decision or consultation page it came from.
 A ready-made snapshot of 1 and 2 (JSON + KML) is in [`data/`](data/) — *coming soon*, see
 [`data/README.md`](data/README.md). Use it if you don't want to run the scrape yourself.
 
+### Example
+
+One pin from the map, the street plan for Neptunuksenkatu in Jätkäsaari:
+
+> **Neptunuksenkatu – katusuunnitelma 01/2025**<br>
+> Katusuunnitelma, Melkinlaiturin alue, Neptunuksenkatu 32179/1, Samoankuja välillä
+> Neptunuksenkatu-Tulimaankatu 30969/2, Länsisatama<br>
+> Decision date: 28.01.2025 — approved by the committee<br>
+> *Kaupunkiympäristölautakunta päätti hyväksyä seuraavat liitteenä olevat
+> katusuunnitelmat: Neptunuksenkatu suunnitelmapiirustus nro 32179/1 (liite 2) …*<br>
+> [Open plan drawing (PDF)](https://ahjojulkaisu.hel.fi/5360EAE3-D709-CD31-97FD-943F35D00000.pdf)<br>
+> [Decision page](https://paatokset.hel.fi/fi/asia/hel-2024-013924?paatos=91410e3f-4598-cca5-a8bd-94f98c800006)<br>
+> <small>Location: Neptunuksenkatu, approx: street-level</small>
+
+### Decision or proposal?
+
+Not every pin is an approved plan. Each record has a **`stage`**:
+
+| stage          | meaning |
+|----------------|---------|
+| `approved`     | the committee approved the plan (street, park and most traffic plans) |
+| `proposal`     | a proposal or draft: the committee sent it on, or put it on view. **Most zoning plans are here**, because the City Board or Council approves them, not the committee. |
+| `returned`     | returned for further preparation, or tabled |
+| `other`        | the title and summary don't say (mostly pre-2017 decisions without a summary) |
+| `consultation` | a Kerro kantasi public consultation, not a decision |
+
+The stage is a keyword heuristic (`common.plan_stage`) over the title and the *Päätös*
+text, and the pin description shows it. Consultations have their own layer.
+
 ## Requirements
 
 - **Python 3.8+**, standard library only. There is nothing to `pip install`.
 - **Network access** to hel.fi, paatokset.hel.fi, kerrokantasi.api.hel.fi, kartta.hel.fi,
   ptp.hel.fi, web.archive.org and nominatim.openstreetmap.org.
-- **Time.** Geocoding follows Nominatim's usage policy (≤ 1 request/s, cached), so a
-  first full scrape takes hours. Re-runs reuse the cache and are much faster.
+- **Time.** Geocoding follows Nominatim's usage policy (≤ 1 request/s, cached). Re-runs
+  reuse the cache and are much faster.
+
+### Geocoding and Nominatim
+
+The public Nominatim service is a shared, volunteer-run resource, and its
+[usage policy](https://operations.osmfoundation.org/policies/nominatim/) discourages bulk
+geocoding. So:
+
+- **The cache is published.** [`data/geocode_cache.json`](data/) holds every place name
+  the snapshot looked up. A scrape whose own cache is empty starts from that file, so
+  a full re-run only asks Nominatim about names that are new since the snapshot.
+- **Identify yourself.** Set `LAUTAKUNTA_CONTACT` (below) before a full scrape.
+- **Don't schedule full scrapes.** For regular updates, the policy limits scripts to
+  4 requests per minute. Re-running one committee with a warm cache is fine; repeated
+  cold full runs are not. For heavier use, run your own Nominatim or use a commercial
+  geocoder.
 
 ## Quick start
 
@@ -112,6 +166,7 @@ lautakuntamuistiot/           the Python package; run each tool with python3 -m
 ├── scrape_zoning.py          zoning archive 1836 →          (kartta.hel.fi WFS)
 ├── build_kml.py              decisions + consultations → KML
 ├── build_zoning_kml.py       zoning archive → KML
+├── evaluate.py               quality metrics + random sample for manual review
 └── check_locations.py        reverse-geocode pins to spot wrong locations
 ```
 
@@ -200,7 +255,7 @@ scrape_consultations  ── kerrokantasi.api.hel.fi (2014→) ─────�
 
 Shared pieces:
 - **`common`** holds what the scrapers and `build_kml` share: the plan-type classifier
-  (`TYPES`, `EXCLUDE`), the decision-page parser (heading, *Päätös* summary, drawing PDF)
+  (`TYPES`, `EXCLUDE`), the stage heuristic (`plan_stage`), the decision-page parser (heading, *Päätös* summary, drawing PDF)
   and the default dataset paths.
 - **`check_locations`** reverse-geocodes each pin to sanity-check locations.
 - **`settings`** holds the output directory and User-Agent (see **Where output goes**).
@@ -209,9 +264,9 @@ Shared pieces:
 
 ```json
 {
-  "committee": "Kaupunkiympäristölautakunta", "dm": "u540",
+  "committee": "Kaupunkiympäristölautakunta", "dm": "U540",
   "asia_id": "hel-2024-013924",
-  "plan_type": "katu", "plan_type_label": "Katusuunnitelma (street)",
+  "plan_type": "katu", "plan_type_label": "Katusuunnitelma (street)", "stage": "approved",
   "heading": "Katusuunnitelma, Melkinlaiturin alue, Neptunuksenkatu 32179/1, …",
   "title":   "Neptunuksenkatu, Samoankuja, katusuunnitelmat, Länsisatama, Jätkäsaari",
   "summary": "Kaupunkiympäristölautakunta päätti hyväksyä seuraavat … katusuunnitelmat: …",
@@ -293,6 +348,28 @@ python3 -m lautakuntamuistiot.build_zoning_kml --polygons --split   # asemakaava
 
 A static KML does not update itself. To refresh, re-scrape, re-render and re-import.
 
+## Measuring quality
+
+`evaluate` prints automated checks and draws a random sample for manual review:
+
+```bash
+python3 -m lautakuntamuistiot.evaluate --dataset data/plans_dataset.json \
+    --sample 100 --seed 1 --csv output/quality_sample.csv [--check-drawings 50]
+```
+
+- **Automated:**
+  - counts by type, stage, committee and year;
+  - drawing coverage per type;
+  - geocode precision;
+  - pins outside Helsinki;
+  - duplicates and missing fields.
+  - `--check-drawings N` fetches N random drawing links and checks they are real PDFs.
+- **Manual:** the CSV lists 100 random records with links to the decision, the drawing
+  and the pin on OpenStreetMap, plus empty `type_ok`, `stage_ok`, `drawing_ok` and
+  `location_ok` columns. Accuracy is only known once someone has filled them in.
+  The automated checks can't tell whether a pin is on the *right* street, because the
+  place name itself comes from the decision text.
+
 ## Location accuracy
 
 Locations are **rough**, and each pin is tagged with its precision:
@@ -308,21 +385,34 @@ Locations are **rough**, and each pin is tagged with its precision:
 Many plans share a district centroid, which is why `build_kml` spreads overlapping
 pins apart. `check_locations` reverse-geocodes pins to help spot wrong ones.
 
-## Data sources and attribution
+## Data sources and licences
 
-The scripts only read publicly available material. Respect each source's terms:
+The scripts only read publicly available material. What the datasets contain, and on what
+terms:
 
-- **City of Helsinki** decisions, consultations and open geodata (paatokset.hel.fi,
-  hel.fi, kerrokantasi.hel.fi, kartta.hel.fi). Open data is generally CC BY 4.0, so
-  credit the City of Helsinki.
-- **OpenStreetMap / Nominatim** for geocoding: © OpenStreetMap contributors, ODbL. Keep to
-  the [Nominatim usage policy](https://operations.osmfoundation.org/policies/nominatim/)
-  (≤ 1 request/s; the cache is there so you don't re-query).
-- **Internet Archive** (web.archive.org), used only to enumerate 2013–2017 meetings.
+- **Committee decisions** (paatokset.hel.fi; pre-2017 bulletins on hel.fi). Titles and
+  short excerpts of the decision text are included. Decisions and statements of
+  authorities are **not protected by copyright** under section 9 of the Finnish Copyright
+  Act ([404/1961](https://www.finlex.fi/fi/laki/ajantasa/1961/19610404)). Independent
+  works attached to them, such as plan drawings, reports and photos, may be, so they are
+  **linked, not copied**.
+- **Kerro kantasi consultations** (kerrokantasi.hel.fi). Only titles, short abstracts and
+  links are included. The service's
+  [terms](https://github.com/City-of-Helsinki/kerrokantasi-ui/blob/main/cities/helsinki/i18n/service-info/content.en.md)
+  publish its data under **ODbL** and user comments under CC BY-NC-SA 4.0; no comments
+  are collected. Treat the abstracts as the City's material and link back to the original.
+- **Zoning archive** (kartta.hel.fi WFS,
+  [HRI](https://hri.fi/data/fi/dataset/helsingin-asemakaavahakemistokartta-asemakaavahakemisto)):
+  **CC BY 4.0**. Credit: "Data ja kartat (c) Helsingin kaupunki, kaupunkimittauspalvelut".
+  Zoning drawings on ptp.hel.fi are linked only.
+- **Coordinates** from Nominatim: © OpenStreetMap contributors,
+  [ODbL](https://www.openstreetmap.org/copyright).
+- **Internet Archive** (web.archive.org), used only to list the 2013–2017 meetings.
 
-The output maps link to the original documents. They do not copy them.
+The original documents on hel.fi are authoritative. This project is independent of the
+City of Helsinki.
 
 ## Licence
 
 The code is released under the [MIT License](LICENSE). The data it collects keeps its
-sources' licences (see **Data sources and attribution** above); MIT does not cover it.
+sources' terms (see **Data sources and licences** above); MIT does not cover it.

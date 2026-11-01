@@ -22,7 +22,7 @@ coordinates; a moved pin says so in its description.
 """
 import re, json, os, argparse, html, math, difflib
 
-from .common import TYPES, PADDLE, DATASET
+from .common import TYPES, PADDLE, DATASET, STAGES, plan_stage
 from .settings import OUT
 
 KK_DATASET = f"{OUT}/kerrokantasi_dataset.json"   # scrape_consultations
@@ -53,7 +53,7 @@ def placemark(r, pos=None):
     kk = r["plan_type"] == "kerrokantasi"
     lines = [html.escape(r["heading"]),
              f'Comment period: {r["date"]}–{r.get("close_date") or "?"}' if kk
-             else f'Decision date: {r["date"]}']
+             else f'Decision date: {r["date"]} — {STAGES[r.get("stage") or plan_stage(r)]}']
     if r.get("summary"):
         lines.append(f'<i>{html.escape(r["summary"])}</i>')
     if kk:      # consultations carry several drawings (PDFs + plan images)

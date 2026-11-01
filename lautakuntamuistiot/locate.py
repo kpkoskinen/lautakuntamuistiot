@@ -21,11 +21,12 @@ What this does instead:
      Whole-city / municipality matches are rejected.
   3. MANUAL holds hand-fixed coordinates that OSM can't resolve.
 
-Cache: one entry per candidate query, so re-runs are offline and reproducible.
+Cache: one entry per candidate query, so re-runs are offline and reproducible. A new
+cache is seeded from the published data/geocode_cache.json (see load_cache).
 """
 import json, re, time, urllib.parse, urllib.request
 
-from .settings import USER_AGENT
+from .settings import USER_AGENT, DATA
 
 UA = {"User-Agent": USER_AGENT}
 _VIEWBOX = "24.78,60.30,25.27,60.10"            # Helsinki, lon1,lat1,lon2,lat2
@@ -269,11 +270,19 @@ def locate(cache, *texts, fallback=()):
     return None, None, None, "none"
 
 
+SEED_CACHE = f"{DATA}/geocode_cache.json"
+
+
 def load_cache(path):
-    try:
-        return json.load(open(path, encoding="utf-8"))
-    except Exception:
-        return {}
+    """The geocode cache at `path`. On a first run (no cache yet) it starts from the
+    published data/geocode_cache.json, so a fresh scrape only asks Nominatim about
+    places that aren't in the snapshot."""
+    for p in (path, SEED_CACHE):
+        try:
+            return json.load(open(p, encoding="utf-8"))
+        except Exception:
+            pass
+    return {}
 
 
 def save_cache(cache, path):
