@@ -1,26 +1,30 @@
-# Data — ready-made snapshot
+# Data — ready-made dataset
 
-> **Snapshot of 1 Nov 2026.** 1 727 located plan decisions (2013–2026, plus 105
-> unlocated), 185 Kerro kantasi consultations, 1 220 cached place names and a map with
-> 1 807 pins. The [example map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127) loads its pins from
-> [`umap/`](umap/) here, so it always shows what is committed in this folder. An older
-> snapshot is on [Google My Maps](https://www.google.com/maps/d/viewer?mid=1Ggf-akDtTMtHdMUAp-c-wATPfZdPT1A).
+> **Updated daily.** A GitHub Action ([`update-data.yml`](../.github/workflows/update-data.yml),
+> see **Automatic update** in the main README) adds new decisions and consultations here
+> and commits when the data changed. On 1 Nov 2026 it held 1 727 located plan
+> decisions (2013–2026, plus 105 unlocated), 185 Kerro kantasi consultations, 1 220 cached
+> place names and a map with 1 807 pins. The [daily updated map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127) loads
+> its pins from [`umap/`](umap/) here, so it always shows what is committed in this folder.
 
-This folder holds a snapshot of the scripts' output, so you can use the maps without
+This folder holds the scripts' output, so you can use the maps without
 running a multi-hour scrape. Everything here can be regenerated with the scripts.
 
 | file | what it is |
 |------|------------|
-| `plans_dataset.json` | Committee plan decisions, 2013 → snapshot date: heading, summary, date, plan type, location and links to the decision and the plan drawing. Each record's `stage` says whether the committee approved the plan or only proposed it (most zoning plans). Plans that couldn't be located are in its `unlocated` list. |
-| `kerrokantasi_dataset.json` | Plan-related Kerro kantasi public consultations, 2014 → snapshot date, with their drawings. |
-| `geocode_cache.json` | Every place name looked up for the snapshot and its Nominatim result. The scrapers start from it, so a re-run doesn't repeat those lookups. |
+| `plans_dataset.json` | Committee plan decisions, 2013 → last update: heading, summary, date, plan type, location and links to the decision and the plan drawing. Each record's `stage` says whether the committee approved the plan or only proposed it (most zoning plans). Plans that couldn't be located are in its `unlocated` list. |
+| `kerrokantasi_dataset.json` | Plan-related Kerro kantasi public consultations, 2014 → last update, with their drawings. |
+| `geocode_cache.json` | Every place name looked up so far and its Nominatim result. The scrapers start from it, so a re-run doesn't repeat those lookups. |
+| `update_log.md` | What each automatic update changed on the map (pins added, changed, removed), newest first. Written by `update_report`. |
 | `quality_sample.csv` | 100 random decisions (`evaluate --seed 1`) with empty verdict columns for manual review. Not reviewed yet. |
 | `helsinki_plans.umap` | The same map for [uMap](https://umap.openstreetmap.fr), built with `python3 -m lautakuntamuistiot.build_umap`: layers, colours, popups and a stage/year filter in one file. In uMap: **Import data** → this file → format **umap**. |
 | `umap/*.geojson` | The same layers as plain GeoJSON, one file per plan type (`katu`, `liikenne`, `puisto`, `asemakaava`, `muu_k`, `kerrokantasi`). The example uMap map loads them from GitHub, so updating these files updates that map. |
 | `helsinki_plans.kml` | The map built from both datasets with `python3 -m lautakuntamuistiot.build_kml`: one layer per plan type plus a consultation layer. Import it into Google My Maps or any GIS tool. |
 
-The snapshot date is in each JSON's `generated` field. A snapshot does not update itself;
-for newer decisions, re-run the scrapers.
+The date of the last update is in each JSON's `generated` field (the git log shows when
+the map last changed). `plans_dataset.json` also lists every processed decision URL in
+`seen_decisions` (per committee), which the daily job uses to tell new decisions from
+known ones. What each update changed is in [`update_log.md`](update_log.md).
 
 ## Caveats
 

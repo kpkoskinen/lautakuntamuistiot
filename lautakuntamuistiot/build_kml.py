@@ -22,7 +22,7 @@ coordinates; a moved pin says so in its description.
 """
 import re, json, os, argparse, html, math, difflib
 
-from .common import TYPES, PADDLE, DATASET, STAGES, plan_stage
+from .common import TYPES, PADDLE, DATASET, STAGES, plan_stage, better_decision
 from .settings import OUT
 
 KK_DATASET = f"{OUT}/kerrokantasi_dataset.json"   # scrape_consultations
@@ -119,12 +119,7 @@ def decluster(records, min_sep=40.0):
     return pos
 
 
-def _better(a, b):
-    """Which of two records for the same (asia_id, plan_type) to keep on the map:
-    the one with a plan drawing wins; otherwise the later decision."""
-    if bool(a["map_url"]) != bool(b["map_url"]):
-        return bool(a["map_url"])
-    return (a["year"], a["month"]) > (b["year"], b["month"])
+_better = better_decision     # which of two records of the same case to keep (common)
 
 
 def _norm_title(t):
