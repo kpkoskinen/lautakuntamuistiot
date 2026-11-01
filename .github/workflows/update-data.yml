@@ -1,0 +1,58 @@
+# Daily data update in three steps:
+#   1. check_updates reads only the decision and consultation lists (~20 s) and says
+#      whether there is new material; if not, the job stops there.
+#   2. The scrapers fetch only that material (--only-new).
+#   3. The maps are rebuilt and data/ is committed if a layer in data/umap/ changed.
+# The uMap map loads data/umap/*.geojson from GitHub, so a commit updates the map.
+name: Update data
+
+on:
+  schedule:
+    - cron: "17 5 * * *"         # daily 05:17 UTC
+  workflow_dispatch:             # "Run workflow" button for a manual run
+
+permissions:
+  contents: write
+
+concurrency: update-data
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      LAUTAKUNTA_OUT: data                       # update the committed snapshot in place
+      LAUTAKUNTA_CONTACT: ${{ vars.LAUTAKUNTA_CONTACT }}
+      ORG: Kaupunkiympäristölautakunta
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 1. Check for new material
+        id: check
+        run: python3 -m lautakuntamuistiot.check_updates --org "$ORG"
+
+      - name: 2. Fetch only the new material
+        if: steps.check.outputs.pending == 'true'
+        run: |
+          python3 -m lautakuntamuistiot.scrape_decisions --org "$ORG" --only-new
+          python3 -m lautakuntamuistiot.scrape_consultations --only-new
+
+      - name: 3. Rebuild the maps and commit if they changed
+        if: steps.check.outputs.pending == 'true'
+        run: |
+          python3 -m lautakuntamuistiot.build_umap -o data/helsinki_plans.umap
+          python3 -m lautakuntamuistiot.build_kml -o data/helsinki_plans.kml
+          if git diff --quiet -- data/umap; then
+            echo "Map layers unchanged; nothing committed."
+            exit 0
+          fi
+          git diff --stat -- data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add data
+          git commit -m "Data update $(date -u +%Y-%m-%d)"
+          git push

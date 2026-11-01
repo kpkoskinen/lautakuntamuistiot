@@ -4,8 +4,8 @@
 > year filters) **or [on Google My Maps](https://www.google.com/maps/d/viewer?mid=1Ggf-akDtTMtHdMUAp-c-wATPfZdPT1A)**
 >
 > The uMap map loads its pins from [`data/umap/`](data/umap/) in this repository each
-> time it opens, so it shows whatever data is committed here. A weekly GitHub Action
-> (see **Weekly update**) adds new decisions and consultations to `data/`. The
+> time it opens, so it shows whatever data is committed here. A daily GitHub Action
+> (see **Automatic update**) adds new decisions and consultations to `data/`. The
 > My Maps one is a **snapshot** from October 2026, made with an earlier version of these
 > scripts, and is not updated. For your own map (or newer data after re-running the scripts), import
 > [`data/helsinki_plans.kml`](data/helsinki_plans.kml) into your own Google My Maps (see
@@ -121,32 +121,40 @@ geocoding. So:
 - **Identify yourself.** Set `LAUTAKUNTA_CONTACT` (below) before a full scrape.
 - **Don't schedule full scrapes.** For regular updates, the policy limits scripts to
   4 requests per minute. Re-running one committee with a warm cache is fine; repeated
-  cold full runs are not. The weekly update (below) only looks up names that are new
-  since the last run. For heavier use, run your own Nominatim or use a commercial
+  cold full runs are not. The automatic update (below) only looks up names of new
+  decisions and hearings. For heavier use, run your own Nominatim or use a commercial
   geocoder.
 
-## Weekly update
+## Automatic update
 
-[`.github/workflows/weekly-update.yml`](.github/workflows/weekly-update.yml) runs every
-Monday (and on demand from the Actions tab). It updates the snapshot in `data/` in place
-(`LAUTAKUNTA_OUT=data`):
+[`.github/workflows/update-data.yml`](.github/workflows/update-data.yml) runs daily (and on
+demand from the Actions tab) and updates the snapshot in `data/` in place
+(`LAUTAKUNTA_OUT=data`), in three steps:
 
-1. `scrape_decisions --incremental` fetches the committee's decision list and opens only
-   the decisions from recent meetings (60 days before the last run), so new plans are
-   added and late-attached drawings picked up. Older records are kept as they are.
-2. `scrape_consultations` refreshes the Kerro kantasi layer.
-3. `build_umap` and `build_kml` rebuild the maps.
-4. If any layer in `data/umap/` changed, the job commits `data/`. The uMap map loads
-   those files, so it shows the new pins within minutes. Otherwise nothing is committed.
+1. **Check.** `check_updates` reads only the decision list and the Kerro kantasi hearing
+   list (about 20 s) and compares them with the datasets: plan decisions not processed
+   yet, recent decisions whose plan drawing has appeared since, and new plan hearings.
+   If there is nothing, the job stops here.
+2. **Fetch only that.** `scrape_decisions --only-new` and `scrape_consultations --only-new`
+   open and locate just the pending items and add them to the datasets. Hearings still
+   open for comments are refreshed at the same time.
+3. **Update.** `build_umap` and `build_kml` rebuild the maps. If a layer in `data/umap/`
+   changed, the job commits `data/`; the uMap map loads those files, so it shows the new
+   pins within minutes.
 
 Set the repository variable `LAUTAKUNTA_CONTACT` (Settings → Secrets and variables →
-Actions → Variables) to identify the job to Nominatim. The same incremental run works
-locally:
+Actions → Variables) to identify the job to Nominatim. The same steps work locally:
 
 ```bash
-python3 -m lautakuntamuistiot.scrape_decisions --org "Kaupunkiympäristölautakunta" --incremental
-python3 -m lautakuntamuistiot.scrape_decisions --org "Kaupunkiympäristölautakunta" --since 2026-09-01
+python3 -m lautakuntamuistiot.check_updates
+python3 -m lautakuntamuistiot.scrape_decisions --org "Kaupunkiympäristölautakunta" --only-new
+python3 -m lautakuntamuistiot.scrape_consultations --only-new
 ```
+
+`plans_dataset.json` keeps every processed decision URL in `seen_decisions`, so an
+earlier-stage decision that isn't on the map doesn't count as new again. Closed
+hearings already in the dataset are not re-read (the hearing list has no "modified"
+date); a full `scrape_consultations` run refreshes them all.
 
 ## Quick start
 
@@ -210,6 +218,7 @@ lautakuntamuistiot/           the Python package; run each tool with python3 -m
 ├── scrape_decisions.py       committee decisions 2017 →     (paatokset ES proxy)
 ├── scrape_decisions_2013.py  committee decisions 2013–2017  (hel.fi static hela)
 ├── scrape_consultations.py   Kerro kantasi consultations    (kerrokantasi API)
+├── check_updates.py          is there new material? (lists only, for the daily job)
 ├── scrape_zoning.py          zoning archive 1836 →          (kartta.hel.fi WFS)
 ├── build_kml.py              decisions + consultations → KML
 ├── build_umap.py             decisions + consultations → uMap (.umap)

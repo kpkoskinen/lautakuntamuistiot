@@ -25,16 +25,18 @@ can't be located are kept in the dataset's "unlocated" list rather than dropped.
     python3 -m lautakuntamuistiot.scrape_decisions --org "Yleisten töiden lautakunta"
     python3 -m lautakuntamuistiot.scrape_decisions --org "Kaupunkisuunnittelulautakunta"
 
-Incremental update (the weekly job): the decision list is always fetched whole (a few
-requests), but only decisions from recent meetings are opened and located. Older
-ones are kept as they are in the dataset.
+Only new material (the scheduled job): the decision list is always fetched whole (a
+few requests); --only-new then opens just the pending decisions (see pending()):
+ones not seen before, plus recent ones still without a plan drawing, since
+paatokset.hel.fi often attaches the drawing days or weeks after the meeting.
+check_updates reports the same without opening anything.
 
-    python3 -m lautakuntamuistiot.scrape_decisions --org "Kaupunkiympäristölautakunta" --incremental
+    python3 -m lautakuntamuistiot.scrape_decisions --org "Kaupunkiympäristölautakunta" --only-new
     python3 -m lautakuntamuistiot.scrape_decisions --org "..." --since 2026-09-01
 
---incremental re-checks meetings from 60 days (--recheck-days) before the dataset's
-`generated` date, so a plan drawing attached to a decision page a few weeks late is
-still picked up.
+The dataset keeps every processed decision URL in `seen_decisions`, so a decision
+that was opened but not kept (an earlier stage of a case whose later decision is on
+the map) does not count as new again.
 """
 import urllib.request, json, re, argparse, time, os, calendar
 
@@ -81,31 +83,16 @@ def one(v):
     return v[0] if isinstance(v, list) else v
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--org", required=True, help="organization_name, e.g. 'Kaupunkiympäristölautakunta'")
-    ap.add_argument("--dataset", default=DATASET)
-    ap.add_argument("--cache", default=GCACHE)
-    ap.add_argument("--since", default=None,
-                    help="only open decisions from meetings on or after this date (YYYY-MM-DD)")
-    ap.add_argument("--incremental", action="store_true",
-                    help="--since = the dataset's 'generated' date minus --recheck-days")
-    ap.add_argument("--recheck-days", type=int, default=60)
-    args = ap.parse_args()
+def meeting_ts(s):
+    return one(s.get("meeting_date")) or 0
 
-    ds = load_json(args.dataset, {"generated": None, "records": [], "unlocated": []})
-    ds.setdefault("unlocated", [])
-    since = args.since
-    if args.incremental and not since and ds.get("generated"):
-        g = calendar.timegm(time.strptime(ds["generated"], "%Y-%m-%d"))
-        since = time.strftime("%Y-%m-%d", time.gmtime(g - args.recheck_days * 86400))
-    since_ts = calendar.timegm(time.strptime(since, "%Y-%m-%d")) if since else None
-    cache = load_cache(args.cache)
-    bykey = {(r["dm"], r["asia_id"], r["plan_type"]): i for i, r in enumerate(ds["records"])}
-    unloc = {(u["dm"], u["asia_id"], u["plan_type"]): u for u in ds["unlocated"]}
 
-    print(f"[ES] all decisions for {args.org!r} ...", flush=True)
-    hits = all_decisions(args.org)
+def decision_url(s):
+    return "https://paatokset.hel.fi" + one(s.get("decision_url"))
+
+
+def plan_hits(hits):
+    """[(source, subject, plan_type)] for the hits that are plan decisions."""
     plans = []
     for h in hits:
         subject = one(h["_source"].get("subject")) or ""
@@ -114,29 +101,88 @@ def main():
         key = classify(subject.lower())
         if key:
             plans.append((h["_source"], subject, key))
+    return plans
+
+
+def seen_set(ds, plans):
+    """Decision URLs already processed. A dataset from before `seen_decisions` existed
+    counts every decision from meetings up to its `generated` date as seen."""
+    if "seen_decisions" in ds:
+        return set(ds["seen_decisions"])
+    seen = {r.get("decision_url") for r in ds["records"] + ds.get("unlocated", [])}
+    if ds.get("generated"):
+        cutoff = calendar.timegm(time.strptime(ds["generated"], "%Y-%m-%d"))
+        seen |= {decision_url(s) for s, _, _ in plans if meeting_ts(s) < cutoff}
+    return seen
+
+
+def pending(ds, plans, recheck_days=60, now=None):
+    """(new, recheck): plan decisions never processed, and decisions from the last
+    `recheck_days` days whose record still has no plan drawing."""
+    seen = seen_set(ds, plans)
+    no_drawing = {r.get("decision_url") for r in ds["records"] + ds.get("unlocated", [])
+                  if not r.get("map_url")}
+    cutoff = (now or time.time()) - recheck_days * 86400
+    new = [p for p in plans if decision_url(p[0]) not in seen]
+    recheck = [p for p in plans if decision_url(p[0]) in seen
+               and decision_url(p[0]) in no_drawing and meeting_ts(p[0]) >= cutoff]
+    return new, recheck
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--org", required=True, help="organization_name, e.g. 'Kaupunkiympäristölautakunta'")
+    ap.add_argument("--dataset", default=DATASET)
+    ap.add_argument("--cache", default=GCACHE)
+    ap.add_argument("--only-new", action="store_true",
+                    help="open only pending decisions: new ones and recent ones without a drawing")
+    ap.add_argument("--recheck-days", type=int, default=60,
+                    help="with --only-new: how far back to re-check decisions without a drawing")
+    ap.add_argument("--since", default=None,
+                    help="only open decisions from meetings on or after this date (YYYY-MM-DD)")
+    args = ap.parse_args()
+
+    ds = load_json(args.dataset, {"generated": None, "records": [], "unlocated": []})
+    ds.setdefault("unlocated", [])
+    cache = load_cache(args.cache)
+    bykey = {(r["dm"], r["asia_id"], r["plan_type"]): i for i, r in enumerate(ds["records"])}
+    unloc = {(u["dm"], u["asia_id"], u["plan_type"]): u for u in ds["unlocated"]}
+
+    print(f"[ES] all decisions for {args.org!r} ...", flush=True)
+    hits = all_decisions(args.org)
+    plans = plan_hits(hits)
     print(f"      {len(hits)} decisions -> {len(plans)} plan decisions", flush=True)
-    if since_ts is not None:
-        plans = [p for p in plans if (one(p[0].get("meeting_date")) or 0) >= since_ts]
-        print(f"      {len(plans)} from meetings on or after {since}", flush=True)
+    seen = seen_set(ds, plans)
+    if args.only_new:
+        new, recheck = pending(ds, plans, args.recheck_days)
+        plans = new + recheck
+        print(f"      {len(new)} new, {len(recheck)} recent without a drawing to re-check", flush=True)
+    if args.since:
+        since_ts = calendar.timegm(time.strptime(args.since, "%Y-%m-%d"))
+        plans = [p for p in plans if meeting_ts(p[0]) >= since_ts]
+        print(f"      {len(plans)} from meetings on or after {args.since}", flush=True)
+    plans.sort(key=lambda p: meeting_ts(p[0]))            # oldest first, as in a full run
 
     added = updated = nloc = 0
     for i, (s, subject, key) in enumerate(plans, 1):
         dec = one(s.get("decision_url"))
-        decision_url = "https://paatokset.hel.fi" + dec
+        url = decision_url(s)
         m = re.search(r'hel-\d{4}-\d+', dec, re.I)
         asia = (one(s.get("unique_issue_id")) or (m.group(0) if m else dec)).lower()
         dm = one(s.get("field_policymaker_id")) or args.org
-        t = time.gmtime(one(s.get("meeting_date")))
+        t = time.gmtime(meeting_ts(s))
         date = time.strftime("%d.%m.%Y", t)
 
-        page = decision_page(decision_url)
+        page = decision_page(url)
         heading, summary, map_url = decision_fields(page) if page else (None, None, None)
         loc, lat, lon, conf = locate(cache, subject, heading, fallback=(summary,))
+        if page:                       # a page that didn't load is retried next run
+            seen.add(url)
         k = (dm, asia, key)
         base = dict(committee=args.org, dm=dm, asia_id=asia, plan_type=key,
                     plan_type_label=LABEL[key], heading=heading or subject, title=subject,
                     summary=summary, date=date, year=t.tm_year, month=t.tm_mon,
-                    decision_url=decision_url, map_url=map_url)
+                    decision_url=url, map_url=map_url)
         base["stage"] = plan_stage(base)
         if lat is None:
             unloc[k] = base; nloc += 1
@@ -156,6 +202,7 @@ def main():
             save_cache(cache, args.cache)
 
     ds["unlocated"] = list(unloc.values())
+    ds["seen_decisions"] = sorted(u for u in seen if u)
     ds["generated"] = time.strftime("%Y-%m-%d")
     os.makedirs(os.path.dirname(args.dataset) or ".", exist_ok=True)
     json.dump(ds, open(args.dataset, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
