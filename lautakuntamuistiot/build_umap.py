@@ -7,6 +7,7 @@ No network — pure render.
     python3 -m lautakuntamuistiot.build_umap --years 2020-2026 -o recent.umap
     python3 -m lautakuntamuistiot.build_umap --remote-base URL   # layers load from URL/<type>.geojson
     python3 -m lautakuntamuistiot.build_umap --combined [--remote-base URL]   # one clustered layer
+    python3 -m lautakuntamuistiot.build_umap --cluster-per-type [--remote-base URL]   # six
 
 The output is uMap's own export format (.umap: GeoJSON layers plus the map's
 settings), so one import gives the whole map: one coloured layer per plan type
@@ -132,7 +133,7 @@ def combined_features(records):
 
 
 def build(records, title, out, dedupe=True, min_sep=40.0, extra=(), remote_base=None,
-          combined=False):
+          combined=False, cluster_per_type=False):
     if dedupe:
         records = dedupe_records(records)
     records = list(records) + list(extra)
@@ -152,6 +153,9 @@ def build(records, title, out, dedupe=True, min_sep=40.0, extra=(), remote_base=
         props = {"name": f"{LABEL[k]} ({len(recs)})", "color": COLOR[k],
                  "iconClass": "Circle", "displayOnLoad": True,
                  "browsable": True, "inCaption": True}
+        if cluster_per_type:                     # count circles in the layer's colour
+            props.update({"type": "Cluster", "cluster": {"radius": CLUSTER_RADIUS},
+                          "showLabel": None, "labelKey": "hover"})
         if remote_base:                          # counts would go stale: leave them out
             props["name"] = LABEL[k]
             props["remoteData"] = {"url": f"{remote_base.rstrip('/')}/{k}.geojson",
@@ -190,7 +194,11 @@ def build(records, title, out, dedupe=True, min_sep=40.0, extra=(), remote_base=
                                "zoom in; where several plans share one spot, click the number "
                                "again to fan them out, then click the pins one by one (close a "
                                "popup with ×; a click on the map closes the fan). Hover a pin "
-                               "for a preview. " if combined else "one layer per plan type. ")
+                               "for a preview. " if combined else
+                               "one clustered layer per plan type: numbers are groups of pins of "
+                               "that type, click to zoom in. Pins that would overlap are spread "
+                               "at least 40 m apart. Hover a pin for a preview. "
+                               if cluster_per_type else "one layer per plan type. ")
                             + ATTRIBUTION),
             "shortCredit": "Data: City of Helsinki, © OpenStreetMap contributors (ODbL)",
             "zoom": 12, "popupShape": "Large", "tilelayer": TILELAYER,
@@ -229,6 +237,8 @@ def main():
     ap.add_argument("--combined", action="store_true",
                     help="one clustered layer with every plan type (umap/all.geojson), pins at "
                          "their true points, plan type as a filter")
+    ap.add_argument("--cluster-per-type", action="store_true",
+                    help="one clustered layer per plan type, pins spread --min-sep apart")
     ap.add_argument("-o", "--out", default=f"{OUT}/helsinki_plans.umap")
     args = ap.parse_args()
 
@@ -246,7 +256,8 @@ def main():
     ys = sorted({r["year"] for r in recs})
     span = f"{ys[0]}" if len(ys) == 1 else f"{ys[0]}–{ys[-1]}"
     build(recs, f"Kaupunkiympäristölautakunnan suunnitelmat ja kaavat {span}", args.out,
-          not args.no_dedupe, args.min_sep, kk, args.remote_base, args.combined)
+          not args.no_dedupe, args.min_sep, kk, args.remote_base, args.combined,
+          args.cluster_per_type)
 
 
 if __name__ == "__main__":
