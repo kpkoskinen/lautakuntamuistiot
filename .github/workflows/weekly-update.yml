@@ -1,0 +1,52 @@
+# Weekly data update: fetch new committee decisions and Kerro kantasi consultations,
+# rebuild the map layers in data/umap/ and commit them if they changed. The uMap map
+# loads those files from GitHub, so a commit here updates the map.
+name: Weekly data update
+
+on:
+  schedule:
+    - cron: "0 4 * * 1"          # Mondays 04:00 UTC
+  workflow_dispatch:             # "Run workflow" button for a manual run
+
+permissions:
+  contents: write
+
+concurrency: weekly-update
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      LAUTAKUNTA_OUT: data                       # update the committed snapshot in place
+      LAUTAKUNTA_CONTACT: ${{ vars.LAUTAKUNTA_CONTACT }}
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Scrape new decisions
+        run: python3 -m lautakuntamuistiot.scrape_decisions --org "Kaupunkiympäristölautakunta" --incremental
+
+      - name: Scrape consultations
+        run: python3 -m lautakuntamuistiot.scrape_consultations
+
+      - name: Build maps
+        run: |
+          python3 -m lautakuntamuistiot.build_umap -o data/helsinki_plans.umap
+          python3 -m lautakuntamuistiot.build_kml -o data/helsinki_plans.kml
+
+      - name: Commit if the map changed
+        run: |
+          if git diff --quiet -- data/umap; then
+            echo "No new or changed pins; nothing committed."
+            exit 0
+          fi
+          git diff --stat -- data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add data
+          git commit -m "Weekly data update $(date -u +%Y-%m-%d)"
+          git push

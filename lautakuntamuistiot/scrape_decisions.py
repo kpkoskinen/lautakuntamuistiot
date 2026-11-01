@@ -24,8 +24,19 @@ can't be located are kept in the dataset's "unlocated" list rather than dropped.
     python3 -m lautakuntamuistiot.scrape_decisions --org "Kaupunkiympäristölautakunta"
     python3 -m lautakuntamuistiot.scrape_decisions --org "Yleisten töiden lautakunta"
     python3 -m lautakuntamuistiot.scrape_decisions --org "Kaupunkisuunnittelulautakunta"
+
+Incremental update (the weekly job): the decision list is always fetched whole (a few
+requests), but only decisions from recent meetings are opened and located. Older
+ones are kept as they are in the dataset.
+
+    python3 -m lautakuntamuistiot.scrape_decisions --org "Kaupunkiympäristölautakunta" --incremental
+    python3 -m lautakuntamuistiot.scrape_decisions --org "..." --since 2026-09-01
+
+--incremental re-checks meetings from 60 days (--recheck-days) before the dataset's
+`generated` date, so a plan drawing attached to a decision page a few weeks late is
+still picked up.
 """
-import urllib.request, json, re, argparse, time, os
+import urllib.request, json, re, argparse, time, os, calendar
 
 from .common import classify, plan_stage, EXCLUDE, TYPES, decision_page, decision_fields, load_json, DATASET, GCACHE
 from .locate import locate, load_cache, save_cache
@@ -75,10 +86,20 @@ def main():
     ap.add_argument("--org", required=True, help="organization_name, e.g. 'Kaupunkiympäristölautakunta'")
     ap.add_argument("--dataset", default=DATASET)
     ap.add_argument("--cache", default=GCACHE)
+    ap.add_argument("--since", default=None,
+                    help="only open decisions from meetings on or after this date (YYYY-MM-DD)")
+    ap.add_argument("--incremental", action="store_true",
+                    help="--since = the dataset's 'generated' date minus --recheck-days")
+    ap.add_argument("--recheck-days", type=int, default=60)
     args = ap.parse_args()
 
     ds = load_json(args.dataset, {"generated": None, "records": [], "unlocated": []})
     ds.setdefault("unlocated", [])
+    since = args.since
+    if args.incremental and not since and ds.get("generated"):
+        g = calendar.timegm(time.strptime(ds["generated"], "%Y-%m-%d"))
+        since = time.strftime("%Y-%m-%d", time.gmtime(g - args.recheck_days * 86400))
+    since_ts = calendar.timegm(time.strptime(since, "%Y-%m-%d")) if since else None
     cache = load_cache(args.cache)
     bykey = {(r["dm"], r["asia_id"], r["plan_type"]): i for i, r in enumerate(ds["records"])}
     unloc = {(u["dm"], u["asia_id"], u["plan_type"]): u for u in ds["unlocated"]}
@@ -94,6 +115,9 @@ def main():
         if key:
             plans.append((h["_source"], subject, key))
     print(f"      {len(hits)} decisions -> {len(plans)} plan decisions", flush=True)
+    if since_ts is not None:
+        plans = [p for p in plans if (one(p[0].get("meeting_date")) or 0) >= since_ts]
+        print(f"      {len(plans)} from meetings on or after {since}", flush=True)
 
     added = updated = nloc = 0
     for i, (s, subject, key) in enumerate(plans, 1):
