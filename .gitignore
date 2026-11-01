@@ -1,6 +1,9 @@
 __pycache__/
 *.pyc
-# generated datasets, geocode cache and maps — never commit data
+# generated datasets, geocode cache and maps stay local;
+# only the published snapshot in data/ is committed
 output/
 *.kml
 *.json
+!data/*.json
+!data/*.kml

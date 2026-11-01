@@ -38,6 +38,9 @@ the plan drawing (PDF) and the decision or consultation page it came from.
    open WFS, with real polygon geometry and the `kaavakartta` drawing. This is a separate
    product; see **Zoning archive** below.
 
+A ready-made snapshot of 1 and 2 (JSON + KML) is in [`data/`](data/) — *coming soon*, see
+[`data/README.md`](data/README.md). Use it if you don't want to run the scrape yourself.
+
 ## Requirements
 
 - **Python 3.8+**, standard library only. There is nothing to `pip install`.
@@ -81,8 +84,8 @@ python3 build_kml.py --no-dedupe                    # every decision as its own 
 
 All output goes to **`output/`** inside the repository directory: datasets
 (`*_dataset.json`), the geocoding cache (`geocode_cache.json`) and the maps (`*.kml`).
-The directory is created on first run and is git-ignored, so **output is never
-committed**. Only the scripts and this README live in the repo.
+The directory is created on first run and is git-ignored. The published snapshot in
+[`data/`](data/) is the only data kept in the repo.
 
 Two environment variables, read by `settings.py`, change the defaults:
 
