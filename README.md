@@ -52,20 +52,20 @@ A ready-made snapshot of 1 and 2 (JSON + KML) is in [`data/`](data/) — *coming
 ## Quick start
 
 ```bash
-# run from the repository directory
+# run from the repository root
 export LAUTAKUNTA_CONTACT="you@example.org"   # optional, identifies you to Nominatim
 D=output/plans_dataset.json
 
 # 1. scrape (network) — each step adds to the dataset; re-running is safe
-python3 scrape_plans_es.py   --org "Kaupunkiympäristölautakunta"   --dataset $D   # 2017 →
-python3 scrape_plans_es.py   --org "Kaupunkisuunnittelulautakunta" --dataset $D   # Jan–May 2017
-python3 scrape_plans_es.py   --org "Yleisten töiden lautakunta"    --dataset $D   # Jan–May 2017
-python3 scrape_plans_hela.py --committee ksv  --dataset $D                        # 2013 → 2017
-python3 scrape_plans_hela.py --committee ytlk --dataset $D                        # 2013 → 2017
-python3 scrape_kerrokantasi.py                                                    # consultations
+python3 -m lautakuntamuistiot.scrape_decisions      --org "Kaupunkiympäristölautakunta"   --dataset $D  # 2017 →
+python3 -m lautakuntamuistiot.scrape_decisions      --org "Kaupunkisuunnittelulautakunta" --dataset $D  # Jan–May 2017
+python3 -m lautakuntamuistiot.scrape_decisions      --org "Yleisten töiden lautakunta"    --dataset $D  # Jan–May 2017
+python3 -m lautakuntamuistiot.scrape_decisions_2013 --committee ksv  --dataset $D                       # 2013 → 2017
+python3 -m lautakuntamuistiot.scrape_decisions_2013 --committee ytlk --dataset $D                       # 2013 → 2017
+python3 -m lautakuntamuistiot.scrape_consultations                                                      # consultations
 
 # 2. render (no network) — pure function of the datasets
-python3 build_kml.py --years 2013-2026 -o output/helsinki_plans.kml
+python3 -m lautakuntamuistiot.build_kml --years 2013-2026 -o output/helsinki_plans.kml
 ```
 
 Then import the `.kml` into Google My Maps (see below).
@@ -73,29 +73,47 @@ Then import the `.kml` into Google My Maps (see below).
 More render options:
 
 ```bash
-python3 build_kml.py --years 2017-2026 --per-year   # one KML per year
-python3 build_kml.py --years 2025                   # one year
-python3 build_kml.py --min-sep 60                   # spread pins further apart
-python3 build_kml.py --kerrokantasi ''              # without the consultation layer
-python3 build_kml.py --no-dedupe                    # every decision as its own pin
+python3 -m lautakuntamuistiot.build_kml --years 2017-2026 --per-year   # one KML per year
+python3 -m lautakuntamuistiot.build_kml --years 2025                   # one year
+python3 -m lautakuntamuistiot.build_kml --min-sep 60                   # spread pins further apart
+python3 -m lautakuntamuistiot.build_kml --kerrokantasi ''              # without the consultation layer
+python3 -m lautakuntamuistiot.build_kml --no-dedupe                    # every decision as its own pin
 ```
 
 ### Where output goes
 
-All output goes to **`output/`** inside the repository directory: datasets
+All output goes to **`output/`** in the repository root: datasets
 (`*_dataset.json`), the geocoding cache (`geocode_cache.json`) and the maps (`*.kml`).
 The directory is created on first run and is git-ignored. The published snapshot in
 [`data/`](data/) is the only data kept in the repo.
 
-Two environment variables, read by `settings.py`, change the defaults:
+Two environment variables, read by `lautakuntamuistiot/settings.py`, change the defaults:
 
 | variable             | effect |
 |----------------------|--------|
 | `LAUTAKUNTA_OUT`     | output directory instead of `output/` |
 | `LAUTAKUNTA_CONTACT` | an e-mail or URL appended to the User-Agent (`lautakuntamuistiot/1.0 (…)`). Nominatim's policy asks bulk users to identify themselves, so please set it for full scrapes. |
 
-Most scripts also take `--dataset` / `-o` for a single run. Keep `geocode_cache.json`
+Most tools also take `--dataset` / `-o` for a single run. Keep `geocode_cache.json`
 if you plan to re-scrape, because it saves hours.
+
+## Repository layout
+
+```
+README.md  LICENSE
+data/                         published snapshot (JSON + KML), see data/README.md
+lautakuntamuistiot/           the Python package; run each tool with python3 -m
+├── settings.py               output directory and User-Agent
+├── common.py                 plan-type classifier, decision-page parsing, fetch helper
+├── locate.py                 title → validated place (Nominatim, cached)
+├── scrape_decisions.py       committee decisions 2017 →     (paatokset ES proxy)
+├── scrape_decisions_2013.py  committee decisions 2013–2017  (hel.fi static hela)
+├── scrape_consultations.py   Kerro kantasi consultations    (kerrokantasi API)
+├── scrape_zoning.py          zoning archive 1836 →          (kartta.hel.fi WFS)
+├── build_kml.py              decisions + consultations → KML
+├── build_zoning_kml.py       zoning archive → KML
+└── check_locations.py        reverse-geocode pins to spot wrong locations
+```
 
 ## Pipeline (JSON-first)
 
@@ -103,24 +121,24 @@ The scrape and the render are separate, with a reusable JSON dataset in between,
 you never have to re-scrape to re-render:
 
 ```
-scrape_plans_es.py   ─┬─ paatokset ES proxy (u540 + predecessors, 2017→)
-scrape_plans_hela.py ─┴─ hel.fi/static hela (predecessors 2013→2017) ─▶ plans_dataset.json ─┐
-scrape_kerrokantasi.py ── kerrokantasi.api.hel.fi (2014→) ──────────▶ kerrokantasi_dataset.json ─┴▶ build_kml.py ─▶ *.kml
+scrape_decisions      ─┬─ paatokset ES proxy (u540 + predecessors, 2017→)
+scrape_decisions_2013 ─┴─ hel.fi/static hela (predecessors 2013→2017) ─▶ plans_dataset.json ─┐
+scrape_consultations  ── kerrokantasi.api.hel.fi (2014→) ──────────▶ kerrokantasi_dataset.json ─┴▶ build_kml ─▶ *.kml
         │
-        └── locate.py (title → validated place, + geocode_cache.json)
+        └── locate (title → validated place, + geocode_cache.json)
 ```
 
-- **`scrape_plans_es.py`** is the main 2017→ scraper. It fetches **every** decision of a
+- **`scrape_decisions`** is the main 2017→ scraper. It fetches **every** decision of a
   committee from the paatokset site's **Elasticsearch proxy**
   (`paatokset-elastic-proxy.api.hel.ninja/paatokset_decisions`, `field_is_decision=true`)
   and classifies the subject client-side, so nothing depends on a full-text pre-filter or
   on crawling meeting pages.
   - For each plan it opens the decision page for the **heading** (`<h1>`), the **summary**
-    (*Päätös* text) and the plan-**drawing** PDF, then locates it with `locate.py`.
+    (*Päätös* text) and the plan-**drawing** PDF, then locates it with `locate`.
   - It upserts into `plans_dataset.json`, keyed on `dm + asia_id + plan_type`.
   - Plans that can't be located go to the dataset's `unlocated` list instead of vanishing.
   - Option: `--org "<organization_name>"`.
-- **`locate.py`** maps a title to a place, using heuristics.
+- **`locate`** maps a title to a place, using heuristics.
   - It extracts candidate names from the title:
     - street, park and square names in any inflection, restored to the nominative
       (*Caloniuksenkadun* → *Caloniuksenkatu*);
@@ -135,7 +153,7 @@ scrape_kerrokantasi.py ── kerrokantasi.api.hel.fi (2014→) ─────�
   - A street that free-text search fuzzes to a neighbour (*Myllypadontie* →
     *Myllypurontie*) is retried as a structured `street=…&city=Helsinki` query.
   - Network failures are not cached as misses. `MANUAL` holds hand-fixed points.
-- **`scrape_plans_hela.py`** reaches the predecessor committees for **2013→2017** from the
+- **`scrape_decisions_2013`** reaches the predecessor committees for **2013→2017** from the
   live static decision repository `hel.fi/static/public/hela/`. paatokset only indexes
   2017+, and the OpenAhjo API and per-meeting ZIP bundles are dead.
   - Enumeration starts from the Internet Archive capture of the old meeting listing.
@@ -153,17 +171,17 @@ scrape_kerrokantasi.py ── kerrokantasi.api.hel.fi (2014→) ─────�
   - Every attachment is kept in the record (`attachments`) and listed on the pin.
   - Option: `--committee ksv|ytlk`. It writes `plans_pre2017_dataset.json` by default;
     pass `--dataset …/plans_dataset.json` to write straight into the main dataset.
-- **`scrape_kerrokantasi.py`** collects public consultations from **Kerro kantasi**
+- **`scrape_consultations`** collects public consultations from **Kerro kantasi**
   (`kerrokantasi.api.hel.fi/v1/hearing/`, open, 2014→).
   - It keeps the plan-related hearings (zoning, streets, parks, traffic) and drops schools,
     budgets and Q&A events.
   - It places each hearing at the centroid of its own drawn area (`geocode: "area"`). A
-    hearing without an area is located with `locate.py`.
+    hearing without an area is located with `locate`.
   - It lists the hearing's drawings: every PDF attachment plus every section image that
     isn't just a credited or stock photo.
   - Pins are labelled with the place name.
   - It writes `kerrokantasi_dataset.json`.
-- **`build_kml.py`** renders pure output from the datasets, with no network.
+- **`build_kml`** renders pure output from the datasets, with no network.
   - **Slicing:** by year or year range and by committee, as one merged KML or one KML per
     year.
   - **Dedupe:** by default there is **one pin per `(asia_id, plan_type)`**. A plan decided
@@ -180,15 +198,12 @@ scrape_kerrokantasi.py ── kerrokantasi.api.hel.fi (2014→) ─────�
   - **Kerro kantasi layer:** if `kerrokantasi_dataset.json` exists, it is added as a sixth
     layer, **Kerro kantasi (consultation)**, declustered together with the decisions.
 
-Older helpers:
-- `scrape_plans.py`, `list_meetings.py`, `build_year_map.py`, `build_plans_map.py` and
-  `make_street_plans_map.py` are earlier per-meeting crawlers and builders.
-  `scrape_plans_es.py`, `scrape_plans_hela.py` and `build_kml.py` still reuse their
-  classifier, drawing-link extractor and dataset helpers.
-- `check_locations.py` reverse-geocodes each pin to sanity-check locations.
-- `settings.py` holds the output directory and User-Agent (see **Where output goes**).
-- `bootstrap_dataset.py` is a one-off migration that built the first dataset from
-  hand-verified per-year KMLs. It is kept for reference.
+Shared pieces:
+- **`common`** holds what the scrapers and `build_kml` share: the plan-type classifier
+  (`TYPES`, `EXCLUDE`), the decision-page parser (heading, *Päätös* summary, drawing PDF)
+  and the default dataset paths.
+- **`check_locations`** reverse-geocodes each pin to sanity-check locations.
+- **`settings`** holds the output directory and User-Agent (see **Where output goes**).
 
 ## `plans_dataset.json` record
 
@@ -216,11 +231,11 @@ records carry `drawings: [[label, url], …]` and `close_date`.
 Committee plan decisions **2013 → now**, stitched from three sources:
 - **Kaupunkiympäristölautakunta (`u540`) from Jun 2017, plus the predecessor committees'
   Jan–May 2017.** This is every decision in the paatokset Elasticsearch index
-  (`scrape_plans_es.py`); that index starts in 2017. A meeting appears once its decisions
+  (`scrape_decisions`); that index starts in 2017. A meeting appears once its decisions
   are published, a few days after the meeting.
 - **Predecessor committees, 2013→2017.** *Kaupunkisuunnittelulautakunta* (zoning/traffic)
   and *Yleisten töiden lautakunta* (street/park) come from the live `hela` repository
-  (`scrape_plans_hela.py`). That is about 730 plan decisions, and 98.9 % of them have the
+  (`scrape_decisions_2013`). That is about 730 plan decisions, and 98.9 % of them have the
   plan drawing itself.
 
 **2013 is a hard floor.** The committees' *live* päätöstiedote pages on
@@ -243,11 +258,11 @@ PDF keyed on its plan number. That is 4 413 plans from 1836 to today, with real 
 extents.
 
 ```
-scrape_asemakaava.py  ─┬─ kartta.hel.fi WFS (plan index + geometry)  ─▶  asemakaava_dataset.json  ─▶  build_kaava_kml.py
-                       └─ ptp.hel.fi (drawing + report PDFs, verified)
+scrape_zoning  ─┬─ kartta.hel.fi WFS (plan index + geometry)  ─▶  asemakaava_dataset.json  ─▶  build_zoning_kml
+                └─ ptp.hel.fi (drawing + report PDFs, verified)
 ```
 
-- **`scrape_asemakaava.py`** pulls the WFS layers
+- **`scrape_zoning`** pulls the WFS layers
   `avoindata:Kaavahakemisto_alue_kaava_voimassa` (+ underground), one record per plan:
   `kaavatunnus`, acceptance date, district, polygon geometry + centroid, and the drawing
   and report PDF URLs.
@@ -257,16 +272,16 @@ scrape_asemakaava.py  ─┬─ kartta.hel.fi WFS (plan index + geometry)  ─�
   - Result: **4 404 / 4 413 (99.8 %)** have a real `kaavakartta` drawing.
   - Drawing: `https://ptp.hel.fi/DataHandlers/kaavapdf/?id=<kaavatunnus>`
   - Report: `https://ptp.hel.fi/DataHandlers/kaavaselostuspdf/?id=<kaavatunnus>`
-- **`build_kaava_kml.py`** renders the archive **layered by era**:
+- **`build_zoning_kml`** renders the archive **layered by era**:
   - `--points` (default) → `asemakaava_points.kml`: one centroid pin per plan, in 9 era
     layers (colour-graded old→new), each pin linking the real drawing PDF.
   - `--polygons --split` → `asemakaava_polygons_<era>.kml`: the real plan **extents**, one
     file per era. Each file can be imported as its own layer.
 
 ```bash
-python3 scrape_asemakaava.py                  # pull + verify drawings (-> dataset)
-python3 build_kaava_kml.py                    # asemakaava_points.kml
-python3 build_kaava_kml.py --polygons --split # asemakaava_polygons_<era>.kml
+python3 -m lautakuntamuistiot.scrape_zoning                         # pull + verify drawings (-> dataset)
+python3 -m lautakuntamuistiot.build_zoning_kml                      # asemakaava_points.kml
+python3 -m lautakuntamuistiot.build_zoning_kml --polygons --split   # asemakaava_polygons_<era>.kml
 ```
 
 ## Import into Google My Maps
@@ -290,8 +305,8 @@ Locations are **rough**, and each pin is tagged with its precision:
 | `area`     | centroid of a Kerro kantasi hearing's own drawn area |
 | `district` | a neighbourhood centroid, used when nothing more specific in the title could be geocoded |
 
-Many plans share a district centroid, which is why `build_kml.py` spreads overlapping
-pins apart. `check_locations.py` reverse-geocodes pins to help spot wrong ones.
+Many plans share a district centroid, which is why `build_kml` spreads overlapping
+pins apart. `check_locations` reverse-geocodes pins to help spot wrong ones.
 
 ## Data sources and attribution
 

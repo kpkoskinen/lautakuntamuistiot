@@ -19,20 +19,19 @@ Covers the two pre-reform plan committees:
 Records match the decision dataset schema and are written to a SEPARATE file by
 default so you can review before merging into plans_dataset.json.
 
-    python3 scrape_plans_hela.py --committee ksv
-    python3 scrape_plans_hela.py --committee ytlk
+    python3 -m lautakuntamuistiot.scrape_decisions_2013 --committee ksv
+    python3 -m lautakuntamuistiot.scrape_decisions_2013 --committee ytlk
 """
 import urllib.request, re, json, argparse, os, time, html as _html
 
-from build_plans_map import classify, EXCLUDE, TYPES
-from locate import locate, load_cache, save_cache
-from settings import OUT, USER_AGENT
+from .common import classify, EXCLUDE, TYPES
+from .locate import locate, load_cache, save_cache
+from .settings import OUT, USER_AGENT
 
 HELA = "https://www.hel.fi/static/public/hela"
 WB = "http://web.archive.org/web/20210616085555/https://openhelsinki.hel.fi/files/{}/"
 UA = {"User-Agent": "Mozilla/5.0 " + USER_AGENT}
 LABEL = {k: lbl for k, lbl, *_ in TYPES}
-MONTHS = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 COMMITTEES = {
     "ksv":  dict(name="Kaupunkisuunnittelulautakunta", folder="Kaupunkisuunnittelulautakunta",

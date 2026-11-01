@@ -1,7 +1,7 @@
 # Data — ready-made snapshot
 
 > **Coming soon.** The first snapshot is being generated and will be added here. Until
-> then, build your own with the scripts (see the main [README](../README.md)).
+> then, build your own with the tools (see the main [README](../README.md)).
 
 This folder holds a snapshot of the scripts' output, so you can use the maps without
 running a multi-hour scrape. Everything here can be regenerated with the scripts.
@@ -10,7 +10,7 @@ running a multi-hour scrape. Everything here can be regenerated with the scripts
 |------|------------|
 | `plans_dataset.json` | Committee plan decisions, 2013 → snapshot date: heading, summary, date, plan type, location and links to the decision and the plan drawing. Plans that couldn't be located are in its `unlocated` list. |
 | `kerrokantasi_dataset.json` | Plan-related Kerro kantasi public consultations, 2014 → snapshot date, with their drawings. |
-| `helsinki_plans.kml` | The map built from both datasets with `build_kml.py`: one layer per plan type plus a consultation layer. Import it into Google My Maps or any GIS tool. |
+| `helsinki_plans.kml` | The map built from both datasets with `python3 -m lautakuntamuistiot.build_kml`: one layer per plan type plus a consultation layer. Import it into Google My Maps or any GIS tool. |
 
 The snapshot date is in each JSON's `generated` field. A snapshot does not update itself;
 for newer decisions, re-run the scrapers.

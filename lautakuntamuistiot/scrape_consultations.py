@@ -10,17 +10,16 @@ aerial views — mixed with photos) and sometimes PDF attachments (`files`).
 
 We keep the plan-related hearings (city-environment topics; schools, budgets,
 mayor's evenings, Q&A events are dropped), place each at the centroid of its
-geometry — or locate its title with locate.py when it has none — and list the
+geometry — or locate its title with locate when it has none — and list the
 drawings: every PDF attachment and every image that isn't just a photo.
 
-    python3 scrape_kerrokantasi.py            # -> output/kerrokantasi_dataset.json
+    python3 -m lautakuntamuistiot.scrape_consultations            # -> output/kerrokantasi_dataset.json
 """
 import urllib.request, json, re, argparse, time, os, html
 
-from build_plans_map import classify
-from scrape_plans import load_json, GCACHE
-from locate import locate, save_cache, HKI_BBOX
-from settings import OUT, USER_AGENT
+from .common import classify, load_json, GCACHE
+from .locate import locate, save_cache, HKI_BBOX
+from .settings import OUT, USER_AGENT
 
 API = "https://kerrokantasi.api.hel.fi/v1/hearing/"
 PAGE = "https://kerrokantasi.hel.fi/{}"

@@ -25,7 +25,7 @@ Cache: one entry per candidate query, so re-runs are offline and reproducible.
 """
 import json, re, time, urllib.parse, urllib.request
 
-from settings import USER_AGENT
+from .settings import USER_AGENT
 
 UA = {"User-Agent": USER_AGENT}
 _VIEWBOX = "24.78,60.30,25.27,60.10"            # Helsinki, lon1,lat1,lon2,lat2

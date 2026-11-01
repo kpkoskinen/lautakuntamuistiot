@@ -13,11 +13,11 @@ feature even inside Helsinki. This validates each pin two ways:
 Prints a flagged list (title, coordinate, what the pin sits on, what the decision
 says) so the doubtful ones can be eyeballed. Read-only; hits Nominatim at <=1/s.
 
-    python3 check_locations.py [-k output/plans_2025.kml]
+    python3 -m lautakuntamuistiot.check_locations [-k output/plans_2025.kml]
 """
 import re, json, urllib.request, urllib.parse, time, argparse
 
-from settings import OUT, USER_AGENT
+from .settings import OUT, USER_AGENT
 
 UA = {"User-Agent": USER_AGENT}
 HKI = (60.10, 60.30, 24.78, 25.27)

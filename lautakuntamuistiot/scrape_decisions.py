@@ -15,22 +15,21 @@ replaced a full-text pre-filter + the u540 meeting-page crawl, which together mi
 ~30% of plans (inflected plan words, non-hel- agenda links, silent geocode skips).
 
 HARD LIMIT: the index only goes back to 2017 (verified: 0 decisions before
-2017-01-01). 2013–2016 comes from scrape_plans_hela.py.
+2017-01-01). 2013–2016 comes from scrape_decisions_2013.
 
 For each plan we still open the decision page for the <h1> heading, the 'Päätös'
-summary and the plan-drawing PDF, then locate it (locate.py, cached). Items that
+summary and the plan-drawing PDF, then locate it (locate, cached). Items that
 can't be located are kept in the dataset's "unlocated" list rather than dropped.
 
-    python3 scrape_plans_es.py --org "Kaupunkiympäristölautakunta"
-    python3 scrape_plans_es.py --org "Yleisten töiden lautakunta"
-    python3 scrape_plans_es.py --org "Kaupunkisuunnittelulautakunta"
+    python3 -m lautakuntamuistiot.scrape_decisions --org "Kaupunkiympäristölautakunta"
+    python3 -m lautakuntamuistiot.scrape_decisions --org "Yleisten töiden lautakunta"
+    python3 -m lautakuntamuistiot.scrape_decisions --org "Kaupunkisuunnittelulautakunta"
 """
 import urllib.request, json, re, argparse, time, os
 
-from build_plans_map import classify, EXCLUDE, TYPES, decision_page
-from scrape_plans import decision_fields, load_json, DATASET, GCACHE
-from locate import locate, save_cache
-from settings import USER_AGENT
+from .common import classify, EXCLUDE, TYPES, decision_page, decision_fields, load_json, DATASET, GCACHE
+from .locate import locate, save_cache
+from .settings import USER_AGENT
 
 ES = "https://paatokset-elastic-proxy.api.hel.ninja/paatokset_decisions/_search"
 LABEL = {k: lbl for k, lbl, *_ in TYPES}

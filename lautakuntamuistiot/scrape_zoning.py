@@ -13,17 +13,17 @@ Source (open, no key): Helsinki's WFS plan index + the ptp.hel.fi document servi
 
 Unlike the decision scraper this gives the real plan **extent** (polygon) and
 near-complete drawing coverage across ~130 years. Writes asemakaava_dataset.json
-(records with geometry + centroid + verified PDF links); build_kaava_kml.py renders it.
+(records with geometry + centroid + verified PDF links); build_zoning_kml renders it.
 
-  python3 scrape_asemakaava.py              # pull + verify drawing links
-  python3 scrape_asemakaava.py --no-verify  # pull only (fast), link optimistically
+  python3 -m lautakuntamuistiot.scrape_zoning              # pull + verify drawing links
+  python3 -m lautakuntamuistiot.scrape_zoning --no-verify  # pull only (fast), link optimistically
 
 GOTCHA baked in: the ptp handler returns HTTP 200 + a 780-byte PNG placeholder
 when a plan has no PDF, so we verify by magic bytes (%PDF), never status code.
 """
 import urllib.request, json, argparse, os, time
 
-from settings import OUT, USER_AGENT
+from .settings import OUT, USER_AGENT
 
 WFS = ("https://kartta.hel.fi/ws/geoserver/avoindata/wfs?service=WFS&version=2.0.0"
        "&request=GetFeature&typeNames=avoindata:{layer}&outputFormat=application/json"

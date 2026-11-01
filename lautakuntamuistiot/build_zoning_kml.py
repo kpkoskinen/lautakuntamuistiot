@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Render the Helsinki zoning archive (asemakaava_dataset.json from
-scrape_asemakaava.py) to KML, layered by era so it stays inside Google My Maps'
+scrape_zoning) to KML, layered by era so it stays inside Google My Maps'
 limits (≤10 layers, ≤2000 features/layer).
 
 Two views:
@@ -10,12 +10,12 @@ Two views:
   --polygons  the real plan extent. Big, so pair with --split to write one file
               per era (each importable as its own My Maps layer).
 
-    python3 build_kaava_kml.py                       # asemakaava_points.kml (9 era layers)
-    python3 build_kaava_kml.py --polygons --split    # asemakaava_polygons_<era>.kml per era
+    python3 -m lautakuntamuistiot.build_zoning_kml                       # asemakaava_points.kml (9 era layers)
+    python3 -m lautakuntamuistiot.build_zoning_kml --polygons --split    # asemakaava_polygons_<era>.kml per era
 """
 import json, argparse, os, html
 
-from settings import OUT
+from .settings import OUT
 
 DATASET = f"{OUT}/asemakaava_dataset.json"
 OUTDIR = OUT

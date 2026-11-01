@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
 Build a colour-coded KML (Google My Maps layers) from the plans_dataset.json
-produced by scrape_plans.py / bootstrap_dataset.py. No network — pure render,
+produced by scrape_decisions / scrape_decisions_2013. No network — pure render,
 so you can re-slice the same dataset any number of ways without re-scraping.
 
-    python3 build_kml.py                              # all records -> one KML
-    python3 build_kml.py --years 2025                 # single year
-    python3 build_kml.py --years 2017-2026 -o all.kml # inclusive range, merged
-    python3 build_kml.py --years 2025 --per-year      # one KML per year in range
+    python3 -m lautakuntamuistiot.build_kml                              # all records -> one KML
+    python3 -m lautakuntamuistiot.build_kml --years 2025                 # single year
+    python3 -m lautakuntamuistiot.build_kml --years 2017-2026 -o all.kml # inclusive range, merged
+    python3 -m lautakuntamuistiot.build_kml --years 2025 --per-year      # one KML per year in range
 
 Each plan type is a Folder (= My Maps layer); each pin carries the heading,
 decision date, the 'Päätös' summary, a link to the plan drawing (when known)
-and to the decision page. Kerro kantasi consultations (scrape_kerrokantasi.py)
+and to the decision page. Kerro kantasi consultations (scrape_consultations)
 are added as one more layer, with their comment period and every drawing.
 
 Pins never overlap: the locations are approximate (street / district level) and
@@ -22,12 +22,10 @@ coordinates; a moved pin says so in its description.
 """
 import re, json, os, argparse, html, math, difflib
 
-from build_plans_map import TYPES, PADDLE
-from build_year_map import MONTHS
-from settings import OUT
+from .common import TYPES, PADDLE, DATASET
+from .settings import OUT
 
-DATASET = f"{OUT}/plans_dataset.json"
-KK_DATASET = f"{OUT}/kerrokantasi_dataset.json"   # scrape_kerrokantasi.py
+KK_DATASET = f"{OUT}/kerrokantasi_dataset.json"   # scrape_consultations
 ORDER = [k for k, *_ in TYPES] + ["kerrokantasi"]
 ICON  = dict({k: icon for k, _l, icon, _m in TYPES}, kerrokantasi="purple-circle")
 LABEL = dict({k: lbl for k, lbl, *_ in TYPES}, kerrokantasi="Kerro kantasi (consultation)")
