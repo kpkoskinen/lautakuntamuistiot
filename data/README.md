@@ -2,7 +2,8 @@
 
 > **Snapshot of 1 Nov 2026.** 1 727 located plan decisions (2013–2026, plus 105
 > unlocated), 185 Kerro kantasi consultations, 1 220 cached place names and a map with
-> 1 807 pins.
+> 1 807 pins. An older snapshot can be viewed as an
+> [example map on Google My Maps](https://www.google.com/maps/d/viewer?mid=1Ggf-akDtTMtHdMUAp-c-wATPfZdPT1A).
 
 This folder holds a snapshot of the scripts' output, so you can use the maps without
 running a multi-hour scrape. Everything here can be regenerated with the scripts.

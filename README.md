@@ -1,5 +1,12 @@
 # lautakuntamuistiot — Helsinki city-plan maps
 
+> **🗺️ See what it produces: [example map on Google My Maps](https://www.google.com/maps/d/viewer?mid=1Ggf-akDtTMtHdMUAp-c-wATPfZdPT1A)**
+>
+> This is a **snapshot** (October 2026), made with an earlier version of these scripts. It is
+> a sample and is not updated. For the latest data, import
+> [`data/helsinki_plans.kml`](data/helsinki_plans.kml) into your own Google My Maps (see
+> **Import into Google My Maps**).
+
 Scripts that collect the City of Helsinki's published **plan decisions and plan
 drawings** — street, traffic, park and zoning plans, plus public consultations — and
 turn them into **map layers (KML)** for Google My Maps or any GIS tool. Each pin links
@@ -54,8 +61,8 @@ map pins. See [`data/README.md`](data/README.md). Use it if you don't want to ru
 scrape yourself.
 
 **To see it on a map,** import [`data/helsinki_plans.kml`](data/helsinki_plans.kml) into
-your own Google My Maps; it takes a minute (see **Import into Google My Maps**). There
-is no hosted, up-to-date map.
+your own Google My Maps; it takes a minute (see **Import into Google My Maps**). The
+[example map](https://www.google.com/maps/d/viewer?mid=1Ggf-akDtTMtHdMUAp-c-wATPfZdPT1A) at the top is an older snapshot.
 
 ### Example
 
