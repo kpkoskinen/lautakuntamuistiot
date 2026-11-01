@@ -158,6 +158,16 @@ demand from the Actions tab) and updates the published data in `data/` in place
 - A run that fails (for example a hel.fi site down) shows as failed in the Actions tab,
   and GitHub e-mails the repository owner by default.
 
+The log lists the pins added, changed and removed, and below **Not on the map** what
+the update did that doesn't show as a pin: decisions checked but not shown (an earlier
+stage of a case already on the map), items that couldn't be located, pages that failed
+to load.
+
+GitHub pauses scheduled workflows after 60 days without repository activity (runs don't
+count), and summer breaks have had up to 70 days without new decisions or consultations
+(2019; 61 days in 2023). So each scheduled run ends with a **Keepalive** step that
+re-enables the workflow through the API, which resets the timer without a commit.
+
 Set the repository variable `LAUTAKUNTA_CONTACT` (Settings → Secrets and variables →
 Actions → Variables) to identify the job to Nominatim. The same steps work locally on
 the committed data (they update `data/` in place, as the job does):
@@ -336,7 +346,8 @@ scrape_consultations  ── kerrokantasi.api.hel.fi (2014→) ─────�
   (true|false) to `$GITHUB_OUTPUT` and the same text to the run's summary page.
 - **`update_report`** compares the layers in `data/umap/` with the last commit and lists
   the pins added, changed and removed (pins only nudged aside, less than 150 m, for a
-  new neighbour are just counted). With `--log FILE` it adds the list to the top of `data/update_log.md`.
+  new neighbour are just counted), then compares the datasets for what doesn't show on
+  the map: decisions checked but not shown, unlocated items, failed pages. With `--log FILE` it adds the list to the top of `data/update_log.md`.
 - **`build_kml`** renders pure output from the datasets, with no network.
   - **Slicing:** by year or year range and by committee, as one merged KML or one KML per
     year.

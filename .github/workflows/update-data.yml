@@ -17,6 +17,7 @@ on:
 
 permissions:
   contents: write
+  actions: write                 # for the keepalive step
 
 concurrency: update-data
 
@@ -65,3 +66,12 @@ jobs:
           git commit -q -F report.txt
           git pull --rebase -q
           git push
+
+      # GitHub pauses scheduled workflows after 60 days without repository activity
+      # (runs don't count), and summers have had gaps of up to 70 days without new
+      # material. Re-enabling the workflow resets that timer without a commit.
+      - name: Keepalive
+        if: always() && github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/update-data.yml/enable"

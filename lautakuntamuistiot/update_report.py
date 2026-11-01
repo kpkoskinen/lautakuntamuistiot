@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """
-What did an update change on the map? Compares the layers in data/umap/ with the
-last commit and lists, per layer, the pins added, changed and removed
+What did an update change? Compares the layers in data/umap/ with the last commit
+and lists, per layer, the pins added, changed and removed; then compares the datasets
+for what doesn't show on the map: decisions checked but not shown (an earlier stage of
+a case already on the map), items that couldn't be located, pages that failed to load
 (pins only nudged aside, less than 150 m, to make room for a new neighbour are just
 counted).
 
@@ -18,6 +20,46 @@ import argparse, json, os, subprocess, time
 from .build_kml import ORDER
 
 LAYERS = "data/umap"
+DATASETS = ("data/plans_dataset.json", "data/kerrokantasi_dataset.json")
+
+
+def load(path, rev=None):
+    """A JSON file from the working tree or a git revision ({} if missing)."""
+    try:
+        if rev:
+            r = subprocess.run(["git", "show", f"{rev}:{path}"], capture_output=True, text=True)
+            return json.loads(r.stdout) if not r.returncode else {}
+        return json.load(open(path, encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def dataset_lines(rev="HEAD"):
+    """What changed in the datasets beyond the map: decisions checked, unlocated items,
+    failed pages."""
+    lines = []
+    for path in DATASETS:
+        old, new = load(path, rev), load(path)
+        if not new:
+            continue
+        seen = lambda d: {u for v in (d.get("seen_decisions") or {}).values() for u in v} \
+            if isinstance(d.get("seen_decisions"), dict) else set()
+        on_map = {r.get("decision_url") for r in new.get("records", [])}
+        checked = seen(new) - seen(old) - on_map
+        if checked and "seen_decisions" not in old:
+            lines.append("- started the list of processed decisions (`seen_decisions`)")
+        elif checked:
+            lines.append(f"- {len(checked)} decisions checked, not shown on the map (an "
+                         f"earlier or later stage of a case already on it, or not located)")
+        was = {r["asia_id"] + r.get("plan_type", "") for r in old.get("unlocated", [])}
+        for r in new.get("unlocated", []):
+            if r["asia_id"] + r.get("plan_type", "") not in was:
+                lines.append(f"- could not be located: [{r.get('heading') or r.get('title')}]"
+                             f"({r.get('decision_url')})")
+        for url, n in (new.get("fetch_failures") or {}).items():
+            if (old.get("fetch_failures") or {}).get(url) != n:
+                lines.append(f"- page failed to load ({n}/3 tries): {url}")
+    return lines
 
 
 def features(path, rev=None):
@@ -76,8 +118,11 @@ def report(layers=LAYERS, rev="HEAD"):
             f"{tot['changed']} changed, {tot['removed']} removed")
     if tot["nudged"]:
         lines.append(f"- {tot['nudged']} other pins moved a few metres to make room")
+    extra = dataset_lines(rev)
     if not (tot["added"] or tot["changed"] or tot["removed"]):
-        head = f"Data update {time.strftime('%Y-%m-%d')}: datasets updated, map unchanged"
+        head = f"Data update {time.strftime('%Y-%m-%d')}: map unchanged"
+    if extra:
+        lines += ([""] if lines else []) + ["Not on the map:"] + extra
     return head, lines
 
 
