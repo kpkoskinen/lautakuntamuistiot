@@ -1,6 +1,6 @@
 # lautakuntamuistiot — Helsinki city-plan maps
 
-> **🗺️ [Daily updated map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127)** of Helsinki's committee plan decisions and
+> **🗺️ [Daily updated map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479190)** of Helsinki's committee plan decisions and
 > Kerro kantasi consultations (OpenStreetMap, with stage and year filters).
 >
 > A GitHub Action checks every day for new decisions and consultations and adds them to
@@ -69,7 +69,7 @@ yourself.
 **To see it on a map,** import [`data/helsinki_plans.kml`](data/helsinki_plans.kml) into
 your own Google My Maps (see **Import into Google My Maps**), or
 [`data/helsinki_plans.umap`](data/helsinki_plans.umap) into uMap (see **Show it on uMap**).
-Either takes a minute. The [daily updated map](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127) at the top follows the data
+Either takes a minute. The [daily updated map](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479190) at the top follows the data
 in this repository.
 
 ### Example
@@ -490,7 +490,7 @@ a new file.
 output (`katu.geojson`, `liikenne.geojson`, ...; the published ones are in
 [`data/umap/`](data/umap/)), plus `all.geojson` with every plan type in one file. A uMap layer can load such a file from a URL each time the
 map opens, so a map pointing at the files on GitHub shows whatever was last committed —
-no re-import. The [daily updated map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127) works this way: one
+no re-import. The [daily updated map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479190) works this way: one
 clustered layer loading `data/umap/all.geojson` on `main`
 ([`data/helsinki_plans_clustered.umap`](data/helsinki_plans_clustered.umap)).
 

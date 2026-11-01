@@ -4,7 +4,7 @@
 > see **Automatic update** in the main README) adds new decisions and consultations here
 > and commits when the data changed. On 1 Nov 2026 it held 1 727 located plan
 > decisions (2013–2026, plus 105 unlocated), 185 Kerro kantasi consultations, 1 220 cached
-> place names and a map with 1 807 pins. The [daily updated map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127) loads
+> place names and a map with 1 807 pins. The [daily updated map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479190) loads
 > its pins from [`umap/`](umap/) here, so it always shows what is committed in this folder.
 
 This folder holds the scripts' output, so you can use the maps without
