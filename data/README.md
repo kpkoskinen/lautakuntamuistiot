@@ -1,7 +1,8 @@
 # Data — ready-made snapshot
 
-> **Coming soon.** The first snapshot is being generated and will be added here. Until
-> then, build your own with the tools (see the main [README](../README.md)).
+> **Snapshot of 1 Nov 2026.** 1 727 located plan decisions (2013–2026, plus 105
+> unlocated), 185 Kerro kantasi consultations, 1 220 cached place names and a map with
+> 1 807 pins.
 
 This folder holds a snapshot of the scripts' output, so you can use the maps without
 running a multi-hour scrape. Everything here can be regenerated with the scripts.
@@ -11,6 +12,7 @@ running a multi-hour scrape. Everything here can be regenerated with the scripts
 | `plans_dataset.json` | Committee plan decisions, 2013 → snapshot date: heading, summary, date, plan type, location and links to the decision and the plan drawing. Each record's `stage` says whether the committee approved the plan or only proposed it (most zoning plans). Plans that couldn't be located are in its `unlocated` list. |
 | `kerrokantasi_dataset.json` | Plan-related Kerro kantasi public consultations, 2014 → snapshot date, with their drawings. |
 | `geocode_cache.json` | Every place name looked up for the snapshot and its Nominatim result. The scrapers start from it, so a re-run doesn't repeat those lookups. |
+| `quality_sample.csv` | 100 random decisions (`evaluate --seed 1`) with empty verdict columns for manual review. Not reviewed yet. |
 | `helsinki_plans.kml` | The map built from both datasets with `python3 -m lautakuntamuistiot.build_kml`: one layer per plan type plus a consultation layer. Import it into Google My Maps or any GIS tool. |
 
 The snapshot date is in each JSON's `generated` field. A snapshot does not update itself;

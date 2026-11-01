@@ -48,8 +48,10 @@ the plan drawing (PDF) and the decision or consultation page it came from.
    open WFS, with real polygon geometry and the `kaavakartta` drawing. This is a separate
    product; see **Zoning archive** below.
 
-A ready-made snapshot of 1 and 2 (JSON + KML) is in [`data/`](data/) — *coming soon*, see
-[`data/README.md`](data/README.md). Use it if you don't want to run the scrape yourself.
+A ready-made snapshot of 1 and 2 (JSON + KML), generated **1 Nov 2026**, is in
+[`data/`](data/): 1 727 located plan decisions (2013–2026), 185 consultations and 1 807
+map pins. See [`data/README.md`](data/README.md). Use it if you don't want to run the
+scrape yourself.
 
 ### Example
 
@@ -369,6 +371,21 @@ python3 -m lautakuntamuistiot.evaluate --dataset data/plans_dataset.json \
   `location_ok` columns. Accuracy is only known once someone has filled them in.
   The automated checks can't tell whether a pin is on the *right* street, because the
   place name itself comes from the decision text.
+
+On the 1 Nov 2026 snapshot:
+
+| check | result |
+|-------|--------|
+| decisions located | 1 727 / 1 832 (94 %); the rest are in `unlocated` |
+| decisions linking a drawing | 1 581 / 1 727 (92 %): katu 94 %, puisto 92 %, asemakaava 92 %, liikenne 90 %, muu kaava 81 % |
+| random drawing links that are real PDFs | 30 / 30 |
+| geocode precision | street 68 %, district 25 %, place 6 %, manual 0.3 % |
+| pins outside Helsinki / duplicates | 0 / 0 |
+| stage | proposal 48 %, approved 41 %, other 10 %, returned 0.7 % |
+
+The 100-record review sheet is [`data/quality_sample.csv`](data/quality_sample.csv)
+(seed 1). **It has not been reviewed yet**, so plan-type, drawing and location accuracy
+are still unmeasured.
 
 ## Location accuracy
 

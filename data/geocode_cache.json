@@ -1,0 +1,6102 @@
+{
+ "AK-tonti": [
+  null,
+  null,
+  "none"
+ ],
+ "Aarteenetsijäntie": [
+  60.2388543,
+  25.100916,
+  "street"
+ ],
+ "Abrahaminkatu": [
+  60.1627916,
+  24.9308555,
+  "street"
+ ],
+ "Agricolankatu": [
+  60.1841937,
+  24.9513405,
+  "street"
+ ],
+ "Ahdinranta": [
+  null,
+  null,
+  "none"
+ ],
+ "Ahtaajankuja": [
+  60.1776295,
+  24.9738033,
+  "street"
+ ],
+ "Aimo": [
+  60.2131213,
+  25.1558692,
+  "street"
+ ],
+ "Aimo Tukiaisen puisto": [
+  60.1519804,
+  24.8890356,
+  "place"
+ ],
+ "Aittatie": [
+  60.2347764,
+  24.8452879,
+  "street"
+ ],
+ "Ajomiehentie": [
+  60.2387969,
+  24.8512622,
+  "street"
+ ],
+ "Ala-Malmi": [
+  60.2495273,
+  25.0161896,
+  "district"
+ ],
+ "Ala-Malmin": [
+  60.2504895,
+  25.0136329,
+  "street"
+ ],
+ "Ala-Malmin puisto": [
+  60.2499475,
+  25.0156865,
+  "place"
+ ],
+ "Albertinkatu": [
+  60.1596344,
+  24.9398726,
+  "street"
+ ],
+ "Albumikatu": [
+  60.1937338,
+  24.9809291,
+  "street"
+ ],
+ "Aleksanter": [
+  null,
+  null,
+  "none"
+ ],
+ "Aleksanteri": [
+  null,
+  null,
+  "none"
+ ],
+ "Aleksanterin": [
+  60.1634128,
+  24.9331753,
+  "street"
+ ],
+ "Aleksanterinkatu": [
+  60.168739,
+  24.9419785,
+  "street"
+ ],
+ "Aleksis": [
+  60.1955807,
+  24.9374983,
+  "street"
+ ],
+ "Aleksis Kiven katu": [
+  60.1956081,
+  24.9369301,
+  "street"
+ ],
+ "Alkutie": [
+  60.2380564,
+  24.9381537,
+  "street"
+ ],
+ "Alppiharju": [
+  60.1897463,
+  24.9471505,
+  "district"
+ ],
+ "Alppiharjun": [
+  null,
+  null,
+  "none"
+ ],
+ "Alppiharjussa": [
+  null,
+  null,
+  "none"
+ ],
+ "Alppikylä": [
+  60.2601903,
+  25.0680372,
+  "district"
+ ],
+ "Alppikylän": [
+  60.2573921,
+  25.067677,
+  "street"
+ ],
+ "Alppilan": [
+  60.1915037,
+  24.9410472,
+  "street"
+ ],
+ "Ammatinedistämissäätiö": [
+  null,
+  null,
+  "none"
+ ],
+ "Ammattienedistämissäätiö": [
+  null,
+  null,
+  "none"
+ ],
+ "Ampeeriaukio": [
+  60.2236085,
+  24.8762571,
+  "street"
+ ],
+ "Ampeerikatu": [
+  null,
+  null,
+  "none"
+ ],
+ "Ampeerinaukio": [
+  null,
+  null,
+  "none"
+ ],
+ "Ampujantie": [
+  60.2497181,
+  25.0190021,
+  "street"
+ ],
+ "Annankatu": [
+  60.1678848,
+  24.9355101,
+  "street"
+ ],
+ "Antti Korpin tie": [
+  60.2178036,
+  24.9654312,
+  "street"
+ ],
+ "Arabian": [
+  60.2086,
+  24.9791,
+  "street"
+ ],
+ "Arhotie": [
+  60.218481,
+  25.0858657,
+  "street"
+ ],
+ "Arielinkadun": [
+  60.1830826,
+  24.9764397,
+  "district"
+ ],
+ "Arielinkatu": [
+  60.1862419,
+  24.9811263,
+  "street"
+ ],
+ "Arinatie": [
+  60.2212518,
+  24.8516073,
+  "street"
+ ],
+ "Arkkitehtuuri": [
+  null,
+  null,
+  "none"
+ ],
+ "Arkkitehtuuri-": [
+  60.1631263,
+  24.9466101,
+  "street"
+ ],
+ "Aromikuja": [
+  60.2067035,
+  25.1495069,
+  "street"
+ ],
+ "Asema-aukio": [
+  60.1711817,
+  24.939085,
+  "street"
+ ],
+ "Asemamiehenkatu": [
+  60.2013184,
+  24.9374519,
+  "street"
+ ],
+ "Asemapäällikönkatu": [
+  60.1987973,
+  24.9410352,
+  "street"
+ ],
+ "Askartie": [
+  60.254935,
+  25.0085985,
+  "street"
+ ],
+ "Asteritie": [
+  60.2466919,
+  24.9989084,
+  "street"
+ ],
+ "Asuintonttie": [
+  null,
+  null,
+  "none"
+ ],
+ "Asunno": [
+  null,
+  null,
+  "none"
+ ],
+ "Atlantinkaaren": [
+  null,
+  null,
+  "none"
+ ],
+ "Atlantinkaari": [
+  null,
+  null,
+  "none"
+ ],
+ "Atlantinkatu": [
+  60.1509514,
+  24.9140489,
+  "street"
+ ],
+ "Auroranportti": [
+  60.1915962,
+  24.9244588,
+  "street"
+ ],
+ "Autotalo": [
+  60.1691569,
+  24.9292894,
+  "district"
+ ],
+ "Avajaispuisto": [
+  60.2600276,
+  24.8863762,
+  "district"
+ ],
+ "Bensa-asemankuja": [
+  60.2135627,
+  24.8865267,
+  "street"
+ ],
+ "Bergbominkuja": [
+  60.1729682,
+  24.9437846,
+  "street"
+ ],
+ "Bockinpuisto": [
+  60.2395058,
+  24.9813129,
+  "place"
+ ],
+ "Brahenkatu": [
+  null,
+  null,
+  "none"
+ ],
+ "Bredbacka": [
+  null,
+  null,
+  "none"
+ ],
+ "Brommankatu": [
+  null,
+  null,
+  "none"
+ ],
+ "Broända": [
+  60.2245535,
+  25.1330769,
+  "district"
+ ],
+ "Bruno Granholmin aukio": [
+  60.1924762,
+  24.9479602,
+  "street"
+ ],
+ "Bulevardi": [
+  60.1654572,
+  24.9402672,
+  "street"
+ ],
+ "Bunkkerinaukio": [
+  60.1551218,
+  24.9195738,
+  "place"
+ ],
+ "Bunkkerinkuja": [
+  60.1560784,
+  24.9174811,
+  "street"
+ ],
+ "Caloniuksenkadun": [
+  null,
+  null,
+  "none"
+ ],
+ "Caloniuksenkatu": [
+  60.175006,
+  24.9216866,
+  "street"
+ ],
+ "Campus Marian toimitilatonttie": [
+  null,
+  null,
+  "none"
+ ],
+ "Capellan": [
+  60.1837761,
+  24.9822438,
+  "street"
+ ],
+ "Capellan puistotie": [
+  60.1837761,
+  24.9822438,
+  "street"
+ ],
+ "Castreninkatu": [
+  60.1825885,
+  24.9428329,
+  "street"
+ ],
+ "Dallapénpuisto": [
+  60.1899333,
+  24.9581631,
+  "district"
+ ],
+ "Damaskuksentie": [
+  60.2103002,
+  24.9743408,
+  "street"
+ ],
+ "Decker": [
+  null,
+  null,
+  "none"
+ ],
+ "Deckeri": [
+  null,
+  null,
+  "none"
+ ],
+ "Dosentintie": [
+  60.2016948,
+  24.873643,
+  "street"
+ ],
+ "Eckerönpolku": [
+  60.2113384,
+  24.9153502,
+  "street"
+ ],
+ "Eckerönpuisto": [
+  60.2115743,
+  24.917295,
+  "street"
+ ],
+ "Eerikinkatu": [
+  60.1637628,
+  24.9255311,
+  "street"
+ ],
+ "Elielinaukio": [
+  60.1723763,
+  24.9401643,
+  "street"
+ ],
+ "Ellen": [
+  60.2607854,
+  24.8969749,
+  "street"
+ ],
+ "Ellen Thesleffin puisto": [
+  60.2614462,
+  24.899464,
+  "place"
+ ],
+ "Elontie": [
+  60.2442789,
+  24.9280475,
+  "street"
+ ],
+ "Englantilaisaukio": [
+  60.1870169,
+  24.9811711,
+  "street"
+ ],
+ "Eron": [
+  null,
+  null,
+  "none"
+ ],
+ "Erottaja": [
+  60.1669843,
+  24.944134,
+  "street"
+ ],
+ "Erottajan": [
+  60.1654803,
+  24.9435708,
+  "street"
+ ],
+ "Erottajankatu": [
+  60.165086,
+  24.9440333,
+  "street"
+ ],
+ "Eskolankaari": [
+  60.2430121,
+  24.9951393,
+  "street"
+ ],
+ "Eskolantie": [
+  60.2475488,
+  24.9914913,
+  "street"
+ ],
+ "Estetie": [
+  60.2463517,
+  24.896451,
+  "street"
+ ],
+ "Etelä-Haaga": [
+  60.212553,
+  24.8983571,
+  "district"
+ ],
+ "Etelä-Haagan": [
+  60.2138897,
+  24.8917858,
+  "street"
+ ],
+ "Etelä-Kaarelan polku": [
+  60.241714,
+  24.8944048,
+  "street"
+ ],
+ "Etelä-Pasila": [
+  null,
+  null,
+  "none"
+ ],
+ "Eteläesplanadi": [
+  60.1669296,
+  24.9445399,
+  "street"
+ ],
+ "Eteläinen": [
+  60.1684801,
+  24.9248627,
+  "street"
+ ],
+ "Eteläisen": [
+  60.2104758,
+  24.9191151,
+  "district"
+ ],
+ "Eteläsatama": [
+  60.1608607,
+  24.9586923,
+  "street"
+ ],
+ "Etu-Töölö": [
+  60.1725712,
+  24.9256302,
+  "district"
+ ],
+ "Fabianinkatu": [
+  60.1682373,
+  24.9494776,
+  "street"
+ ],
+ "Fallinkuja": [
+  60.2630507,
+  24.9519562,
+  "street"
+ ],
+ "Fallkulla": [
+  60.2629289,
+  25.0308499,
+  "street"
+ ],
+ "Fallkullan": [
+  60.2621903,
+  25.0273555,
+  "street"
+ ],
+ "Fallkullantie": [
+  60.2602709,
+  25.0302171,
+  "street"
+ ],
+ "Fastholma": [
+  60.2042839,
+  25.0212472,
+  "district"
+ ],
+ "Fastholman": [
+  60.1999291,
+  25.0257305,
+  "district"
+ ],
+ "Filpuksenpuisto": [
+  60.2486749,
+  25.0172021,
+  "district"
+ ],
+ "Finkensilta": [
+  60.1776674,
+  24.9791783,
+  "street"
+ ],
+ "Firdonkatu": [
+  60.1989907,
+  24.9287843,
+  "street"
+ ],
+ "Fleminginkatu": [
+  60.1904693,
+  24.9527902,
+  "street"
+ ],
+ "Fredrikinkatu": [
+  60.1613879,
+  24.9411447,
+  "street"
+ ],
+ "Fredrikintori": [
+  60.1618182,
+  24.940112,
+  "district"
+ ],
+ "Frisbeegolfrata": [
+  60.2545,
+  24.9357,
+  "street"
+ ],
+ "Furuborginkatu": [
+  60.1955613,
+  25.1141019,
+  "street"
+ ],
+ "Furumonkuja": [
+  60.2037608,
+  25.1533167,
+  "street"
+ ],
+ "Gadolininkadun": [
+  null,
+  null,
+  "none"
+ ],
+ "Gadolininkatu": [
+  60.2062363,
+  24.9648461,
+  "street"
+ ],
+ "Gotlanninkatu": [
+  60.2102879,
+  25.084048,
+  "street"
+ ],
+ "Gotlanninpuistikko": [
+  null,
+  null,
+  "none"
+ ],
+ "Gunillantie": [
+  60.1680063,
+  25.0366835,
+  "street"
+ ],
+ "Gyldenintie": [
+  60.1581219,
+  24.8766064,
+  "street"
+ ],
+ "Gyldénintie": [
+  60.1622244,
+  24.8783548,
+  "street"
+ ],
+ "HOAS": [
+  null,
+  null,
+  "none"
+ ],
+ "Haaga": [
+  60.2180626,
+  24.8991671,
+  "district"
+ ],
+ "Haaganpuisto": [
+  60.2143974,
+  24.8887306,
+  "place"
+ ],
+ "Haakoninlahdenkatu": [
+  60.1678359,
+  25.0205315,
+  "street"
+ ],
+ "Haakoninlahdenlaituri": [
+  60.1675516,
+  25.0146299,
+  "district"
+ ],
+ "Haakoninlahdenpuisto": [
+  60.1658051,
+  25.0186208,
+  "street"
+ ],
+ "Haapaniemenkatu": [
+  60.1820498,
+  24.9564615,
+  "street"
+ ],
+ "Haapasaarenpuisto": [
+  null,
+  null,
+  "none"
+ ],
+ "Haartmaninkatu": [
+  60.1893135,
+  24.9110568,
+  "street"
+ ],
+ "Haavikkotie": [
+  60.2257192,
+  24.9277156,
+  "street"
+ ],
+ "Hakamäentie": [
+  60.2065615,
+  24.930562,
+  "street"
+ ],
+ "Hakaniemenkatu": [
+  60.1791639,
+  24.9557294,
+  "street"
+ ],
+ "Hakaniemenrannan": [
+  null,
+  null,
+  "none"
+ ],
+ "Hakaniemenranta": [
+  60.1783347,
+  24.9538258,
+  "street"
+ ],
+ "Hakaniemensilta": [
+  60.1770339,
+  24.9581208,
+  "street"
+ ],
+ "Halkopiipunpuisto": [
+  null,
+  null,
+  "none"
+ ],
+ "Hallituskatu": [
+  60.1700594,
+  24.9562519,
+  "street"
+ ],
+ "Hallkullanniemi": [
+  60.199355,
+  25.1742653,
+  "street"
+ ],
+ "Halsuantie": [
+  60.236794,
+  24.8874087,
+  "street"
+ ],
+ "Haltiamännyntori": [
+  60.1796779,
+  25.0526056,
+  "district"
+ ],
+ "Hanasaari": [
+  60.1648675,
+  24.8389592,
+  "district"
+ ],
+ "Hanasaari)": [
+  60.181,
+  24.9678,
+  "district"
+ ],
+ "Harbonkatu": [
+  60.1987358,
+  25.1259177,
+  "street"
+ ],
+ "Haruspuisto": [
+  60.2019363,
+  25.1219742,
+  "district"
+ ],
+ "Hattelmalantie": [
+  60.2310211,
+  24.9980021,
+  "street"
+ ],
+ "Helsingin": [
+  60.187003,
+  24.9272463,
+  "street"
+ ],
+ "Helsinginkatu": [
+  60.186433,
+  24.9443147,
+  "street"
+ ],
+ "Helsinginkuja": [
+  60.1877321,
+  24.9549144,
+  "street"
+ ],
+ "Helsingintie": [
+  60.2434364,
+  25.0153928,
+  "street"
+ ],
+ "Hepokalliontie": [
+  60.1698812,
+  25.0769783,
+  "street"
+ ],
+ "Herastuomarintie": [
+  60.2608941,
+  24.9513514,
+  "street"
+ ],
+ "Hermannin": [
+  60.1995055,
+  24.967216,
+  "street"
+ ],
+ "Hermannin rantatie": [
+  60.19429,
+  24.9764482,
+  "street"
+ ],
+ "Hermanninranta": [
+  60.1937694,
+  24.9818746,
+  "place"
+ ],
+ "Hermanninrantatie": [
+  null,
+  null,
+  "none"
+ ],
+ "Hernesaaren": [
+  60.1517484,
+  24.9296053,
+  "street"
+ ],
+ "Hernesaari": [
+  60.1498194,
+  24.9250009,
+  "district"
+ ],
+ "Herttoniemen": [
+  60.1992403,
+  25.0318184,
+  "street"
+ ],
+ "Herttoniemenranta": [
+  60.1899912,
+  25.0332952,
+  "district"
+ ],
+ "Herttoniemi": [
+  60.194569,
+  25.030231,
+  "street"
+ ],
+ "Hesperiankatu": [
+  60.1770166,
+  24.9201505,
+  "street"
+ ],
+ "Hesperianpuisto": [
+  60.1800105,
+  24.9301951,
+  "district"
+ ],
+ "Heteniityn": [
+  60.2183564,
+  25.1375421,
+  "street"
+ ],
+ "Hevosenkenkäpuisto": [
+  60.1565177,
+  24.8746399,
+  "district"
+ ],
+ "Hiekkarannantie": [
+  60.175159,
+  24.9125668,
+  "street"
+ ],
+ "Hierrinkuja": [
+  null,
+  null,
+  "none"
+ ],
+ "Hietalahdenrannan": [
+  null,
+  null,
+  "none"
+ ],
+ "Hietalahdenranta": [
+  60.1601028,
+  24.9314161,
+  "street"
+ ],
+ "Hietaniemenkatu": [
+  60.1726333,
+  24.9114783,
+  "street"
+ ],
+ "Hiidenmaankatu": [
+  60.1975526,
+  25.1255316,
+  "street"
+ ],
+ "Hiihtäjänkuja": [
+  60.1939583,
+  25.0273525,
+  "street"
+ ],
+ "Hiihtäjäntie": [
+  60.1955893,
+  25.0275541,
+  "street"
+ ],
+ "Hilapellontie": [
+  60.2403558,
+  24.8365959,
+  "street"
+ ],
+ "Himmelitie": [
+  60.2688041,
+  24.9981295,
+  "street"
+ ],
+ "Hiomotie": [
+  60.2177885,
+  24.8767212,
+  "street"
+ ],
+ "Hirsipadontie": [
+  60.2329188,
+  24.9582872,
+  "street"
+ ],
+ "Hirvilahdenkuja": [
+  60.1883922,
+  24.8674524,
+  "street"
+ ],
+ "Hitsaajankatu": [
+  60.1915844,
+  25.0230453,
+  "street"
+ ],
+ "Hoasille": [
+  null,
+  null,
+  "none"
+ ],
+ "Hollantilaisentie": [
+  60.195594,
+  24.8732259,
+  "street"
+ ],
+ "Honkasuontie": [
+  60.2581402,
+  24.8391468,
+  "street"
+ ],
+ "Hopeasalmentie": [
+  60.1830873,
+  25.0037141,
+  "street"
+ ],
+ "Hopeatie": [
+  60.2298555,
+  24.8820332,
+  "street"
+ ],
+ "Hospitaalinpuisto": [
+  60.2160488,
+  24.9640592,
+  "place"
+ ],
+ "Hotelli": [
+  60.167803,
+  24.9386414,
+  "street"
+ ],
+ "Humalistonkuja": [
+  60.1852095,
+  24.9211406,
+  "street"
+ ],
+ "Huokotie": [
+  60.260561,
+  25.084453,
+  "street"
+ ],
+ "Huoneistotyyppien": [
+  null,
+  null,
+  "none"
+ ],
+ "Huopalahden": [
+  60.2182267,
+  24.8929486,
+  "street"
+ ],
+ "Huopalahdentie": [
+  60.1967607,
+  24.8845761,
+  "street"
+ ],
+ "Huopalahti": [
+  null,
+  null,
+  "none"
+ ],
+ "Huvilakatu": [
+  60.1556398,
+  24.9439271,
+  "street"
+ ],
+ "Hylkysaari": [
+  60.1714097,
+  24.9865926,
+  "district"
+ ],
+ "Hyväntoivonpuisto": [
+  60.1575424,
+  24.9182173,
+  "district"
+ ],
+ "Hämeenapajantie": [
+  60.1667577,
+  25.0777696,
+  "street"
+ ],
+ "Hämeentie": [
+  60.1868894,
+  24.9614924,
+  "street"
+ ],
+ "Höyrypuisto": [
+  60.1993302,
+  24.9295664,
+  "district"
+ ],
+ "Ida": [
+  60.229966,
+  24.8983624,
+  "street"
+ ],
+ "Ida Aalbergin puisto": [
+  60.2278496,
+  24.8977903,
+  "place"
+ ],
+ "Ida Aalbergin tie": [
+  60.229966,
+  24.8983624,
+  "street"
+ ],
+ "Ilmasillantie": [
+  60.2470577,
+  25.0444811,
+  "street"
+ ],
+ "Ilveskorvenpuisto": [
+  60.2212737,
+  25.1361376,
+  "district"
+ ],
+ "Intian perusparannus": [
+  null,
+  null,
+  "none"
+ ],
+ "Isokaari": [
+  60.1576084,
+  24.870826,
+  "street"
+ ],
+ "Isonkaivontie": [
+  60.239399,
+  24.9911484,
+  "street"
+ ],
+ "Isonnevantie": [
+  60.2133789,
+  24.8926799,
+  "street"
+ ],
+ "Isonpellontie": [
+  60.2410238,
+  24.9780517,
+  "street"
+ ],
+ "Itsenäisyydenpuisto": [
+  60.2394757,
+  24.9746726,
+  "district"
+ ],
+ "Itä-Pakila": [
+  60.2451611,
+  24.9585359,
+  "district"
+ ],
+ "Itä-Pakilan": [
+  null,
+  null,
+  "none"
+ ],
+ "Itäbaana": [
+  null,
+  null,
+  "none"
+ ],
+ "Itäisen": [
+  null,
+  null,
+  "none"
+ ],
+ "Itäkatu": [
+  60.2093997,
+  25.0775044,
+  "street"
+ ],
+ "Itäkeskuksen": [
+  60.2127514,
+  25.076306,
+  "street"
+ ],
+ "Itäkeskus": [
+  60.210804,
+  25.0801781,
+  "district"
+ ],
+ "Itämerenkatu": [
+  60.1633273,
+  24.9151207,
+  "street"
+ ],
+ "Itäväylä": [
+  60.2289364,
+  25.1242475,
+  "street"
+ ],
+ "Jakomäen": [
+  60.2605061,
+  25.0762761,
+  "street"
+ ],
+ "Jakomäentie": [
+  60.2615558,
+  25.0743269,
+  "street"
+ ],
+ "Jakomäki": [
+  60.2596023,
+  25.0797957,
+  "district"
+ ],
+ "Jalopeuran perusparannus": [
+  null,
+  null,
+  "none"
+ ],
+ "Jan-Magnus": [
+  60.2013571,
+  24.9662029,
+  "street"
+ ],
+ "Jan-Magnus Janssonin aukio": [
+  60.2013571,
+  24.9662029,
+  "place"
+ ],
+ "Jasmiinikuja": [
+  60.2048552,
+  24.8913137,
+  "street"
+ ],
+ "Johanneksenpuisto": [
+  60.1621551,
+  24.9442063,
+  "district"
+ ],
+ "John Stenbergin ranta": [
+  60.1776227,
+  24.9518256,
+  "street"
+ ],
+ "Jokiniementie": [
+  60.2288736,
+  24.973171,
+  "street"
+ ],
+ "Jollaksen": [
+  60.1640815,
+  25.0838335,
+  "street"
+ ],
+ "Jollaksentie": [
+  60.1660139,
+  25.0549759,
+  "street"
+ ],
+ "Jollas": [
+  60.1653027,
+  25.0751315,
+  "district"
+ ],
+ "Jousimiehentie": [
+  60.2743892,
+  24.9895881,
+  "street"
+ ],
+ "Juhana-herttuan tie": [
+  60.2181763,
+  24.9667835,
+  "street"
+ ],
+ "Junatie": [
+  60.1882182,
+  24.9712481,
+  "street"
+ ],
+ "Junonkatu": [
+  60.1831631,
+  24.979819,
+  "street"
+ ],
+ "Jurmonkuja": [
+  60.173548,
+  25.033367,
+  "street"
+ ],
+ "Jätkäsaaren": [
+  60.1553359,
+  24.9081623,
+  "street"
+ ],
+ "Jätkäsaarenlaituri": [
+  60.1616706,
+  24.9221973,
+  "street"
+ ],
+ "Jätkäsaari": [
+  60.1570639,
+  24.9116552,
+  "district"
+ ],
+ "Kaapeliaukio": [
+  60.1621986,
+  24.906444,
+  "street"
+ ],
+ "Kaarela": [
+  60.2473191,
+  24.8782628,
+  "district"
+ ],
+ "Kaarelan raitti": [
+  60.2465352,
+  24.892633,
+  "street"
+ ],
+ "Kaarelankuja": [
+  60.2391182,
+  24.8998914,
+  "street"
+ ],
+ "Kaarlenkatu": [
+  60.1866622,
+  24.9510839,
+  "street"
+ ],
+ "Kaartinkaupunki": [
+  60.165257,
+  24.9489606,
+  "district"
+ ],
+ "Kaasutehtaankatu": [
+  60.1859444,
+  24.9738567,
+  "district"
+ ],
+ "Kaasutehtaankenttä": [
+  null,
+  null,
+  "none"
+ ],
+ "Kaisaniemen puisto": [
+  60.1749966,
+  24.9460922,
+  "place"
+ ],
+ "Kaisaniemenkatu": [
+  60.1708205,
+  24.9457559,
+  "street"
+ ],
+ "Kaisaniemenpuisto": [
+  60.1749692,
+  24.950534,
+  "street"
+ ],
+ "Kaisaniemenpuiston": [
+  60.1751152,
+  24.9434003,
+  "district"
+ ],
+ "Kaisaniemenranta": [
+  60.1764254,
+  24.9437555,
+  "street"
+ ],
+ "Kaitalahdenpuisto": [
+  60.1734776,
+  25.0192862,
+  "district"
+ ],
+ "Kaivokatu": [
+  60.1704992,
+  24.9414746,
+  "street"
+ ],
+ "Kaivopuisto": [
+  60.1571682,
+  24.9573113,
+  "district"
+ ],
+ "Kaivoshuvilankuja": [
+  60.1694022,
+  25.0273551,
+  "street"
+ ],
+ "Kaivoskallio": [
+  60.170759,
+  25.0272729,
+  "place"
+ ],
+ "Kaivoskallion": [
+  60.2268676,
+  24.7998486,
+  "street"
+ ],
+ "Kaivossepänkuja": [
+  60.1698972,
+  25.020863,
+  "street"
+ ],
+ "Kajaaninlinnantie": [
+  60.210104,
+  25.0751523,
+  "street"
+ ],
+ "Kalasatama": [
+  60.1874845,
+  24.9768659,
+  "street"
+ ],
+ "Kalasatamaa": [
+  null,
+  null,
+  "none"
+ ],
+ "Kalasataman": [
+  60.1879687,
+  24.9806078,
+  "street"
+ ],
+ "Kalasataman Capellan puistotie": [
+  null,
+  null,
+  "none"
+ ],
+ "Kalasatamankadun": [
+  null,
+  null,
+  "none"
+ ],
+ "Kalasatamankatu": [
+  60.1895463,
+  24.9801987,
+  "street"
+ ],
+ "Kalasatamankuja": [
+  60.1852144,
+  24.9773758,
+  "street"
+ ],
+ "Kalasatamanpuisto": [
+  60.1846757,
+  24.9774609,
+  "district"
+ ],
+ "Kalasatamassa": [
+  null,
+  null,
+  "none"
+ ],
+ "Kalastajatorpantie": [
+  60.1933454,
+  24.8749058,
+  "street"
+ ],
+ "Kalervonkatu": [
+  60.2117587,
+  24.9459857,
+  "street"
+ ],
+ "Kalevankatu": [
+  60.1642488,
+  24.9292099,
+  "street"
+ ],
+ "Kallio": [
+  60.1839816,
+  24.9524515,
+  "district"
+ ],
+ "Kallvikinniementie": [
+  60.1899084,
+  25.1434103,
+  "street"
+ ],
+ "Kampi": [
+  null,
+  null,
+  "none"
+ ],
+ "Kampin": [
+  60.1694433,
+  24.9359193,
+  "street"
+ ],
+ "Kampinkuja": [
+  60.1683364,
+  24.9303957,
+  "street"
+ ],
+ "Kamppi": [
+  60.1676264,
+  24.9317093,
+  "district"
+ ],
+ "Kanariankuja": [
+  60.1537903,
+  24.9102517,
+  "street"
+ ],
+ "Kanavakatu": [
+  60.1683946,
+  24.9578188,
+  "street"
+ ],
+ "Kanavapuisto": [
+  60.1683188,
+  24.9589941,
+  "place"
+ ],
+ "Kankarepolku": [
+  60.2582826,
+  25.0782887,
+  "street"
+ ],
+ "Kannelmäen": [
+  60.2440662,
+  24.8830063,
+  "street"
+ ],
+ "Kannelmäki": [
+  60.2424459,
+  24.8820688,
+  "district"
+ ],
+ "Kansalaistori": [
+  60.1735714,
+  24.9370708,
+  "street"
+ ],
+ "Kansantie": [
+  60.2415882,
+  24.9614095,
+  "street"
+ ],
+ "Kantakaupung": [
+  null,
+  null,
+  "none"
+ ],
+ "Kantakaupungi": [
+  null,
+  null,
+  "none"
+ ],
+ "Kantakaupungin": [
+  60.1540348,
+  24.9427547,
+  "district"
+ ],
+ "Kantelettarentie": [
+  60.2366372,
+  24.8885806,
+  "street"
+ ],
+ "Karamzininranta": [
+  60.1751371,
+  24.9348007,
+  "street"
+ ],
+ "Karavaanikatu": [
+  60.2064175,
+  25.1199013,
+  "street"
+ ],
+ "Karavaanikuja": [
+  60.2065507,
+  25.1189803,
+  "street"
+ ],
+ "Karavaanisilta": [
+  60.2056598,
+  25.119355,
+  "street"
+ ],
+ "Karhunkaataja": [
+  null,
+  null,
+  "none"
+ ],
+ "Karhunkaatajan": [
+  60.2137551,
+  25.0517367,
+  "street"
+ ],
+ "Karhusaaren": [
+  60.2516887,
+  25.235041,
+  "street"
+ ],
+ "Karhusaari": [
+  60.2510434,
+  25.2234058,
+  "district"
+ ],
+ "Karibianaukio": [
+  60.1569313,
+  24.9084777,
+  "district"
+ ],
+ "Kartanontie": [
+  60.1952275,
+  24.8794554,
+  "street"
+ ],
+ "Kasarmikatu": [
+  60.1661437,
+  24.9477495,
+  "street"
+ ],
+ "Kasarmitori": [
+  60.1652043,
+  24.9490348,
+  "street"
+ ],
+ "Kastellinpuisto": [
+  null,
+  null,
+  "none"
+ ],
+ "Kastrupinkatu": [
+  null,
+  null,
+  "none"
+ ],
+ "Katajaharjuntie": [
+  60.169774,
+  24.8577742,
+  "street"
+ ],
+ "Katajanoka": [
+  null,
+  null,
+  "none"
+ ],
+ "Katajanokan": [
+  60.1692374,
+  24.9651343,
+  "street"
+ ],
+ "Katajanokanlaituri": [
+  60.1680803,
+  24.9571731,
+  "street"
+ ],
+ "Katajanokka": [
+  60.167148,
+  24.9684046,
+  "district"
+ ],
+ "Katariina": [
+  60.2164685,
+  24.985462,
+  "street"
+ ],
+ "Katariina Saksilaisen katu": [
+  60.2168981,
+  24.9846781,
+  "street"
+ ],
+ "Kaupintie": [
+  60.2254885,
+  24.8688253,
+  "street"
+ ],
+ "Kauppakartanonkatu": [
+  60.2093781,
+  25.0880111,
+  "street"
+ ],
+ "Kauppalantie": [
+  60.2101006,
+  24.8963271,
+  "street"
+ ],
+ "Kauppamyllyntie": [
+  60.2154251,
+  25.0596183,
+  "street"
+ ],
+ "Kaupunginteatterin": [
+  null,
+  null,
+  "none"
+ ],
+ "Kaupunkisuunnitteluviraston": [
+  null,
+  null,
+  "none"
+ ],
+ "Kehruutie": [
+  60.2527292,
+  24.8598508,
+  "street"
+ ],
+ "Keinulaudantie": [
+  60.2346953,
+  25.079423,
+  "street"
+ ],
+ "Keinutie": [
+  60.2391572,
+  25.0725788,
+  "street"
+ ],
+ "Kelkkapuisto": [
+  null,
+  null,
+  "none"
+ ],
+ "Keski-Pasila": [
+  60.2008415,
+  24.9311537,
+  "district"
+ ],
+ "Keski-Pasilan": [
+  60.1986848,
+  24.933802,
+  "district"
+ ],
+ "Keski-Viiki": [
+  null,
+  null,
+  "none"
+ ],
+ "Keski-Viikki": [
+  null,
+  null,
+  "none"
+ ],
+ "Keski-Vuosaaren": [
+  null,
+  null,
+  "none"
+ ],
+ "Keski-Vuosaari": [
+  60.2215661,
+  25.1412931,
+  "district"
+ ],
+ "Keskuspuisto": [
+  60.2344162,
+  24.9092943,
+  "place"
+ ],
+ "Keskuspuiston": [
+  60.2204318,
+  24.9161718,
+  "street"
+ ],
+ "Keskuspuistontaipalee": [
+  null,
+  null,
+  "none"
+ ],
+ "Kiertotähdenkuja": [
+  60.27914,
+  24.9940052,
+  "street"
+ ],
+ "Kiiltomadonpolku": [
+  60.1803412,
+  25.057496,
+  "street"
+ ],
+ "Kiinteistö": [
+  60.1932877,
+  25.0382134,
+  "district"
+ ],
+ "Kiitotienkortteli": [
+  null,
+  null,
+  "none"
+ ],
+ "Kimmonpuisto": [
+  60.2100437,
+  24.942107,
+  "district"
+ ],
+ "Kinkeripolku": [
+  60.2320663,
+  24.9619413,
+  "street"
+ ],
+ "Kipinäpuisto": [
+  60.2101671,
+  24.8067394,
+  "place"
+ ],
+ "Kirkonkyläntie": [
+  60.2513187,
+  25.0082053,
+  "street"
+ ],
+ "Kirsikkapuisto": [
+  60.1952249,
+  25.048863,
+  "place"
+ ],
+ "Kirsikkapuiston": [
+  60.193767,
+  25.0474551,
+  "street"
+ ],
+ "Kirvesmiehenkatu": [
+  60.1967639,
+  25.0411924,
+  "street"
+ ],
+ "Kiulukuja": [
+  60.2498216,
+  24.8916443,
+  "street"
+ ],
+ "Kivensilmänkuja": [
+  60.223765,
+  25.0750324,
+  "street"
+ ],
+ "Kiviaidankatu": [
+  60.1542879,
+  24.8830648,
+  "street"
+ ],
+ "Kivihaantie": [
+  60.2087507,
+  24.9034743,
+  "street"
+ ],
+ "Kivikko": [
+  60.2356754,
+  25.0608235,
+  "district"
+ ],
+ "Kiviko": [
+  null,
+  null,
+  "none"
+ ],
+ "Kivikon": [
+  60.240331,
+  25.0716419,
+  "street"
+ ],
+ "Kivikon ulkoilupuisto": [
+  60.2457646,
+  25.0685478,
+  "place"
+ ],
+ "Kivinoka": [
+  null,
+  null,
+  "none"
+ ],
+ "Kivinokan": [
+  60.1938385,
+  25.0146397,
+  "street"
+ ],
+ "Kivinokka": [
+  60.196733,
+  25.0001574,
+  "district"
+ ],
+ "Kivipadonpuisto": [
+  60.2342381,
+  24.9464201,
+  "place"
+ ],
+ "Kivipadontie": [
+  60.2341484,
+  24.9483886,
+  "street"
+ ],
+ "Kiviparintie": [
+  60.2245937,
+  25.0736954,
+  "street"
+ ],
+ "Kiviportintie": [
+  60.224185,
+  25.0940384,
+  "street"
+ ],
+ "Koirasaarenpuisto": [
+  60.160265,
+  25.0131683,
+  "place"
+ ],
+ "Koirasaarentie": [
+  60.1695188,
+  25.012641,
+  "street"
+ ],
+ "Koirasaari": [
+  60.1616578,
+  25.0126739,
+  "district"
+ ],
+ "Koirasaarten": [
+  null,
+  null,
+  "none"
+ ],
+ "Koivusaaren": [
+  60.1652873,
+  24.8572396,
+  "street"
+ ],
+ "Koivusaaren puistokatu": [
+  null,
+  null,
+  "none"
+ ],
+ "Koivusaari": [
+  60.1635908,
+  24.8508094,
+  "district"
+ ],
+ "Kokkapuisto": [
+  60.1534105,
+  24.8890486,
+  "district"
+ ],
+ "Kokkokalliontie": [
+  60.2294911,
+  24.8516531,
+  "street"
+ ],
+ "Koksikatu": [
+  60.1853816,
+  24.9765238,
+  "street"
+ ],
+ "Kolsarintie": [
+  60.2365678,
+  24.848852,
+  "street"
+ ],
+ "Kolvikuja": [
+  null,
+  null,
+  "none"
+ ],
+ "Konala": [
+  60.2385504,
+  24.8460646,
+  "district"
+ ],
+ "Konalan": [
+  60.2364715,
+  24.847246,
+  "street"
+ ],
+ "Konalan puisto": [
+  60.2339902,
+  24.8620646,
+  "street"
+ ],
+ "Konalankuja": [
+  60.2396143,
+  24.8439445,
+  "street"
+ ],
+ "Konepajanportti": [
+  60.1924168,
+  24.9458564,
+  "street"
+ ],
+ "Konepajanpuisto": [
+  60.1948151,
+  24.9424713,
+  "place"
+ ],
+ "Konepajanraitti": [
+  60.1947496,
+  24.9420845,
+  "street"
+ ],
+ "Kontula": [
+  60.2359519,
+  25.0836317,
+  "street"
+ ],
+ "Kontulan": [
+  60.2364942,
+  25.0816178,
+  "street"
+ ],
+ "Kontulan kelkkapuisto": [
+  60.2300168,
+  25.0827847,
+  "place"
+ ],
+ "Kontulankuja": [
+  60.2368891,
+  25.0920172,
+  "street"
+ ],
+ "Korkeavuorenkatu": [
+  60.16374,
+  24.9461497,
+  "street"
+ ],
+ "Koroistentie": [
+  60.2031906,
+  24.8997239,
+  "street"
+ ],
+ "Koskela": [
+  60.2187652,
+  24.9682441,
+  "district"
+ ],
+ "Koskelan": [
+  60.2157233,
+  24.9640068,
+  "street"
+ ],
+ "Koskelantie": [
+  60.2086026,
+  24.9465123,
+  "street"
+ ],
+ "Koskenhaantie": [
+  60.2409371,
+  25.0920219,
+  "street"
+ ],
+ "Kostinkallion": [
+  60.2369855,
+  25.0860066,
+  "district"
+ ],
+ "Kostinkallion puisto": [
+  null,
+  null,
+  "none"
+ ],
+ "Kotkavuori": [
+  60.1626935,
+  24.8854819,
+  "street"
+ ],
+ "Krogiuksentie": [
+  60.1860543,
+  24.8660683,
+  "street"
+ ],
+ "Kruunusilta": [
+  null,
+  null,
+  "none"
+ ],
+ "Kruunusiltojen": [
+  null,
+  null,
+  "none"
+ ],
+ "Kruunuvuoren": [
+  60.1673023,
+  24.9632405,
+  "street"
+ ],
+ "Kruunuvuorenrannan": [
+  60.1701017,
+  25.0182615,
+  "street"
+ ],
+ "Kruunuvuorenranta": [
+  60.1647169,
+  25.016789,
+  "district"
+ ],
+ "Kruunuvuori": [
+  60.1691175,
+  25.0153509,
+  "street"
+ ],
+ "Krämertintie": [
+  60.222185,
+  24.9361913,
+  "street"
+ ],
+ "Kulmavuorenkatu": [
+  60.1881043,
+  24.9659323,
+  "street"
+ ],
+ "Kulosaaren": [
+  60.1846169,
+  25.010546,
+  "street"
+ ],
+ "Kulosaaren silta": [
+  null,
+  null,
+  "none"
+ ],
+ "Kulosaarensilta": [
+  60.1862631,
+  24.9849981,
+  "street"
+ ],
+ "Kulosaarentie": [
+  60.1861305,
+  24.9984766,
+  "street"
+ ],
+ "Kulosaari": [
+  60.1861022,
+  25.0068561,
+  "district"
+ ],
+ "Kultakruununkaari": [
+  60.1704039,
+  25.0141504,
+  "street"
+ ],
+ "Kumpula": [
+  60.2115,
+  24.9598,
+  "street"
+ ],
+ "Kumpulan": [
+  60.2082384,
+  24.9578425,
+  "street"
+ ],
+ "Kumpulankärki": [
+  null,
+  null,
+  "none"
+ ],
+ "Kumpulanmäen": [
+  60.203034,
+  24.9585326,
+  "street"
+ ],
+ "Kumpulantie": [
+  60.197474,
+  24.9463139,
+  "street"
+ ],
+ "Kumtähdenkenttä": [
+  60.2040944,
+  24.9675183,
+  "district"
+ ],
+ "Kuninkaankartanonsaari": [
+  60.216475,
+  24.9823086,
+  "district"
+ ],
+ "Kuninkaantammen": [
+  60.2738066,
+  24.9413288,
+  "street"
+ ],
+ "Kuninkaantammenaukio": [
+  60.2593929,
+  24.891991,
+  "street"
+ ],
+ "Kuninkaantammenkallio": [
+  null,
+  null,
+  "none"
+ ],
+ "Kuninkaantammenkallion": [
+  null,
+  null,
+  "none"
+ ],
+ "Kuninkaantammentie": [
+  60.2752097,
+  24.9494126,
+  "street"
+ ],
+ "Kuninkaantammi": [
+  60.2609857,
+  24.8893217,
+  "district"
+ ],
+ "Kuntalaki": [
+  null,
+  null,
+  "none"
+ ],
+ "Kuortaneenkatu": [
+  60.1961378,
+  24.9444055,
+  "street"
+ ],
+ "Kurkimoisio": [
+  60.2230136,
+  25.1332081,
+  "street"
+ ],
+ "Kurkimoision": [
+  60.2230865,
+  25.1314439,
+  "street"
+ ],
+ "Kurkimoisionpuisto": [
+  60.2257799,
+  25.1317457,
+  "place"
+ ],
+ "Kutomopolku": [
+  60.2154714,
+  24.8697259,
+  "street"
+ ],
+ "Kutomotie": [
+  60.2154417,
+  24.8706518,
+  "street"
+ ],
+ "Kuuluttajankadun": [
+  null,
+  null,
+  "none"
+ ],
+ "Kuuluttajankatu": [
+  60.2053157,
+  24.9172248,
+  "street"
+ ],
+ "Kuusikkotie": [
+  60.2300441,
+  24.9269919,
+  "street"
+ ],
+ "Kuusiniementie": [
+  60.187601,
+  24.8683297,
+  "street"
+ ],
+ "Kuusisaarenpolku": [
+  60.1842401,
+  24.8545721,
+  "street"
+ ],
+ "Kuusmiehentie": [
+  60.255847,
+  24.931497,
+  "street"
+ ],
+ "Kuvernöörinkuja": [
+  60.1763854,
+  25.0517414,
+  "street"
+ ],
+ "Kyllikinportti": [
+  60.2002614,
+  24.9264545,
+  "street"
+ ],
+ "Kyläkunnantie": [
+  60.2407061,
+  24.9335448,
+  "street"
+ ],
+ "Kylänevankuja": [
+  60.2144386,
+  24.892989,
+  "street"
+ ],
+ "Kylänevantie": [
+  60.2120187,
+  24.9019623,
+  "street"
+ ],
+ "Kylänvanhimmantie": [
+  60.2268919,
+  24.9616004,
+  "street"
+ ],
+ "Kyläsaaren": [
+  60.1995944,
+  24.9695248,
+  "street"
+ ],
+ "Kyläsaarenkatu": [
+  60.1988144,
+  24.9698186,
+  "street"
+ ],
+ "Kylätie": [
+  60.2170159,
+  24.8938758,
+  "street"
+ ],
+ "Kyösti": [
+  60.1860754,
+  25.014725,
+  "street"
+ ],
+ "Kyösti Kallion tie": [
+  60.1859961,
+  25.0136878,
+  "street"
+ ],
+ "Käenkuja": [
+  60.1859952,
+  24.9620212,
+  "street"
+ ],
+ "Kämnerintie": [
+  60.2768066,
+  25.0268215,
+  "street"
+ ],
+ "Käpylä": [
+  60.2167786,
+  24.9543534,
+  "district"
+ ],
+ "Käpylän": [
+  60.2135823,
+  24.9511123,
+  "street"
+ ],
+ "Käpylänkuja": [
+  60.2154796,
+  24.9554779,
+  "street"
+ ],
+ "Käpyläntie": [
+  60.2194825,
+  24.9611981,
+  "street"
+ ],
+ "Käpypuisto": [
+  null,
+  null,
+  "none"
+ ],
+ "Kärkitie": [
+  60.1893858,
+  24.8733514,
+  "street"
+ ],
+ "Käsityöläisentie": [
+  60.2732194,
+  25.0341782,
+  "street"
+ ],
+ "Käskynhaltijantie": [
+  60.2298883,
+  24.9470027,
+  "street"
+ ],
+ "Kölikuja": [
+  60.247928,
+  25.2112729,
+  "street"
+ ],
+ "Köydenpunojankatu": [
+  60.1618344,
+  24.9268959,
+  "street"
+ ],
+ "Köydenpunojanpuisto": [
+  null,
+  null,
+  "none"
+ ],
+ "Laajalahdentie": [
+  60.1976523,
+  24.8753613,
+  "street"
+ ],
+ "Laajasalo": [
+  60.1752409,
+  25.0499641,
+  "district"
+ ],
+ "Laajasalon": [
+  60.178406,
+  25.0534319,
+  "street"
+ ],
+ "Laajasalontie": [
+  60.1793334,
+  25.05054,
+  "street"
+ ],
+ "Laajasalossa": [
+  null,
+  null,
+  "none"
+ ],
+ "Lahdenväylä": [
+  60.2584482,
+  25.0700918,
+  "street"
+ ],
+ "Laidunpuisto": [
+  60.2539555,
+  25.0053944,
+  "district"
+ ],
+ "Laippatie": [
+  60.2099507,
+  25.0519496,
+  "street"
+ ],
+ "Laivalahdenkaari": [
+  60.190976,
+  25.0344396,
+  "street"
+ ],
+ "Laivastokatu": [
+  60.1687194,
+  24.9669348,
+  "street"
+ ],
+ "Lammenrannan": [
+  60.2600124,
+  24.894987,
+  "district"
+ ],
+ "Lammenranta": [
+  60.2603557,
+  24.8961679,
+  "district"
+ ],
+ "Lampuotilantie": [
+  60.231556,
+  24.9230769,
+  "street"
+ ],
+ "Landbo": [
+  60.2693777,
+  25.1942843,
+  "district"
+ ],
+ "Landbon": [
+  60.2670517,
+  25.1901588,
+  "street"
+ ],
+ "Landbontie": [
+  60.2685376,
+  25.1947667,
+  "street"
+ ],
+ "Lapinlahdenkatu": [
+  60.1670096,
+  24.9267196,
+  "street"
+ ],
+ "Lapinlahdentie": [
+  60.1668071,
+  24.921072,
+  "street"
+ ],
+ "Lapinmäentie": [
+  60.20856,
+  24.8885085,
+  "street"
+ ],
+ "Lasipalatsi": [
+  60.1702416,
+  24.9374365,
+  "street"
+ ],
+ "Lasipalatsin": [
+  60.1700229,
+  24.9359613,
+  "street"
+ ],
+ "Lassila": [
+  60.2310266,
+  24.8767216,
+  "district"
+ ],
+ "Lastenkodinkatu": [
+  60.1659643,
+  24.9244572,
+  "street"
+ ],
+ "Lastenlinnantie": [
+  60.1855727,
+  24.9107279,
+  "street"
+ ],
+ "Latokartanontie": [
+  60.2485623,
+  25.0100014,
+  "street"
+ ],
+ "Lauhahiipijänpolku": [
+  60.2559182,
+  24.8421771,
+  "street"
+ ],
+ "Laulurastaantie": [
+  60.2577044,
+  24.9999202,
+  "street"
+ ],
+ "Laurinmäenkuja": [
+  60.233194,
+  24.8833527,
+  "street"
+ ],
+ "Laurinniitty": [
+  60.2317482,
+  24.8774572,
+  "district"
+ ],
+ "Lautatarhankatu": [
+  60.1895092,
+  24.9654847,
+  "street"
+ ],
+ "Lauttasaaren": [
+  60.1588097,
+  24.8689501,
+  "street"
+ ],
+ "Lauttasaaren silta": [
+  60.1621556,
+  24.8976779,
+  "street"
+ ],
+ "Lauttasaarenmäki": [
+  60.1609177,
+  24.8664517,
+  "street"
+ ],
+ "Lauttasaarenmäki-Lauttasaarentie": [
+  null,
+  null,
+  "none"
+ ],
+ "Lauttasaarensilta": [
+  60.1615532,
+  24.8926409,
+  "district"
+ ],
+ "Lauttasaarentie": [
+  60.1621098,
+  24.863171,
+  "street"
+ ],
+ "Lauttasaari": [
+  60.1598371,
+  24.8802249,
+  "district"
+ ],
+ "Leankatu": [
+  60.201654,
+  24.9234567,
+  "street"
+ ],
+ "Lehtisaarentie": [
+  60.1817,
+  24.8546,
+  "manual"
+ ],
+ "Lehto": [
+  null,
+  null,
+  "none"
+ ],
+ "Leikkikuja": [
+  60.2421264,
+  25.0854027,
+  "street"
+ ],
+ "Leikkipaikka": [
+  60.2755,
+  24.9868,
+  "street"
+ ],
+ "Leikkipaikka Jalopeuran perusparannus": [
+  null,
+  null,
+  "none"
+ ],
+ "Leikkipuisto Brahe": [
+  60.1888993,
+  24.9498546,
+  "place"
+ ],
+ "Leikkipuisto Herttoniemi": [
+  null,
+  null,
+  "none"
+ ],
+ "Leikkipuisto Hilleri": [
+  60.2100648,
+  25.0435735,
+  "place"
+ ],
+ "Leikkipuisto Intian": [
+  null,
+  null,
+  "none"
+ ],
+ "Leikkipuisto Intian perusparannus": [
+  null,
+  null,
+  "none"
+ ],
+ "Leikkipuisto Iso-Antti": [
+  60.2061867,
+  25.0844514,
+  "place"
+ ],
+ "Leikkipuisto Isonneva": [
+  60.2134411,
+  24.8917251,
+  "place"
+ ],
+ "Leikkipuisto Kotinummi": [
+  null,
+  null,
+  "none"
+ ],
+ "Leikkipuisto Lampi": [
+  60.24124,
+  25.081677,
+  "place"
+ ],
+ "Leikkipuisto Mellunmäki": [
+  60.2354553,
+  25.1225357,
+  "place"
+ ],
+ "Leikkipuisto Mustakivi": [
+  60.2040816,
+  25.1409883,
+  "place"
+ ],
+ "Leikkipuisto Myllynsiipi": [
+  60.2215016,
+  25.0671557,
+  "place"
+ ],
+ "Leikkipuisto Mäkitorppa": [
+  60.2290195,
+  24.9604758,
+  "place"
+ ],
+ "Leikkipuisto Rudolf": [
+  null,
+  null,
+  "none"
+ ],
+ "Leikkipuisto Ruoholahti": [
+  60.1612201,
+  24.9182389,
+  "place"
+ ],
+ "Leikkipuisto Rusthollari": [
+  60.2124056,
+  25.0998009,
+  "place"
+ ],
+ "Leikkipuisto Salpausselkä": [
+  null,
+  null,
+  "none"
+ ],
+ "Leikkipuisto Tapulin": [
+  null,
+  null,
+  "none"
+ ],
+ "Leikkipuisto Tuorinniemi": [
+  60.186801,
+  25.0380597,
+  "place"
+ ],
+ "Leikosaarentie": [
+  60.2045301,
+  25.1509482,
+  "street"
+ ],
+ "Lentoasemankortteleide": [
+  null,
+  null,
+  "none"
+ ],
+ "Leonkatu": [
+  60.1851382,
+  24.9817482,
+  "street"
+ ],
+ "Lepakonaukio": [
+  60.1648944,
+  24.9141414,
+  "street"
+ ],
+ "Leppäsuo": [
+  60.1690704,
+  24.9231602,
+  "district"
+ ],
+ "Leppäsuonkatu": [
+  60.1691878,
+  24.9221762,
+  "street"
+ ],
+ "Liikkalankuja": [
+  60.2184572,
+  25.106275,
+  "street"
+ ],
+ "Liisankatu": [
+  60.1742746,
+  24.9601929,
+  "street"
+ ],
+ "Linnanherrankuja": [
+  60.2239528,
+  25.1169672,
+  "street"
+ ],
+ "Linnankoskenkatu": [
+  60.1855083,
+  24.920242,
+  "street"
+ ],
+ "Linnankoskenpuisto": [
+  null,
+  null,
+  "none"
+ ],
+ "Linnanpellonpuisto": [
+  60.2303486,
+  25.107135,
+  "district"
+ ],
+ "Linnanrakentajantie": [
+  60.1938619,
+  25.030607,
+  "street"
+ ],
+ "Linnavuorenpuisto": [
+  null,
+  null,
+  "none"
+ ],
+ "Lirokuja": [
+  60.2335933,
+  25.0798649,
+  "street"
+ ],
+ "Lisäksi": [
+  null,
+  null,
+  "none"
+ ],
+ "Lohiapajanlahden": [
+  60.1586464,
+  24.8886178,
+  "street"
+ ],
+ "Lohiapajanlahti": [
+  60.1573529,
+  24.8884792,
+  "place"
+ ],
+ "Lohikäärmepuisto": [
+  60.2115759,
+  25.1394754,
+  "place"
+ ],
+ "Lohiniemenranta": [
+  60.1967689,
+  25.1262146,
+  "street"
+ ],
+ "Lokkalantie": [
+  60.1994148,
+  24.881427,
+  "street"
+ ],
+ "Lokkisaarenpuisto": [
+  60.2140875,
+  25.1417894,
+  "district"
+ ],
+ "Longinojanpuisto": [
+  null,
+  null,
+  "none"
+ ],
+ "Longinojanpuiston": [
+  60.2460758,
+  25.0186455,
+  "district"
+ ],
+ "Louhentie": [
+  60.2136224,
+  24.9405345,
+  "street"
+ ],
+ "Luoteisväylä": [
+  60.1644432,
+  24.8619829,
+  "street"
+ ],
+ "Lupajantie": [
+  60.2326961,
+  25.1039168,
+  "street"
+ ],
+ "Lämpökuja": [
+  60.2381203,
+  24.9778846,
+  "street"
+ ],
+ "Länsi-Herttoniemi": [
+  60.2042813,
+  25.0336704,
+  "district"
+ ],
+ "Länsi-Käpylä": [
+  null,
+  null,
+  "none"
+ ],
+ "Länsi-Käpylän": [
+  null,
+  null,
+  "none"
+ ],
+ "Länsi-Pakila": [
+  60.2429896,
+  24.9258632,
+  "district"
+ ],
+ "Länsi-Pasila": [
+  60.1987008,
+  24.9242542,
+  "district"
+ ],
+ "Länsi-Pasilan": [
+  60.197008,
+  24.9252591,
+  "street"
+ ],
+ "Länsimäentie": [
+  60.2348981,
+  25.1100729,
+  "street"
+ ],
+ "Länsisatama": [
+  60.1581188,
+  24.9140426,
+  "district"
+ ],
+ "Länsisatamankadun": [
+  60.1557843,
+  24.9142712,
+  "district"
+ ],
+ "Länsisatamankatu": [
+  60.1559944,
+  24.9138655,
+  "street"
+ ],
+ "Länsiväylä": [
+  60.1643612,
+  24.9125523,
+  "street"
+ ],
+ "Lääkärinkatu": [
+  60.1913701,
+  24.9133026,
+  "street"
+ ],
+ "Lönnrotinkatu": [
+  60.1622278,
+  24.9266969,
+  "street"
+ ],
+ "MUUTOKSENHAKUKIELTO": [
+  null,
+  null,
+  "none"
+ ],
+ "Maaherrantie": [
+  60.2308,
+  24.9725,
+  "street"
+ ],
+ "Maakaarenkuja": [
+  60.2314387,
+  25.0256453,
+  "street"
+ ],
+ "Maakaari": [
+  60.2295682,
+  25.0267907,
+  "street"
+ ],
+ "Maanalaine": [
+  null,
+  null,
+  "none"
+ ],
+ "Maarianmaanpuisto": [
+  60.2262503,
+  24.9902304,
+  "district"
+ ],
+ "Maasälvänpuisto": [
+  60.2373886,
+  25.01327,
+  "district"
+ ],
+ "Maatullinkuja": [
+  60.2751035,
+  25.0326953,
+  "street"
+ ],
+ "Maatullinpuisto": [
+  60.2735844,
+  25.0263762,
+  "district"
+ ],
+ "Madeiranaukio": [
+  60.1521451,
+  24.9116222,
+  "street"
+ ],
+ "Mainiementie": [
+  60.1619438,
+  25.0941977,
+  "street"
+ ],
+ "Maistraatinportti": [
+  60.1987333,
+  24.9277375,
+  "street"
+ ],
+ "Makasiinipuisto": [
+  60.1740235,
+  24.9367029,
+  "place"
+ ],
+ "Makasiiniranta": [
+  null,
+  null,
+  "none"
+ ],
+ "Maksuperustie": [
+  null,
+  null,
+  "none"
+ ],
+ "Maksutaulukko": [
+  null,
+  null,
+  "none"
+ ],
+ "Malmi": [
+  60.2509496,
+  25.0107602,
+  "street"
+ ],
+ "Malmilla": [
+  null,
+  null,
+  "none"
+ ],
+ "Malmin": [
+  60.2484058,
+  25.0087187,
+  "street"
+ ],
+ "Malmin kauppatie": [
+  60.2525896,
+  25.012429,
+  "street"
+ ],
+ "Malmin raitti": [
+  60.2548051,
+  25.0097835,
+  "street"
+ ],
+ "Malminkaari": [
+  60.2514239,
+  25.0121017,
+  "street"
+ ],
+ "Malminkartano": [
+  60.2477445,
+  24.8625754,
+  "district"
+ ],
+ "Malminkartanonhuippu": [
+  60.2511943,
+  24.8438976,
+  "district"
+ ],
+ "Malminkartanontie": [
+  60.243912,
+  24.8460485,
+  "street"
+ ],
+ "Mannerheiminaukio": [
+  60.1714715,
+  24.9368558,
+  "street"
+ ],
+ "Mannerheimintie": [
+  60.1711129,
+  24.936085,
+  "street"
+ ],
+ "Manniselle": [
+  null,
+  null,
+  "none"
+ ],
+ "Maria": [
+  null,
+  null,
+  "none"
+ ],
+ "Marian": [
+  60.2372733,
+  24.8914226,
+  "street"
+ ],
+ "Marian toimitilatonttie": [
+  null,
+  null,
+  "none"
+ ],
+ "Mariankatu": [
+  60.1689832,
+  24.9568639,
+  "street"
+ ],
+ "Marjaniementie": [
+  60.2045848,
+  25.0765459,
+  "street"
+ ],
+ "Markkinatie": [
+  60.2521604,
+  25.0062917,
+  "street"
+ ],
+ "Mathilda": [
+  60.1931808,
+  24.9667622,
+  "street"
+ ],
+ "Mathilda Wreden kuja": [
+  60.1931808,
+  24.9667622,
+  "street"
+ ],
+ "Matinsilta-Jokisuuntie": [
+  null,
+  null,
+  "none"
+ ],
+ "Maunula": [
+  60.2312122,
+  24.9325239,
+  "district"
+ ],
+ "Maunulan": [
+  60.2297403,
+  24.9297073,
+  "street"
+ ],
+ "Maunulanpuisto": [
+  60.2315373,
+  24.9293637,
+  "place"
+ ],
+ "Maunulanpuiston": [
+  60.2220986,
+  24.9324574,
+  "street"
+ ],
+ "Maunulantie": [
+  60.2335235,
+  24.9255712,
+  "street"
+ ],
+ "Maununnevan": [
+  60.2414919,
+  24.9023565,
+  "street"
+ ],
+ "Maununnevantie": [
+  60.2487215,
+  24.905717,
+  "street"
+ ],
+ "Maurinkatu": [
+  60.1746687,
+  24.9597179,
+  "street"
+ ],
+ "Mechelininkatu": [
+  60.1763408,
+  24.9176621,
+  "street"
+ ],
+ "Meijeritie": [
+  60.2246794,
+  24.8716545,
+  "street"
+ ],
+ "Meilahden": [
+  60.1928903,
+  24.9042634,
+  "street"
+ ],
+ "Meilahti": [
+  60.1911989,
+  24.9006072,
+  "district"
+ ],
+ "Melkinlaituri": [
+  60.1507005,
+  24.9096112,
+  "street"
+ ],
+ "Melkonkatu": [
+  60.1520189,
+  24.882294,
+  "street"
+ ],
+ "Mellunkylä": [
+  60.2337862,
+  25.1044229,
+  "district"
+ ],
+ "Mellunmäen": [
+  60.2316353,
+  25.1280918,
+  "street"
+ ],
+ "Mellunmäentie": [
+  60.2338881,
+  25.1288528,
+  "street"
+ ],
+ "Mellunmäki": [
+  60.2391975,
+  25.111153,
+  "street"
+ ],
+ "Meri-Rastila": [
+  60.2038177,
+  25.1196801,
+  "district"
+ ],
+ "Meri-Rastilan": [
+  60.2007168,
+  25.1179287,
+  "street"
+ ],
+ "Meri-Rastilan länsiranta": [
+  null,
+  null,
+  "none"
+ ],
+ "Merihaansilta": [
+  60.1785957,
+  24.9681066,
+  "street"
+ ],
+ "Merikannontie": [
+  60.1784911,
+  24.9130298,
+  "street"
+ ],
+ "Merikasarminpuisto": [
+  60.1677009,
+  24.9742335,
+  "district"
+ ],
+ "Merikorttikuja": [
+  60.2163847,
+  25.1287909,
+  "street"
+ ],
+ "Meripihkatie": [
+  60.2339665,
+  25.0108716,
+  "street"
+ ],
+ "Merisataman": [
+  60.1551815,
+  24.9492402,
+  "street"
+ ],
+ "Meritullinkatu": [
+  60.1729701,
+  24.9583266,
+  "street"
+ ],
+ "Merkuriuksentie": [
+  60.2801388,
+  25.0276603,
+  "street"
+ ],
+ "Messipojankuja": [
+  60.158839,
+  24.9120099,
+  "street"
+ ],
+ "Messukeskus": [
+  60.2025608,
+  24.9328012,
+  "street"
+ ],
+ "Metsäläntie": [
+  60.2206501,
+  24.9037459,
+  "street"
+ ],
+ "Mikonpojanpolku": [
+  60.1732192,
+  25.0486926,
+  "street"
+ ],
+ "Mikäli": [
+  null,
+  null,
+  "none"
+ ],
+ "Mirandankatu": [
+  60.1637605,
+  25.0170072,
+  "street"
+ ],
+ "Mosaiikkikuja": [
+  null,
+  null,
+  "none"
+ ],
+ "Mosaiikkipuisto": [
+  60.2085749,
+  25.1400189,
+  "district"
+ ],
+ "Mosaiikkiraitti": [
+  60.2082047,
+  25.1374206,
+  "street"
+ ],
+ "Munkinpuisto": [
+  60.199984,
+  24.8702113,
+  "place"
+ ],
+ "Munkkiniemen": [
+  60.1975054,
+  24.8733507,
+  "street"
+ ],
+ "Munkkiniemen puistotie": [
+  60.1979756,
+  24.877946,
+  "street"
+ ],
+ "Munkkiniemi": [
+  60.1983598,
+  24.875853,
+  "district"
+ ],
+ "Munkkivuori": [
+  60.2068336,
+  24.8709953,
+  "district"
+ ],
+ "Muotokuvankatu": [
+  60.2589521,
+  24.8871721,
+  "street"
+ ],
+ "Museon": [
+  60.1742094,
+  24.9300405,
+  "district"
+ ],
+ "Museon puisto": [
+  60.1742094,
+  24.9300405,
+  "place"
+ ],
+ "Mustalahdentie": [
+  60.2219406,
+  25.1369643,
+  "street"
+ ],
+ "Mustikkamaa": [
+  60.1806162,
+  24.9908298,
+  "district"
+ ],
+ "Mustikkamaan": [
+  60.1822834,
+  24.9946641,
+  "street"
+ ],
+ "Mustikkamaanpolku": [
+  60.180711,
+  24.984239,
+  "street"
+ ],
+ "Muusanpolku": [
+  60.2073524,
+  24.8542403,
+  "street"
+ ],
+ "Muusantori": [
+  60.2072763,
+  24.8564887,
+  "street"
+ ],
+ "Myllymatkantie": [
+  60.2261298,
+  25.0628913,
+  "street"
+ ],
+ "Myllypadontie": [
+  60.2222443,
+  25.0577656,
+  "street"
+ ],
+ "Myllypuro": [
+  60.2236491,
+  25.0655052,
+  "district"
+ ],
+ "Myllypuron": [
+  60.2233574,
+  25.0660649,
+  "street"
+ ],
+ "Myllypurontie": [
+  60.2274145,
+  25.0717965,
+  "street"
+ ],
+ "Myllärintie": [
+  60.2189522,
+  25.0489768,
+  "street"
+ ],
+ "Mäkelänkadun": [
+  60.2102628,
+  24.9433684,
+  "street"
+ ],
+ "Mäkelänkatu": [
+  60.2120303,
+  24.943649,
+  "street"
+ ],
+ "Mäkelänrinne": [
+  60.1982502,
+  24.9493068,
+  "street"
+ ],
+ "Mäkitorpanpolku": [
+  60.2237988,
+  24.9495296,
+  "street"
+ ],
+ "Mäntyniementie": [
+  60.1860838,
+  24.8973063,
+  "street"
+ ],
+ "Mäntytie": [
+  60.1924249,
+  24.8986368,
+  "street"
+ ],
+ "Naantalintie": [
+  60.2063612,
+  24.8764851,
+  "street"
+ ],
+ "Naapurintie": [
+  60.2347096,
+  25.0869383,
+  "street"
+ ],
+ "Naapuripellontie": [
+  60.2466009,
+  24.8514737,
+  "street"
+ ],
+ "Nahkahousuntie": [
+  60.150857,
+  24.8844553,
+  "street"
+ ],
+ "Nallenrinne": [
+  60.2462688,
+  25.0412256,
+  "district"
+ ],
+ "Nallenrinteenpuisto": [
+  null,
+  null,
+  "none"
+ ],
+ "Nastapolku": [
+  null,
+  null,
+  "none"
+ ],
+ "Naulakallionpuisto": [
+  60.2346893,
+  25.1200739,
+  "district"
+ ],
+ "Naulakalliontie": [
+  60.2359784,
+  25.1108988,
+  "street"
+ ],
+ "Naurunpuisto": [
+  60.1507962,
+  24.9093747,
+  "district"
+ ],
+ "Neitsytsaarentie": [
+  60.2224857,
+  25.1388249,
+  "street"
+ ],
+ "Neptunuksenkatu": [
+  60.1500909,
+  24.9069239,
+  "street"
+ ],
+ "Neptunuksenpuisto": [
+  60.1505242,
+  24.9054308,
+  "district"
+ ],
+ "Neulapadontie": [
+  60.222476,
+  25.0647696,
+  "street"
+ ],
+ "Neulastie": [
+  60.2513127,
+  24.8499415,
+  "street"
+ ],
+ "Nevapuisto": [
+  60.2515611,
+  24.8975732,
+  "place"
+ ],
+ "Niemenmäen": [
+  60.2057274,
+  24.883339,
+  "street"
+ ],
+ "Niemenmäki": [
+  60.2031235,
+  24.884573,
+  "street"
+ ],
+ "Nihd": [
+  null,
+  null,
+  "none"
+ ],
+ "Nihdi": [
+  null,
+  null,
+  "none"
+ ],
+ "Nihdin": [
+  60.1794574,
+  24.9748774,
+  "street"
+ ],
+ "Nihti": [
+  60.1784787,
+  24.974269,
+  "place"
+ ],
+ "Nokianpuisto": [
+  60.194815,
+  24.9525281,
+  "district"
+ ],
+ "Nordenskiöldin": [
+  60.1912503,
+  24.9239227,
+  "street"
+ ],
+ "Nordenskiöldinkatu": [
+  60.1898089,
+  24.9209823,
+  "street"
+ ],
+ "Nordsjö": [
+  null,
+  null,
+  "none"
+ ],
+ "Nordsjön": [
+  60.2101288,
+  25.1599087,
+  "street"
+ ],
+ "Novgorodinpuisto": [
+  null,
+  null,
+  "none"
+ ],
+ "Nuottaniemen": [
+  60.2007853,
+  25.1620967,
+  "street"
+ ],
+ "Nuottaniemi": [
+  60.1633048,
+  25.0368667,
+  "place"
+ ],
+ "Nylanderinpuisto": [
+  60.2004585,
+  24.9627781,
+  "district"
+ ],
+ "Näyttelijäntie": [
+  60.2307668,
+  24.8934804,
+  "street"
+ ],
+ "Ohje": [
+  null,
+  null,
+  "none"
+ ],
+ "Ojapuisto": [
+  60.2294036,
+  25.1187827,
+  "street"
+ ],
+ "Ojapuiston": [
+  60.2322486,
+  25.1175582,
+  "district"
+ ],
+ "Oksakoskenpolku": [
+  60.1879761,
+  24.9018189,
+  "street"
+ ],
+ "Olympiaranta": [
+  60.1609943,
+  24.9578115,
+  "street"
+ ],
+ "Olympiastadion": [
+  60.187003,
+  24.9272463,
+  "place"
+ ],
+ "Olympiastadioni": [
+  null,
+  null,
+  "none"
+ ],
+ "Olympiastadionia": [
+  null,
+  null,
+  "none"
+ ],
+ "Olympiastadionin": [
+  60.1849993,
+  24.9273803,
+  "district"
+ ],
+ "OmaStadi": [
+  null,
+  null,
+  "none"
+ ],
+ "Onnentie": [
+  60.2196221,
+  24.9567981,
+  "street"
+ ],
+ "Opastinsilta": [
+  60.1992333,
+  24.9378966,
+  "street"
+ ],
+ "Orapihlajapuisto": [
+  60.222209,
+  24.8886206,
+  "place"
+ ],
+ "Orapihlajatie": [
+  60.2232069,
+  24.8889785,
+  "street"
+ ],
+ "Oravapuisto": [
+  60.1979922,
+  25.0316602,
+  "street"
+ ],
+ "Ormuspellontie": [
+  60.2531273,
+  25.0260246,
+  "street"
+ ],
+ "Osmo": [
+  null,
+  null,
+  "none"
+ ],
+ "Osmonkulma": [
+  null,
+  null,
+  "none"
+ ],
+ "Otavantie": [
+  60.1582979,
+  24.8794768,
+  "street"
+ ],
+ "Oulunkylä": [
+  60.229104,
+  24.9636083,
+  "district"
+ ],
+ "Oulunkylän": [
+  60.2342838,
+  24.9587798,
+  "street"
+ ],
+ "Oulunkylän tori": [
+  60.2294987,
+  24.9654655,
+  "street"
+ ],
+ "Oulunkyläntie": [
+  60.2289658,
+  24.9640809,
+  "street"
+ ],
+ "Ounasvaarantie": [
+  60.2376895,
+  25.1146676,
+  "street"
+ ],
+ "Paasikivenkatu": [
+  60.1871603,
+  24.912272,
+  "street"
+ ],
+ "Paciuksenkaari": [
+  60.1953,
+  24.8925214,
+  "street"
+ ],
+ "Paciuksenkatu": [
+  60.1852069,
+  24.9081382,
+  "street"
+ ],
+ "Pajamäentie": [
+  60.2188457,
+  24.8563636,
+  "street"
+ ],
+ "Pajuniityntie": [
+  60.2176225,
+  24.9056331,
+  "street"
+ ],
+ "Pakilantie": [
+  60.241769,
+  24.926763,
+  "street"
+ ],
+ "Palettikuja": [
+  60.2618566,
+  24.8962603,
+  "street"
+ ],
+ "Paloheinä": [
+  60.2545308,
+  24.9357391,
+  "district"
+ ],
+ "Paloheinän": [
+  60.249305,
+  24.9412671,
+  "street"
+ ],
+ "Paloheinän hiihtoreitti": [
+  null,
+  null,
+  "none"
+ ],
+ "Paloletkunpolku": [
+  60.2767802,
+  25.0325216,
+  "street"
+ ],
+ "Palopostinpuisto": [
+  60.2776084,
+  25.0285654,
+  "place"
+ ],
+ "Palvelu": [
+  null,
+  null,
+  "none"
+ ],
+ "Palveluide": [
+  null,
+  null,
+  "none"
+ ],
+ "Panamanrannan": [
+  null,
+  null,
+  "none"
+ ],
+ "Panamanranta": [
+  60.1551351,
+  24.9061419,
+  "street"
+ ],
+ "Paraistentie": [
+  60.2033062,
+  24.9040237,
+  "street"
+ ],
+ "Parrulaituri": [
+  60.1830276,
+  24.9782246,
+  "street"
+ ],
+ "Pasi": [
+  null,
+  null,
+  "none"
+ ],
+ "Pasila": [
+  60.197873,
+  24.9322653,
+  "district"
+ ],
+ "Pasilan": [
+  60.2008379,
+  24.935842,
+  "street"
+ ],
+ "Pasilankadun": [
+  null,
+  null,
+  "none"
+ ],
+ "Pasilankatu": [
+  60.2000114,
+  24.9273817,
+  "street"
+ ],
+ "Pasilansillan": [
+  60.1979746,
+  24.9313547,
+  "street"
+ ],
+ "Pasilansilta": [
+  60.1976845,
+  24.9312724,
+  "street"
+ ],
+ "Pasuunakuja": [
+  60.2418857,
+  24.8720975,
+  "street"
+ ],
+ "Patomäentie": [
+  60.2335595,
+  24.9700246,
+  "street"
+ ],
+ "Patterimäen": [
+  60.2212007,
+  24.8556639,
+  "district"
+ ],
+ "Patterimäki": [
+  60.2211131,
+  24.8556806,
+  "district"
+ ],
+ "Paturintie": [
+  60.2269605,
+  24.9582869,
+  "street"
+ ],
+ "Pekanraitti": [
+  60.2511141,
+  25.0151821,
+  "street"
+ ],
+ "Pelimannintie": [
+  60.2357766,
+  24.8746662,
+  "street"
+ ],
+ "Pelipolku": [
+  60.2385727,
+  24.8897645,
+  "street"
+ ],
+ "Pelipolun": [
+  null,
+  null,
+  "none"
+ ],
+ "Peltisepänkuja": [
+  60.1971562,
+  25.0359525,
+  "street"
+ ],
+ "Pengerpolku": [
+  60.1882007,
+  24.9604762,
+  "street"
+ ],
+ "Pengerpuisto": [
+  60.185226,
+  24.9573466,
+  "district"
+ ],
+ "Perhosniitty": [
+  60.2564663,
+  24.8424902,
+  "district"
+ ],
+ "Perttelinpuisto": [
+  null,
+  null,
+  "none"
+ ],
+ "Pienen Villasaaren tie": [
+  60.2221684,
+  25.147167,
+  "street"
+ ],
+ "Pietari Kalmin katu": [
+  60.2039648,
+  24.9635452,
+  "street"
+ ],
+ "Pihkatie": [
+  60.2507271,
+  24.851678,
+  "street"
+ ],
+ "Pihlajamäen": [
+  60.2345114,
+  25.0172666,
+  "street"
+ ],
+ "Pihlajamäki": [
+  60.2305388,
+  25.0118343,
+  "place"
+ ],
+ "Piianpuisto": [
+  60.2442375,
+  24.8574427,
+  "place"
+ ],
+ "Piilikuja": [
+  60.2542836,
+  25.0146817,
+  "street"
+ ],
+ "Piispantie": [
+  60.2297343,
+  24.8475646,
+  "street"
+ ],
+ "Pikitehtaankatu": [
+  60.2528782,
+  25.0264544,
+  "street"
+ ],
+ "Pikku": [
+  60.2015502,
+  24.8952107,
+  "street"
+ ],
+ "Pikku Huopalahden puisto": [
+  60.1986674,
+  24.8931969,
+  "place"
+ ],
+ "Pipettikuja": [
+  null,
+  null,
+  "none"
+ ],
+ "Pirjonaukio": [
+  60.2340689,
+  24.9251336,
+  "street"
+ ],
+ "Pirjontie": [
+  60.2339698,
+  24.9259136,
+  "street"
+ ],
+ "Pisararada": [
+  null,
+  null,
+  "none"
+ ],
+ "Pisararadan": [
+  null,
+  null,
+  "none"
+ ],
+ "Pitäjänmäen": [
+  60.2246074,
+  24.8605458,
+  "street"
+ ],
+ "Pitäjänmäentie": [
+  60.2243313,
+  24.8581825,
+  "street"
+ ],
+ "Pitäjänmäki": [
+  60.2233745,
+  24.8596334,
+  "street"
+ ],
+ "Pohjantähdentie": [
+  60.2844228,
+  25.007035,
+  "street"
+ ],
+ "Pohjois-Haaga": [
+  60.2293848,
+  24.8953875,
+  "district"
+ ],
+ "Pohjois-Haagan": [
+  60.2325003,
+  24.8874551,
+  "street"
+ ],
+ "Pohjois-Pasila": [
+  60.213257,
+  24.9211202,
+  "district"
+ ],
+ "Pohjois-Pasilan": [
+  null,
+  null,
+  "none"
+ ],
+ "Pohjoisbaana": [
+  null,
+  null,
+  "none"
+ ],
+ "Pohjoisen": [
+  60.1478143,
+  24.8491171,
+  "district"
+ ],
+ "Pohjoisesplanadi": [
+  60.1679354,
+  24.953294,
+  "street"
+ ],
+ "Pohjoiskaari": [
+  60.1591275,
+  24.8925092,
+  "street"
+ ],
+ "Pohjoisranta": [
+  60.1698677,
+  24.9594049,
+  "street"
+ ],
+ "Pohjolankatu": [
+  60.2178974,
+  24.9569358,
+  "street"
+ ],
+ "Poikasaartenkuja": [
+  60.1651578,
+  25.0891513,
+  "street"
+ ],
+ "Porkkalankatu": [
+  60.1644291,
+  24.9117269,
+  "street"
+ ],
+ "Pornaistenniemi": [
+  60.2136078,
+  24.9879806,
+  "district"
+ ],
+ "Porolahdenpuisto": [
+  60.1928956,
+  25.0504978,
+  "district"
+ ],
+ "Porttipuisto": [
+  60.2778078,
+  25.0836008,
+  "district"
+ ],
+ "Porvoontie": [
+  60.2688759,
+  25.0723175,
+  "street"
+ ],
+ "Postikuja": [
+  60.1721126,
+  24.9387847,
+  "street"
+ ],
+ "Postiljooninkatu": [
+  60.2141896,
+  24.9215403,
+  "street"
+ ],
+ "Postipuisto": [
+  60.2187209,
+  24.9227938,
+  "street"
+ ],
+ "Postipuiston": [
+  60.2190108,
+  24.9239617,
+  "street"
+ ],
+ "Puistolan": [
+  60.2645716,
+  25.0596344,
+  "street"
+ ],
+ "Puistolantie": [
+  60.2656847,
+  25.0578639,
+  "street"
+ ],
+ "Pukinmäen": [
+  60.2494413,
+  24.9939316,
+  "street"
+ ],
+ "Pukinmäenkaari": [
+  60.2510202,
+  24.9816459,
+  "street"
+ ],
+ "Pukinmäenrannan toimitilatonttie": [
+  null,
+  null,
+  "none"
+ ],
+ "Pukinmäenranta": [
+  null,
+  null,
+  "none"
+ ],
+ "Pukinmäki": [
+  60.245247,
+  24.9896936,
+  "district"
+ ],
+ "Pulkovonkuja": [
+  null,
+  null,
+  "none"
+ ],
+ "Punakivenpuisto": [
+  60.2111416,
+  25.1401372,
+  "district"
+ ],
+ "Punakiventie": [
+  60.213243,
+  25.1429535,
+  "street"
+ ],
+ "Punanotkonkatu": [
+  60.1628206,
+  24.9461527,
+  "street"
+ ],
+ "Punavuori": [
+  60.1620171,
+  24.9398885,
+  "district"
+ ],
+ "Puotila": [
+  60.2127717,
+  25.0973601,
+  "district"
+ ],
+ "Puotilan": [
+  60.2144931,
+  25.0948045,
+  "street"
+ ],
+ "Puotilanranta": [
+  null,
+  null,
+  "none"
+ ],
+ "Puotinharju": [
+  60.2154391,
+  25.0861457,
+  "district"
+ ],
+ "Puropuistikko": [
+  60.2210553,
+  24.8648132,
+  "place"
+ ],
+ "Pursiseurankatu": [
+  null,
+  null,
+  "none"
+ ],
+ "Puu-Käpylä": [
+  null,
+  null,
+  "none"
+ ],
+ "Puu-Käpylän": [
+  null,
+  null,
+  "none"
+ ],
+ "Puusepänkadun": [
+  null,
+  null,
+  "none"
+ ],
+ "Puusepänkatu": [
+  60.1951134,
+  25.0391073,
+  "street"
+ ],
+ "Puustellintie": [
+  60.2475163,
+  24.8587401,
+  "street"
+ ],
+ "Pyhän": [
+  60.1817,
+  24.8546,
+  "manual"
+ ],
+ "Pyötsaarenkuja": [
+  60.2164462,
+  25.1120187,
+  "street"
+ ],
+ "Päitsitie": [
+  60.2786998,
+  25.0353895,
+  "street"
+ ],
+ "Päiväkoti": [
+  60.2586701,
+  24.9508148,
+  "street"
+ ],
+ "Pärnunkatu": [
+  60.1962819,
+  25.1193028,
+  "street"
+ ],
+ "Pääskylänkatu": [
+  60.1882986,
+  24.9697553,
+  "street"
+ ],
+ "Päätie": [
+  60.174199,
+  25.0235965,
+  "street"
+ ],
+ "Raaseporintie": [
+  60.2097052,
+  25.0739661,
+  "street"
+ ],
+ "Radanrakentajantie": [
+  60.2003855,
+  24.9418811,
+  "street"
+ ],
+ "Radiokatu": [
+  60.2025487,
+  24.9231507,
+  "street"
+ ],
+ "Raide-Joker": [
+  null,
+  null,
+  "none"
+ ],
+ "Raide-Jokeri": [
+  null,
+  null,
+  "none"
+ ],
+ "Raide-Jokerin": [
+  null,
+  null,
+  "none"
+ ],
+ "Raidepolku": [
+  60.2729554,
+  25.036958,
+  "street"
+ ],
+ "Rajala": [
+  null,
+  null,
+  "none"
+ ],
+ "Rajalalle": [
+  null,
+  null,
+  "none"
+ ],
+ "Rajasaarenpenger": [
+  60.1824412,
+  24.9090708,
+  "street"
+ ],
+ "Rajasaarentie": [
+  60.183385,
+  24.9158621,
+  "street"
+ ],
+ "Rakennuskiello": [
+  null,
+  null,
+  "none"
+ ],
+ "Rakennuskielto": [
+  null,
+  null,
+  "none"
+ ],
+ "Rakennuskieltoalue": [
+  null,
+  null,
+  "none"
+ ],
+ "Rakennusvirasto": [
+  null,
+  null,
+  "none"
+ ],
+ "Rakennusviraston katu": [
+  null,
+  null,
+  "none"
+ ],
+ "Rakuunantie": [
+  60.198192,
+  24.886548,
+  "street"
+ ],
+ "Ramsaynranta": [
+  60.19502,
+  24.8847836,
+  "street"
+ ],
+ "Ramsinniemen": [
+  60.1982234,
+  25.1181384,
+  "street"
+ ],
+ "Ramsinniementie": [
+  60.19631,
+  25.1116598,
+  "street"
+ ],
+ "Ramsinniemi": [
+  60.1905812,
+  25.0928326,
+  "place"
+ ],
+ "Rapakivenkuja": [
+  60.2405007,
+  25.0032186,
+  "street"
+ ],
+ "Rapparintie": [
+  60.2373007,
+  24.9173714,
+  "street"
+ ],
+ "Rastilan": [
+  60.2076155,
+  25.1182767,
+  "street"
+ ],
+ "Rastilanraitin": [
+  null,
+  null,
+  "none"
+ ],
+ "Rastilanraitin katualuee": [
+  null,
+  null,
+  "none"
+ ],
+ "Rastilanraitti": [
+  60.2071796,
+  25.1226119,
+  "street"
+ ],
+ "Ratakatu": [
+  60.1634441,
+  24.945126,
+  "street"
+ ],
+ "Ratamestarinkatu": [
+  60.1967988,
+  24.9409085,
+  "street"
+ ],
+ "Ratapihakortteleiden": [
+  null,
+  null,
+  "none"
+ ],
+ "Ratasmyllynkuja": [
+  60.2135249,
+  25.0704668,
+  "street"
+ ],
+ "Ratsastie": [
+  60.1974366,
+  24.9069015,
+  "street"
+ ],
+ "Raumantie": [
+  60.2052999,
+  24.8790644,
+  "street"
+ ],
+ "Rautatiekatu": [
+  60.1679879,
+  24.923906,
+  "street"
+ ],
+ "Reginankuja": [
+  60.1857809,
+  25.0290787,
+  "street"
+ ],
+ "Reijolankatu": [
+  60.1896767,
+  24.9169091,
+  "street"
+ ],
+ "Reposalmentie": [
+  60.1786371,
+  25.0636015,
+  "street"
+ ],
+ "Retkeilijänkatu": [
+  60.2060225,
+  25.1206229,
+  "street"
+ ],
+ "Riihitie": [
+  60.1960824,
+  24.8814808,
+  "street"
+ ],
+ "Rikhard": [
+  null,
+  null,
+  "none"
+ ],
+ "Ripusuontie": [
+  60.2459168,
+  24.9337014,
+  "street"
+ ],
+ "Riskupuisto": [
+  60.2231068,
+  25.1037599,
+  "district"
+ ],
+ "Ristipellontie": [
+  60.2420082,
+  24.8430621,
+  "street"
+ ],
+ "Risupadontie": [
+  60.2335021,
+  24.9472686,
+  "street"
+ ],
+ "Ritarikatu": [
+  60.169988,
+  24.9557562,
+  "street"
+ ],
+ "Ritokalliontie": [
+  60.2021361,
+  24.8584985,
+  "street"
+ ],
+ "Roihuvuoren": [
+  60.2026229,
+  25.060439,
+  "street"
+ ],
+ "Roihuvuoren pohjoisrinne": [
+  null,
+  null,
+  "none"
+ ],
+ "Roihuvuorentie": [
+  60.2007654,
+  25.0596542,
+  "street"
+ ],
+ "Roihuvuori": [
+  60.202015,
+  25.0598312,
+  "district"
+ ],
+ "Roineenpuisto": [
+  60.1922595,
+  24.9548707,
+  "district"
+ ],
+ "Roobertinkatu": [
+  60.162979,
+  24.9406614,
+  "street"
+ ],
+ "Rosina": [
+  60.1909134,
+  24.9079631,
+  "district"
+ ],
+ "Rosina Heikelin puisto": [
+  60.1909134,
+  24.9079631,
+  "place"
+ ],
+ "Rukkilanrinne": [
+  60.2521155,
+  24.8651497,
+  "street"
+ ],
+ "Runar": [
+  60.1662694,
+  24.9494185,
+  "street"
+ ],
+ "Runar Schildtin puisto": [
+  60.2271047,
+  24.8838,
+  "place"
+ ],
+ "Runeberginkatu": [
+  60.1775702,
+  24.9226259,
+  "street"
+ ],
+ "Runkolinjan": [
+  null,
+  null,
+  "none"
+ ],
+ "Runoilijanpuisto": [
+  60.2290962,
+  24.9725973,
+  "place"
+ ],
+ "Runonlaulajantie": [
+  60.2474559,
+  24.885868,
+  "street"
+ ],
+ "Ruoholahden": [
+  60.1619482,
+  24.9241819,
+  "street"
+ ],
+ "Ruoholahdenkatu": [
+  60.1658288,
+  24.9279296,
+  "street"
+ ],
+ "Ruoholahdenpuisto": [
+  60.1618087,
+  24.9184894,
+  "place"
+ ],
+ "Ruoholahti": [
+  60.1601183,
+  24.9068216,
+  "place"
+ ],
+ "Ruonasalmentie": [
+  60.1934541,
+  25.0647656,
+  "street"
+ ],
+ "Rusettipuisto": [
+  60.213915,
+  25.0731449,
+  "district"
+ ],
+ "Ruskeasuo": [
+  60.2032161,
+  24.8992119,
+  "district"
+ ],
+ "Rusthollarintie": [
+  60.2103099,
+  25.0910882,
+  "street"
+ ],
+ "Ruukinlahden": [
+  60.1617723,
+  24.8722137,
+  "street"
+ ],
+ "Ruukinlahden puisto": [
+  60.162277,
+  24.8711446,
+  "place"
+ ],
+ "Ruukinlahdenpuisto": [
+  60.162277,
+  24.8711446,
+  "place"
+ ],
+ "Ruukinlahdenpuiston": [
+  60.1627859,
+  24.874627,
+  "district"
+ ],
+ "Ruususenrinne": [
+  60.2053508,
+  25.0550308,
+  "street"
+ ],
+ "STEK": [
+  null,
+  null,
+  "none"
+ ],
+ "Saariseläntie": [
+  60.2379176,
+  25.1230983,
+  "street"
+ ],
+ "Saaristofregatinpuisto": [
+  60.1682109,
+  25.018484,
+  "district"
+ ],
+ "Sahamyllynrinne": [
+  60.2222234,
+  24.9871076,
+  "street"
+ ],
+ "Salavakuja": [
+  60.2549012,
+  24.9957917,
+  "street"
+ ],
+ "Salmisaarenkatu": [
+  60.1657253,
+  24.9106356,
+  "street"
+ ],
+ "Salomonkatu": [
+  60.1698323,
+  24.933046,
+  "street"
+ ],
+ "Salotie": [
+  60.2722247,
+  25.0212289,
+  "street"
+ ],
+ "Sammatintie": [
+  60.196796,
+  24.9603942,
+  "street"
+ ],
+ "Sarvaston": [
+  60.1756453,
+  25.051622,
+  "street"
+ ],
+ "Satamakaari": [
+  60.2126597,
+  25.1737844,
+  "street"
+ ],
+ "Satamakatu": [
+  60.1668723,
+  24.9611977,
+  "street"
+ ],
+ "Satamatunnel": [
+  null,
+  null,
+  "none"
+ ],
+ "Satamatunneli": [
+  null,
+  null,
+  "none"
+ ],
+ "Saukonkanava": [
+  60.1547653,
+  24.9067202,
+  "place"
+ ],
+ "Saukonkatu": [
+  60.1569461,
+  24.9095572,
+  "street"
+ ],
+ "Saukonlaituri": [
+  60.1566055,
+  24.9070221,
+  "street"
+ ],
+ "Saukonnokanallas": [
+  60.1525127,
+  24.904647,
+  "district"
+ ],
+ "Savonkatu": [
+  60.193683,
+  24.9355422,
+  "street"
+ ],
+ "Schildtinpolku": [
+  60.2295628,
+  24.8849574,
+  "street"
+ ],
+ "Seimipolku": [
+  60.2276671,
+  24.8427892,
+  "street"
+ ],
+ "Selkämerenkatu": [
+  60.1601745,
+  24.9170877,
+  "street"
+ ],
+ "Senaatti-kiinteistöje": [
+  null,
+  null,
+  "none"
+ ],
+ "Senaattikiinteistö": [
+  null,
+  null,
+  "none"
+ ],
+ "Sepänmäenpuisto": [
+  null,
+  null,
+  "none"
+ ],
+ "Sepänmäentie": [
+  null,
+  null,
+  "none"
+ ],
+ "Sibeliuksenpuisto": [
+  60.1813155,
+  24.9141065,
+  "district"
+ ],
+ "Sienakuja": [
+  60.2625273,
+  24.8869955,
+  "street"
+ ],
+ "Sigurd": [
+  60.1760847,
+  24.9080974,
+  "district"
+ ],
+ "Sigurd Frosteruksen puisto": [
+  60.1760847,
+  24.9080974,
+  "place"
+ ],
+ "Siilikuja": [
+  60.2062259,
+  25.0368243,
+  "street"
+ ],
+ "Siilitie": [
+  60.2052524,
+  25.0440144,
+  "street"
+ ],
+ "Siltakyläntie": [
+  60.2705428,
+  24.9880911,
+  "street"
+ ],
+ "Siltalanpuisto": [
+  60.2674627,
+  24.986344,
+  "place"
+ ],
+ "Siltalanpuiston": [
+  60.266488,
+  24.9877646,
+  "street"
+ ],
+ "Siltasaarenkatu": [
+  60.1771483,
+  24.9502056,
+  "street"
+ ],
+ "Siltavoudintie": [
+  60.2338223,
+  24.9665052,
+  "street"
+ ],
+ "Siltavuorenranta": [
+  60.1762201,
+  24.9605113,
+  "street"
+ ],
+ "Simakuja": [
+  60.2746968,
+  25.0375407,
+  "street"
+ ],
+ "Simonkatu": [
+  60.1691873,
+  24.9367234,
+  "street"
+ ],
+ "Sirrikuja": [
+  60.2306777,
+  25.077281,
+  "street"
+ ],
+ "Skatanniemi": [
+  60.1946503,
+  25.1781478,
+  "street"
+ ],
+ "Snellmaninkatu": [
+  60.1708062,
+  24.9534453,
+  "street"
+ ],
+ "Soittajantie": [
+  60.242639,
+  24.8774541,
+  "street"
+ ],
+ "Solakalliontie": [
+  60.2413443,
+  24.9625845,
+  "street"
+ ],
+ "Somerikkotie": [
+  60.256914,
+  25.0823521,
+  "street"
+ ],
+ "Sompasaaren": [
+  null,
+  null,
+  "none"
+ ],
+ "Sompasaari": [
+  60.1810575,
+  24.9765197,
+  "district"
+ ],
+ "Sorvaajanpuisto": [
+  60.1937322,
+  25.0449069,
+  "district"
+ ],
+ "Sotkatie": [
+  60.163272,
+  24.8547965,
+  "street"
+ ],
+ "Sovellettava": [
+  null,
+  null,
+  "none"
+ ],
+ "Spilvenkuja": [
+  null,
+  null,
+  "none"
+ ],
+ "Stansviki": [
+  null,
+  null,
+  "none"
+ ],
+ "Stansvikin": [
+  60.163641,
+  25.0304487,
+  "street"
+ ],
+ "Stansvikin kartanopuisto": [
+  null,
+  null,
+  "none"
+ ],
+ "Stansvikin rantakatu": [
+  60.1627317,
+  25.0170444,
+  "street"
+ ],
+ "Stansvikinkallio": [
+  60.1661769,
+  25.0234023,
+  "district"
+ ],
+ "Stansvikinkallion": [
+  60.167805,
+  25.0225139,
+  "district"
+ ],
+ "Stansvikinnummen": [
+  null,
+  null,
+  "none"
+ ],
+ "Stansvikinnummi": [
+  null,
+  null,
+  "none"
+ ],
+ "Stansvikinranta": [
+  60.16424,
+  25.0219143,
+  "district"
+ ],
+ "Stansvikintie": [
+  60.1656892,
+  25.0273995,
+  "street"
+ ],
+ "Stansvikki": [
+  null,
+  null,
+  "none"
+ ],
+ "Stara": [
+  null,
+  null,
+  "none"
+ ],
+ "Stenbäckinkatu": [
+  60.1883805,
+  24.9126452,
+  "street"
+ ],
+ "Steniuksenkenttä": [
+  60.2155687,
+  24.8932318,
+  "district"
+ ],
+ "Steniuksentie": [
+  60.2155748,
+  24.8974799,
+  "street"
+ ],
+ "Stoa": [
+  60.2119598,
+  25.079189,
+  "place"
+ ],
+ "Stoan": [
+  60.2120913,
+  25.0792632,
+  "street"
+ ],
+ "Strömbergin": [
+  60.2214222,
+  24.8619416,
+  "street"
+ ],
+ "Strömbergintie": [
+  60.2212435,
+  24.8629414,
+  "street"
+ ],
+ "Strömstadinkuja": [
+  null,
+  null,
+  "none"
+ ],
+ "Strömstadinpuisto": [
+  60.2138387,
+  24.8947184,
+  "district"
+ ],
+ "Sturenkadun": [
+  60.1940073,
+  24.9533799,
+  "street"
+ ],
+ "Sturenkatu": [
+  60.1861796,
+  24.9410641,
+  "street"
+ ],
+ "Sturenkatu-Kaarlenkatu": [
+  null,
+  null,
+  "none"
+ ],
+ "Ståhlberginkuja": [
+  60.1862712,
+  25.0027522,
+  "street"
+ ],
+ "Suezinkatu": [
+  60.1584502,
+  24.9196508,
+  "street"
+ ],
+ "Sulje": [
+  null,
+  null,
+  "none"
+ ],
+ "Sulkapolku": [
+  60.2247379,
+  24.8570642,
+  "street"
+ ],
+ "Sunilanpuisto": [
+  60.2440491,
+  24.9857555,
+  "district"
+ ],
+ "Sunnuntaikortteleide": [
+  null,
+  null,
+  "none"
+ ],
+ "Suome": [
+  null,
+  null,
+  "none"
+ ],
+ "Suomenlinna": [
+  60.1443884,
+  24.9854048,
+  "district"
+ ],
+ "Suomenlinnan": [
+  60.1478642,
+  24.9863722,
+  "street"
+ ],
+ "Suovaniityntie": [
+  60.2690638,
+  25.0672536,
+  "street"
+ ],
+ "Susannanpuisto": [
+  60.1984553,
+  24.9219514,
+  "district"
+ ],
+ "Suurmetsä": [
+  60.2675853,
+  25.061563,
+  "district"
+ ],
+ "Suutarila": [
+  60.283019,
+  25.0064817,
+  "district"
+ ],
+ "Suutarilan": [
+  60.2761212,
+  25.0044556,
+  "street"
+ ],
+ "Suutarilan rantapuistoaluee": [
+  null,
+  null,
+  "none"
+ ],
+ "Suutarilantie": [
+  60.284862,
+  25.0129787,
+  "street"
+ ],
+ "Suvilahdenkatu": [
+  60.1882857,
+  24.9685846,
+  "street"
+ ],
+ "Suvilahti": [
+  60.1869061,
+  24.9693021,
+  "street"
+ ],
+ "Svinhufvudintie": [
+  60.1881376,
+  25.0087502,
+  "street"
+ ],
+ "Sydänpuunpuisto": [
+  60.2504807,
+  24.8503712,
+  "district"
+ ],
+ "Sähkesilta": [
+  60.2088346,
+  24.922068,
+  "street"
+ ],
+ "Sähköturvallisuude": [
+  null,
+  null,
+  "none"
+ ],
+ "Sänkipuisto": [
+  null,
+  null,
+  "none"
+ ],
+ "Särkiniementie": [
+  60.1527886,
+  24.876828,
+  "street"
+ ],
+ "Säterinportti": [
+  60.2444109,
+  24.9878922,
+  "street"
+ ],
+ "Säterintie": [
+  60.2429617,
+  24.9907903,
+  "street"
+ ],
+ "Sörnäine": [
+  null,
+  null,
+  "none"
+ ],
+ "Sörnäinen": [
+  60.1813,
+  24.9768,
+  "manual"
+ ],
+ "Sörnäisten": [
+  60.1955833,
+  24.9740264,
+  "street"
+ ],
+ "Sörnäistenkatu": [
+  60.1942041,
+  24.972654,
+  "street"
+ ],
+ "Sörnäistenlaituri": [
+  60.1857935,
+  24.9837393,
+  "street"
+ ],
+ "Sörnäistenniemi": [
+  null,
+  null,
+  "none"
+ ],
+ "Sörnäistenranta": [
+  null,
+  null,
+  "none"
+ ],
+ "Tahvonlahdenniemi": [
+  60.1617818,
+  25.0321251,
+  "street"
+ ],
+ "Taidemaalarinpuisto": [
+  60.2608578,
+  24.8895001,
+  "district"
+ ],
+ "Taivaankansi": [
+  60.2874426,
+  25.0138594,
+  "street"
+ ],
+ "Taivaanvuohenkuja": [
+  60.1606346,
+  24.8828424,
+  "street"
+ ],
+ "Taivaskallio": [
+  60.2198545,
+  24.9522959,
+  "district"
+ ],
+ "Taka-Töölö": [
+  60.1853441,
+  24.9167329,
+  "district"
+ ],
+ "Takoraudantie": [
+  60.2436201,
+  25.0462587,
+  "street"
+ ],
+ "Talttatie": [
+  60.2419679,
+  25.0250682,
+  "street"
+ ],
+ "Tamminiementie": [
+  60.1913213,
+  24.8846054,
+  "street"
+ ],
+ "Tammisalo": [
+  60.1914778,
+  25.0618684,
+  "district"
+ ],
+ "Tanhuantie": [
+  60.2362087,
+  25.0956959,
+  "street"
+ ],
+ "Tankomäenkatu": [
+  60.2248261,
+  25.1250801,
+  "street"
+ ],
+ "Tankomäenkuja": [
+  60.2259923,
+  25.1226498,
+  "street"
+ ],
+ "Tankovainio": [
+  60.2278126,
+  25.1264425,
+  "district"
+ ],
+ "Tanssi": [
+  null,
+  null,
+  "none"
+ ],
+ "Tanssin": [
+  60.1620511,
+  24.9039948,
+  "street"
+ ],
+ "Tapanila": [
+  60.2677825,
+  25.0226194,
+  "district"
+ ],
+ "Tapanilan": [
+  60.2655655,
+  25.0190937,
+  "street"
+ ],
+ "Tapanilantie": [
+  60.2616676,
+  25.0150199,
+  "street"
+ ],
+ "Tapaninkylä": [
+  60.2611783,
+  25.0109853,
+  "district"
+ ],
+ "Tapaninvainion": [
+  60.2548809,
+  24.9821587,
+  "street"
+ ],
+ "Tapaninvainiontie": [
+  60.2566865,
+  24.9856075,
+  "street"
+ ],
+ "Tapulikaupungin": [
+  60.2745782,
+  25.0341292,
+  "street"
+ ],
+ "Tapulikaupungintie": [
+  60.2783466,
+  25.0321419,
+  "street"
+ ],
+ "Tattariharju": [
+  60.245654,
+  25.0507917,
+  "district"
+ ],
+ "Tattariharjun": [
+  60.242458,
+  25.0283891,
+  "street"
+ ],
+ "Tattariharjuntie": [
+  60.2613677,
+  25.0674894,
+  "street"
+ ],
+ "Tattarisilta": [
+  60.2419732,
+  25.0548121,
+  "street"
+ ],
+ "Tatti": [
+  60.2735493,
+  25.0779221,
+  "street"
+ ],
+ "Tehtaanpuisto": [
+  60.1589255,
+  24.9403981,
+  "district"
+ ],
+ "Teinintie": [
+  60.2293639,
+  24.9567424,
+  "street"
+ ],
+ "Telakkarannan": [
+  null,
+  null,
+  "none"
+ ],
+ "Telakkaranta": [
+  60.158939,
+  24.9311632,
+  "district"
+ ],
+ "Telkkäkuja": [
+  60.1642416,
+  24.8571412,
+  "street"
+ ],
+ "Tempelhofinkatu": [
+  null,
+  null,
+  "none"
+ ],
+ "Tenholantie": [
+  60.2033409,
+  24.9080317,
+  "street"
+ ],
+ "Teollisuuskadun": [
+  60.1946583,
+  24.9469236,
+  "street"
+ ],
+ "Teollisuuskatu": [
+  60.1913071,
+  24.954398,
+  "street"
+ ],
+ "Tervasaaren": [
+  60.1733011,
+  24.9678684,
+  "district"
+ ],
+ "Tervasaari": [
+  60.1738602,
+  24.9684734,
+  "place"
+ ],
+ "Tikkuritie": [
+  60.2794831,
+  25.0284236,
+  "street"
+ ],
+ "Tilkantori": [
+  60.2027322,
+  24.8936716,
+  "street"
+ ],
+ "Toine": [
+  null,
+  null,
+  "none"
+ ],
+ "Toinen": [
+  60.1807817,
+  24.9504857,
+  "street"
+ ],
+ "Topeliuksenkatu": [
+  60.1811141,
+  24.9208366,
+  "street"
+ ],
+ "Torpparinmäentie": [
+  60.261383,
+  24.9480733,
+  "street"
+ ],
+ "Torpparinpuisto": [
+  60.2595112,
+  24.9501649,
+  "district"
+ ],
+ "Torviselle": [
+  null,
+  null,
+  "none"
+ ],
+ "Toukolankatu": [
+  60.2020446,
+  24.9676301,
+  "street"
+ ],
+ "Tove": [
+  60.1677706,
+  24.9609993,
+  "district"
+ ],
+ "Traktori": [
+  60.2501998,
+  25.0033378,
+  "street"
+ ],
+ "Tuiskutie": [
+  60.2480345,
+  25.0335593,
+  "street"
+ ],
+ "Tukholmankatu": [
+  60.1913467,
+  24.9041723,
+  "street"
+ ],
+ "Tukkutorinkuja": [
+  60.1882672,
+  24.9827407,
+  "street"
+ ],
+ "Tulimaanpuisto": [
+  60.152054,
+  24.9062519,
+  "district"
+ ],
+ "Tulisuontie": [
+  60.2022565,
+  25.0701407,
+  "street"
+ ],
+ "Tullivuorenpuisto": [
+  null,
+  null,
+  "none"
+ ],
+ "Tullivuorentie": [
+  60.2490879,
+  25.0325108,
+  "street"
+ ],
+ "Tulppatie": [
+  60.2116555,
+  25.0526812,
+  "street"
+ ],
+ "Tulvaniitynsilta": [
+  60.2305369,
+  24.9894249,
+  "street"
+ ],
+ "Tunnelitie": [
+  60.217446,
+  24.8995987,
+  "street"
+ ],
+ "Turkhaudantie": [
+  60.2503145,
+  25.0056731,
+  "street"
+ ],
+ "Tuulimyllyntie": [
+  60.2240667,
+  25.0675567,
+  "street"
+ ],
+ "Tuusulanbulevard": [
+  null,
+  null,
+  "none"
+ ],
+ "Tuusulanbulevardi": [
+  null,
+  null,
+  "none"
+ ],
+ "Tuusulanväylä": [
+  60.2570236,
+  24.9551541,
+  "street"
+ ],
+ "Tyynenmerenkadun": [
+  null,
+  null,
+  "none"
+ ],
+ "Tyynenmerenkatu": [
+  60.1508199,
+  24.9152868,
+  "street"
+ ],
+ "Työnjohtajankadun": [
+  null,
+  null,
+  "none"
+ ],
+ "Työnjohtajankatu": [
+  60.1963593,
+  25.0359965,
+  "street"
+ ],
+ "Työpajankatu": [
+  60.1884241,
+  24.976038,
+  "street"
+ ],
+ "Työpajanpiha": [
+  60.1901182,
+  24.9768475,
+  "street"
+ ],
+ "Tähtitorninkatu": [
+  60.1607707,
+  24.9513348,
+  "street"
+ ],
+ "Tähä": [
+  null,
+  null,
+  "none"
+ ],
+ "Töyrynummi": [
+  60.2665324,
+  24.9996204,
+  "district"
+ ],
+ "Töölö": [
+  60.1790369,
+  24.9242047,
+  "district"
+ ],
+ "Töölön": [
+  60.1834257,
+  24.9257306,
+  "street"
+ ],
+ "Töölönkatu": [
+  60.1852931,
+  24.9179698,
+  "street"
+ ],
+ "Töölönlahden": [
+  60.1741671,
+  24.9385156,
+  "street"
+ ],
+ "Töölönlahden puisto": [
+  60.1770062,
+  24.9356879,
+  "place"
+ ],
+ "Töölönlahdenkatu": [
+  60.1741671,
+  24.9385156,
+  "street"
+ ],
+ "Töölönlahdenpuisto": [
+  60.1770062,
+  24.9356879,
+  "place"
+ ],
+ "Töölöntori": [
+  60.1790098,
+  24.9242876,
+  "street"
+ ],
+ "Töölöntullinkatu": [
+  60.1908891,
+  24.9122021,
+  "street"
+ ],
+ "Uimarannantie": [
+  60.2578223,
+  24.9820714,
+  "street"
+ ],
+ "Ullaksenpuisto": [
+  60.2009595,
+  25.1367366,
+  "district"
+ ],
+ "Ultramariinikuja": [
+  60.2594661,
+  24.8902904,
+  "street"
+ ],
+ "Ulvilantie": [
+  60.2075182,
+  24.8778418,
+  "street"
+ ],
+ "Unioninkatu": [
+  60.1742083,
+  24.9498254,
+  "street"
+ ],
+ "Urheilukatu": [
+  60.1881066,
+  24.9202902,
+  "street"
+ ],
+ "Urheilulehdon": [
+  null,
+  null,
+  "none"
+ ],
+ "Urheilulehto": [
+  60.1895471,
+  24.9193658,
+  "place"
+ ],
+ "Urkupillintie": [
+  60.2437669,
+  24.8726539,
+  "street"
+ ],
+ "Uuden": [
+  60.1620511,
+  24.9039948,
+  "street"
+ ],
+ "Uudenmaankatu": [
+  60.1639231,
+  24.9392123,
+  "street"
+ ],
+ "Uudenpellonpolku": [
+  60.2583271,
+  25.0168267,
+  "street"
+ ],
+ "Uutelan": [
+  60.2022826,
+  25.1635933,
+  "street"
+ ],
+ "VIO": [
+  null,
+  null,
+  "none"
+ ],
+ "Vaakatie": [
+  60.2299263,
+  24.8769871,
+  "street"
+ ],
+ "Vaarnatie": [
+  60.2319161,
+  25.1196487,
+  "street"
+ ],
+ "Vaasanpuistikko": [
+  60.1879852,
+  24.9608563,
+  "street"
+ ],
+ "Vahtitie": [
+  60.2611125,
+  25.0126098,
+  "street"
+ ],
+ "Valimo": [
+  60.2223276,
+  24.87614,
+  "district"
+ ],
+ "Valimon": [
+  60.2223007,
+  24.8758411,
+  "district"
+ ],
+ "Valkkusuonkuja": [
+  60.1964375,
+  25.1142077,
+  "street"
+ ],
+ "Vallila": [
+  60.186804,
+  24.9795409,
+  "street"
+ ],
+ "Vallilan": [
+  60.1922208,
+  24.9623943,
+  "street"
+ ],
+ "Vallilanlaakso": [
+  60.2010813,
+  24.9502462,
+  "district"
+ ],
+ "Vallilanlaakson": [
+  60.1990608,
+  24.9564214,
+  "district"
+ ],
+ "Vallilanpuisto": [
+  60.1972755,
+  24.95491,
+  "district"
+ ],
+ "Vallilanraitio": [
+  60.2010646,
+  24.9613353,
+  "district"
+ ],
+ "Vallisaaren": [
+  60.1386601,
+  25.0046695,
+  "street"
+ ],
+ "Vallisaari": [
+  60.1355102,
+  25.0025098,
+  "district"
+ ],
+ "Valtamerilaituri": [
+  60.1528435,
+  24.915302,
+  "street"
+ ],
+ "Vanamotie": [
+  60.2025523,
+  25.084957,
+  "street"
+ ],
+ "Vanha Viipurin maantie": [
+  60.2448064,
+  25.0398355,
+  "street"
+ ],
+ "Vanhaistenpuisto": [
+  60.2427427,
+  24.8820287,
+  "district"
+ ],
+ "Vanhaistentie": [
+  60.2463262,
+  24.879834,
+  "street"
+ ],
+ "Vanhakaupunki": [
+  60.2143242,
+  24.9796908,
+  "district"
+ ],
+ "Vanhanlinnankuja": [
+  60.2148233,
+  25.087047,
+  "street"
+ ],
+ "Varisluodonkatu": [
+  60.1668267,
+  25.0212299,
+  "street"
+ ],
+ "Varjakanvalkama": [
+  60.2151854,
+  25.1145443,
+  "street"
+ ],
+ "Vartioharju": [
+  60.2212438,
+  25.1099958,
+  "district"
+ ],
+ "Vartioharjun": [
+  60.2204685,
+  25.1120614,
+  "street"
+ ],
+ "Vartiokylä": [
+  60.2208583,
+  25.0934313,
+  "district"
+ ],
+ "Vartiokylän": [
+  60.2198246,
+  25.1016296,
+  "street"
+ ],
+ "Vartiokylänlahti": [
+  60.2092561,
+  25.113282,
+  "place"
+ ],
+ "Vartiokyläntie": [
+  60.2180614,
+  25.1012373,
+  "street"
+ ],
+ "Vartiosaaren": [
+  60.180195,
+  25.0716215,
+  "street"
+ ],
+ "Vartiosaari": [
+  60.1840997,
+  25.0764203,
+  "district"
+ ],
+ "Vaskilahdenkatu": [
+  null,
+  null,
+  "none"
+ ],
+ "Vastine": [
+  null,
+  null,
+  "none"
+ ],
+ "Vattuniemen": [
+  60.153439,
+  24.8825431,
+  "street"
+ ],
+ "Vattuniemenkuja": [
+  60.153439,
+  24.8825431,
+  "street"
+ ],
+ "Vauhtitie": [
+  60.1881164,
+  24.9346366,
+  "street"
+ ],
+ "Veijarivuorenpuisto": [
+  60.1470114,
+  24.8861991,
+  "place"
+ ],
+ "Veljestenpiha": [
+  60.2652001,
+  25.0237557,
+  "street"
+ ],
+ "Vellikellontie": [
+  60.2452004,
+  24.8632685,
+  "street"
+ ],
+ "Vennynpuisto": [
+  60.2611628,
+  24.8941297,
+  "district"
+ ],
+ "Verkkosaaren": [
+  60.1904538,
+  24.9781291,
+  "street"
+ ],
+ "Verkkosaarenkatu": [
+  60.1906685,
+  24.976755,
+  "street"
+ ],
+ "Verkkosaari": [
+  60.1915493,
+  24.9810425,
+  "district"
+ ],
+ "Veräjämäen": [
+  60.2272564,
+  24.9707065,
+  "street"
+ ],
+ "Veräjämäen huvilatonttie": [
+  null,
+  null,
+  "none"
+ ],
+ "Veräjämäki": [
+  60.2243862,
+  24.9797942,
+  "place"
+ ],
+ "Vesalantie": [
+  60.2441795,
+  25.092227,
+  "street"
+ ],
+ "Vesimittarinkatu": [
+  60.2644727,
+  24.8929511,
+  "street"
+ ],
+ "Vesipääskynkuja": [
+  60.2322466,
+  25.0786442,
+  "street"
+ ],
+ "Veturitallinpiha": [
+  null,
+  null,
+  "none"
+ ],
+ "Veturitie": [
+  60.2126627,
+  24.9318845,
+  "street"
+ ],
+ "Veturitori": [
+  60.1996221,
+  24.9362333,
+  "street"
+ ],
+ "Vihdintie": [
+  60.2235475,
+  24.8787862,
+  "street"
+ ],
+ "Viiki": [
+  null,
+  null,
+  "none"
+ ],
+ "Viikin": [
+  60.2334817,
+  25.0337472,
+  "street"
+ ],
+ "Viikinkenttä": [
+  null,
+  null,
+  "none"
+ ],
+ "Viikinmäen": [
+  60.2246502,
+  24.983441,
+  "street"
+ ],
+ "Viikinmäki": [
+  60.2249071,
+  24.9885888,
+  "district"
+ ],
+ "Viikinojanpuisto": [
+  60.2299448,
+  25.0365853,
+  "district"
+ ],
+ "Viikinranta": [
+  60.2179358,
+  24.9874606,
+  "district"
+ ],
+ "Viikki": [
+  60.22383,
+  25.0211488,
+  "district"
+ ],
+ "Viilarintie": [
+  60.2116161,
+  25.0595612,
+  "street"
+ ],
+ "Viinentie": [
+  60.2275512,
+  24.8617196,
+  "street"
+ ],
+ "Vilhonvuorenkadun": [
+  null,
+  null,
+  "none"
+ ],
+ "Vilhonvuorenkatu": [
+  60.1854418,
+  24.9704477,
+  "street"
+ ],
+ "Viljatie": [
+  60.2537188,
+  25.0120642,
+  "street"
+ ],
+ "Villenkallio": [
+  null,
+  null,
+  "none"
+ ],
+ "Vipusentie": [
+  60.2127995,
+  24.9397753,
+  "street"
+ ],
+ "Vira": [
+  null,
+  null,
+  "none"
+ ],
+ "Virkasuhtee": [
+  null,
+  null,
+  "none"
+ ],
+ "Visbynkatu": [
+  60.2109343,
+  25.0865243,
+  "street"
+ ],
+ "Visbynkuja": [
+  60.2089812,
+  25.0841864,
+  "street"
+ ],
+ "Viskaalinpolku": [
+  60.2571995,
+  24.9521397,
+  "street"
+ ],
+ "Vuoranta": [
+  60.1958404,
+  25.1200751,
+  "street"
+ ],
+ "Vuorikatu": [
+  60.1719029,
+  24.9474305,
+  "street"
+ ],
+ "Vuorikummuntie": [
+  60.233175,
+  24.8487581,
+  "street"
+ ],
+ "Vuosaaren": [
+  60.2129919,
+  25.1399299,
+  "street"
+ ],
+ "Vuosaaren Meri-Rastilan länsiranta": [
+  null,
+  null,
+  "none"
+ ],
+ "Vuosaaren Rastilanraitin katualuee": [
+  null,
+  null,
+  "none"
+ ],
+ "Vuosaaren silta": [
+  60.2071193,
+  25.1111646,
+  "street"
+ ],
+ "Vuosaarenlahden": [
+  60.2092898,
+  25.1814072,
+  "district"
+ ],
+ "Vuosaarenlahti": [
+  60.2066033,
+  25.1788533,
+  "place"
+ ],
+ "Vuosaarentie": [
+  60.2095953,
+  25.1436156,
+  "street"
+ ],
+ "Vuosaari": [
+  60.2083483,
+  25.1435537,
+  "district"
+ ],
+ "Vuotie": [
+  60.2045186,
+  25.127905,
+  "street"
+ ],
+ "Vyökatu": [
+  60.1673739,
+  24.9683601,
+  "street"
+ ],
+ "Vähäntuvantie": [
+  60.2333915,
+  24.8523073,
+  "street"
+ ],
+ "Välimerenkatu": [
+  60.1589143,
+  24.915129,
+  "street"
+ ],
+ "Välitalontie": [
+  60.2461454,
+  24.9295374,
+  "street"
+ ],
+ "Vääksyntie": [
+  60.190694,
+  24.962053,
+  "street"
+ ],
+ "Wavulinintie": [
+  60.1537591,
+  24.8781835,
+  "street"
+ ],
+ "Wäinö": [
+  60.187923,
+  24.9998628,
+  "street"
+ ],
+ "Wäinö Aaltosen tie": [
+  60.187923,
+  24.9998628,
+  "street"
+ ],
+ "Yleisradio": [
+  null,
+  null,
+  "none"
+ ],
+ "Yliopistokiinteistö": [
+  null,
+  null,
+  "none"
+ ],
+ "Yliskylä": [
+  60.1791716,
+  25.0534294,
+  "district"
+ ],
+ "Yliskylän": [
+  60.179566,
+  25.0522025,
+  "street"
+ ],
+ "Yliskylän puistokatu": [
+  60.179566,
+  25.0522025,
+  "street"
+ ],
+ "Yliskylänlahden": [
+  60.1829802,
+  25.048483,
+  "district"
+ ],
+ "Yliskyläntie": [
+  60.1806716,
+  25.0504024,
+  "street"
+ ],
+ "Ylä-Malmi": [
+  60.2540482,
+  25.0046591,
+  "district"
+ ],
+ "Ylä-Malmin": [
+  60.2522632,
+  25.009083,
+  "street"
+ ],
+ "Ylä-Malmin tori": [
+  60.2523657,
+  25.0089728,
+  "street"
+ ],
+ "Yläkivenrinne": [
+  60.2216553,
+  25.0700166,
+  "street"
+ ],
+ "Yläkiventie": [
+  60.2230862,
+  25.0761842,
+  "street"
+ ],
+ "Yrjönkatu": [
+  60.1683518,
+  24.9370437,
+  "street"
+ ],
+ "Zaidankatu": [
+  60.1920158,
+  24.8965594,
+  "street"
+ ],
+ "Äestäjäntie": [
+  60.2320669,
+  24.8439508,
+  "street"
+ ],
+ "Östersundom": [
+  60.2596026,
+  25.1870027,
+  "district"
+ ],
+ "Östersundomi": [
+  null,
+  null,
+  "none"
+ ],
+ "Östersundomin": [
+  60.2494494,
+  25.1877274,
+  "street"
+ ]
+}
