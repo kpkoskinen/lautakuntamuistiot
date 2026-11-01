@@ -488,12 +488,29 @@ a new file.
 
 `build_umap` also writes each layer as plain GeoJSON to a `umap/` folder next to its
 output (`katu.geojson`, `liikenne.geojson`, ...; the published ones are in
-[`data/umap/`](data/umap/)). A uMap layer can load such a file from a URL each time the
+[`data/umap/`](data/umap/)), plus `all.geojson` with every plan type in one file. A uMap layer can load such a file from a URL each time the
 map opens, so a map pointing at the files on GitHub shows whatever was last committed —
-no re-import. The [daily updated map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127) works this way, from `data/umap/` on `main`.
+no re-import. The [daily updated map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127) works this way: one
+clustered layer loading `data/umap/all.geojson` on `main`
+([`data/helsinki_plans_clustered.umap`](data/helsinki_plans_clustered.umap)).
 
-To make one, build a `.umap` whose layers point at the files instead of carrying the
-data, and import it as above:
+**Clustered map (`--combined`).** All plan types in one layer of uMap's *Clustered*
+type, so overlapping pins of any type merge into one numbered circle. Clicking it zooms
+in; where several plans share one spot (e.g. all plans geocoded to the same street),
+clicking it again fans them out to choose from. Pins stay at their true points (no
+spreading), keep their plan type's colour, and show date, heading and the start of the
+summary on hover. Plan type, stage and year are filters.
+
+```sh
+python3 -m lautakuntamuistiot.build_umap --combined --remote-base \
+    https://raw.githubusercontent.com/OWNER/REPO/main/data/umap -o output/live.umap
+```
+
+A click on the map closes an open fan, popup included (uMap's behaviour; close a popup
+with × to keep the fan).
+
+For one layer per plan type instead, build a `.umap` whose layers point at the files
+instead of carrying the data, and import it as above:
 
 ```sh
 python3 -m lautakuntamuistiot.build_umap --remote-base \

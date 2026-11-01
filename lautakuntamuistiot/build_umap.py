@@ -6,6 +6,7 @@ No network — pure render.
     python3 -m lautakuntamuistiot.build_umap                       # all records -> helsinki_plans.umap
     python3 -m lautakuntamuistiot.build_umap --years 2020-2026 -o recent.umap
     python3 -m lautakuntamuistiot.build_umap --remote-base URL   # layers load from URL/<type>.geojson
+    python3 -m lautakuntamuistiot.build_umap --combined [--remote-base URL]   # one clustered layer
 
 The output is uMap's own export format (.umap: GeoJSON layers plus the map's
 settings), so one import gives the whole map: one coloured layer per plan type
@@ -27,6 +28,15 @@ The background is Jawg Light, a grey OpenStreetMap map that uMap offers, so the
 coloured pins stand out.
 
 Pins are deduped and declustered exactly as in build_kml.
+
+Combined, clustered map (--combined): all plan types in ONE layer of uMap's "Clustered"
+type, so pins of different types that overlap merge into one count circle; clicking it
+zooms in, and pins at the same spot fan out to choose from. Each pin keeps its plan
+type's colour (per-pin `_umap_options.color`), and the layer toggles become a "Plan
+type" filter. Hovering a pin shows its date, heading and the start of the summary
+(the `hover` property). Pins stay at their true points (no declustering): the clustering handles
+the overlaps. Its data is umap/all.geojson, which every build writes next to the
+per-type files, so the daily job keeps it current without extra options.
 """
 import argparse, json, os
 
@@ -44,6 +54,8 @@ TILELAYER = {"name": "Jawg Light", "minZoom": 0, "maxZoom": 18, "tms": False,
              "attribution": "Tiles courtesy of [[https://www.jawg.io/|jawgmaps]] - Map data "
                             "[[http://osm.org/copyright/|&copy; OpenStreetMap contributors]], "
                             "under ODbL."}
+CLUSTER_COLOR = "#4a4a4a"                                 # count circles of the combined layer
+CLUSTER_RADIUS = 60                                      # px; uMap's default is 80
 CENTER = [24.94, 60.19]                                  # lon, lat — Helsinki
 ATTRIBUTION = ("Decisions: City of Helsinki (paatokset.hel.fi), Kerro kantasi; "
                "locations geocoded with Nominatim, © OpenStreetMap contributors (ODbL). "
@@ -53,6 +65,20 @@ ATTRIBUTION = ("Decisions: City of Helsinki (paatokset.hel.fi), Kerro kantasi; "
 def _text(s):
     """Plain text for uMap markup: no accidental bold/italic, links or templates."""
     return (s or "").replace("*", "∗").replace("[[", "[ [").replace("{", "(").replace("}", ")")
+
+
+HOVER_CHARS = 140                                        # summary characters in the hover text
+
+
+def hover_text(r):
+    """Plain-text hover label: date, heading and the start of the summary."""
+    text = f'{r["date"]} · {r["heading"]}'
+    summary = (r.get("summary") or "").strip()
+    if summary:
+        cut = summary if len(summary) <= HOVER_CHARS else \
+            summary[:HOVER_CHARS].rsplit(" ", 1)[0] + "…"
+        text += f" — {cut}"
+    return text
 
 
 def feature(r, pos=None):
@@ -87,15 +113,30 @@ def feature(r, pos=None):
         props["drawing_url"] = r["map_url"]
     if kk and r.get("close_date"):
         props["close_date"] = r["close_date"]
+    props["plan_type_label"] = LABEL[r["plan_type"]]
+    props["hover"] = hover_text(r)
     return {"type": "Feature", "properties": props,
             "geometry": {"type": "Point", "coordinates": [round(lon, 6), round(lat, 6)]}}
 
 
-def build(records, title, out, dedupe=True, min_sep=40.0, extra=(), remote_base=None):
+def combined_features(records):
+    """Every pin at its true point, coloured by plan type, for the clustered layer."""
+    out = []
+    for k in ORDER:
+        for r in sorted((r for r in records if r["plan_type"] == k),
+                        key=lambda r: (r["year"], r["month"])):
+            f = feature(r)
+            f["properties"]["_umap_options"] = {"color": COLOR[k]}
+            out.append(f)
+    return out
+
+
+def build(records, title, out, dedupe=True, min_sep=40.0, extra=(), remote_base=None,
+          combined=False):
     if dedupe:
         records = dedupe_records(records)
     records = list(records) + list(extra)
-    pos = decluster(records, min_sep) if min_sep > 0 else {}
+    pos = decluster(records, min_sep) if min_sep > 0 and not combined else {}
     bytype = {k: [] for k in ORDER}
     for r in records:
         bytype.setdefault(r["plan_type"], []).append(r)
@@ -118,20 +159,43 @@ def build(records, title, out, dedupe=True, min_sep=40.0, extra=(), remote_base=
             features = []
         layers.append({"type": "FeatureCollection", "features": features,
                        "properties": props})
+    allf = combined_features(records)
+    with open(os.path.join(layers_dir, "all.geojson"), "w", encoding="utf-8") as f:
+        json.dump({"type": "FeatureCollection", "features": allf}, f,
+                  ensure_ascii=False, separators=(",", ":"))
+    fields = [{"key": "name", "type": "String"}, {"key": "description", "type": "Text"},
+              {"key": "stage", "type": "String"}, {"key": "year", "type": "Number"}]
+    filters = [{"fieldKey": "stage", "widget": "Checkbox", "label": "Stage"},
+               {"fieldKey": "year", "widget": "MinMax", "label": "Year"}]
+    if combined:
+        props = {"name": "Plans and consultations", "color": CLUSTER_COLOR,
+                 "type": "Cluster", "cluster": {"radius": CLUSTER_RADIUS},
+                 "showLabel": None, "labelKey": "hover",          # label on hover
+                 "iconClass": "Circle", "displayOnLoad": True,
+                 "browsable": True, "inCaption": True}
+        if remote_base:
+            props["remoteData"] = {"url": f"{remote_base.rstrip('/')}/all.geojson",
+                                   "format": "geojson"}
+            allf = []
+        layers = [{"type": "FeatureCollection", "features": allf, "properties": props}]
+        fields.insert(2, {"key": "plan_type_label", "type": "String"})
+        filters.insert(0, {"fieldKey": "plan_type_label", "widget": "Checkbox",
+                           "label": "Plan type"})
     doc = {
         "type": "umap",
         "properties": {
             "name": title,
             "description": ("Helsinki committee plan decisions and Kerro kantasi consultations, "
-                            "one layer per plan type. " + ATTRIBUTION),
+                            + ("coloured by plan type. Numbers are groups of pins: click to "
+                               "zoom in; where several plans share one spot, click the number "
+                               "again to fan them out, then click the pins one by one (close a "
+                               "popup with ×; a click on the map closes the fan). Hover a pin "
+                               "for a preview. " if combined else "one layer per plan type. ")
+                            + ATTRIBUTION),
             "shortCredit": "Data: City of Helsinki, © OpenStreetMap contributors (ODbL)",
             "zoom": 12, "popupShape": "Large", "tilelayer": TILELAYER,
-            "fields": [{"key": "name", "type": "String"},
-                       {"key": "description", "type": "Text"},
-                       {"key": "stage", "type": "String"},
-                       {"key": "year", "type": "Number"}],
-            "filters": [{"fieldKey": "stage", "widget": "Checkbox", "label": "Stage"},
-                        {"fieldKey": "year", "widget": "MinMax", "label": "Year"}],
+            "fields": fields,
+            "filters": filters,
             "onLoadPanel": "caption",
         },
         "geometry": {"type": "Point", "coordinates": CENTER},
@@ -162,6 +226,9 @@ def main():
                     help="URL of a folder holding the umap/*.geojson files; the layers load "
                          "from there instead of carrying the data, e.g. https://raw."
                          "githubusercontent.com/OWNER/REPO/main/data/umap")
+    ap.add_argument("--combined", action="store_true",
+                    help="one clustered layer with every plan type (umap/all.geojson), pins at "
+                         "their true points, plan type as a filter")
     ap.add_argument("-o", "--out", default=f"{OUT}/helsinki_plans.umap")
     args = ap.parse_args()
 
@@ -179,7 +246,7 @@ def main():
     ys = sorted({r["year"] for r in recs})
     span = f"{ys[0]}" if len(ys) == 1 else f"{ys[0]}–{ys[-1]}"
     build(recs, f"Kaupunkiympäristölautakunnan suunnitelmat ja kaavat {span}", args.out,
-          not args.no_dedupe, args.min_sep, kk, args.remote_base)
+          not args.no_dedupe, args.min_sep, kk, args.remote_base, args.combined)
 
 
 if __name__ == "__main__":
