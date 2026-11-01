@@ -33,7 +33,8 @@ Combined, clustered map (--combined): all plan types in ONE layer of uMap's "Clu
 type, so pins of different types that overlap merge into one count circle; clicking it
 zooms in, and pins at the same spot fan out to choose from. Each pin keeps its plan
 type's colour (per-pin `_umap_options.color`), and the layer toggles become a "Plan
-type" filter. Pins stay at their true points (no declustering): the clustering handles
+type" filter. Hovering a pin shows its date, heading and the start of the summary
+(the `hover` property). Pins stay at their true points (no declustering): the clustering handles
 the overlaps. Its data is umap/all.geojson, which every build writes next to the
 per-type files, so the daily job keeps it current without extra options.
 """
@@ -64,6 +65,20 @@ ATTRIBUTION = ("Decisions: City of Helsinki (paatokset.hel.fi), Kerro kantasi; "
 def _text(s):
     """Plain text for uMap markup: no accidental bold/italic, links or templates."""
     return (s or "").replace("*", "∗").replace("[[", "[ [").replace("{", "(").replace("}", ")")
+
+
+HOVER_CHARS = 140                                        # summary characters in the hover text
+
+
+def hover_text(r):
+    """Plain-text hover label: date, heading and the start of the summary."""
+    text = f'{r["date"]} · {r["heading"]}'
+    summary = (r.get("summary") or "").strip()
+    if summary:
+        cut = summary if len(summary) <= HOVER_CHARS else \
+            summary[:HOVER_CHARS].rsplit(" ", 1)[0] + "…"
+        text += f" — {cut}"
+    return text
 
 
 def feature(r, pos=None):
@@ -99,6 +114,7 @@ def feature(r, pos=None):
     if kk and r.get("close_date"):
         props["close_date"] = r["close_date"]
     props["plan_type_label"] = LABEL[r["plan_type"]]
+    props["hover"] = hover_text(r)
     return {"type": "Feature", "properties": props,
             "geometry": {"type": "Point", "coordinates": [round(lon, 6), round(lat, 6)]}}
 
@@ -154,6 +170,7 @@ def build(records, title, out, dedupe=True, min_sep=40.0, extra=(), remote_base=
     if combined:
         props = {"name": "Plans and consultations", "color": CLUSTER_COLOR,
                  "type": "Cluster", "cluster": {"radius": CLUSTER_RADIUS},
+                 "showLabel": None, "labelKey": "hover",          # label on hover
                  "iconClass": "Circle", "displayOnLoad": True,
                  "browsable": True, "inCaption": True}
         if remote_base:
