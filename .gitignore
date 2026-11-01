@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+# generated datasets, geocode cache and maps — never commit data
+output/
+*.kml
+*.json
