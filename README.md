@@ -303,3 +303,8 @@ The scripts only read publicly available material. Respect each source's terms:
 - **Internet Archive** (web.archive.org), used only to enumerate 2013–2017 meetings.
 
 The output maps link to the original documents. They do not copy them.
+
+## Licence
+
+The code is released under the [MIT License](LICENSE). The data it collects keeps its
+sources' licences (see **Data sources and attribution** above); MIT does not cover it.
