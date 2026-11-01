@@ -1,9 +1,11 @@
 # lautakuntamuistiot — Helsinki city-plan maps
 
-> **🗺️ See what it produces: [example map on Google My Maps](https://www.google.com/maps/d/viewer?mid=1Ggf-akDtTMtHdMUAp-c-wATPfZdPT1A)**
+> **🗺️ See what it produces: [example map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127)** (OpenStreetMap, with stage and
+> year filters) **or [on Google My Maps](https://www.google.com/maps/d/viewer?mid=1Ggf-akDtTMtHdMUAp-c-wATPfZdPT1A)**
 >
-> This is a **snapshot** (October 2026), made with an earlier version of these scripts. It is
-> a sample and is not updated. For the latest data, import
+> Both are **snapshots** and are not updated: the uMap map is the 1 Nov 2026 data in
+> [`data/`](data/), the My Maps one is from October 2026, made with an earlier version of
+> these scripts. For your own map (or newer data after re-running the scripts), import
 > [`data/helsinki_plans.kml`](data/helsinki_plans.kml) into your own Google My Maps (see
 > **Import into Google My Maps**), or [`data/helsinki_plans.umap`](data/helsinki_plans.umap)
 > into [uMap](https://umap.openstreetmap.fr) (see **Show it on uMap**).
@@ -387,6 +389,8 @@ heading, decision date and stage, summary, drawing and decision links and locati
 accuracy. Each pin also keeps the plain fields (`date`, `year`, `stage`, `plan_type`,
 `location`, `geocode`, `drawing_url`, `decision_url`, ...), so the table view and custom
 popup templates can use them.
+
+The [example map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127) was made exactly this way from the 1 Nov 2026 snapshot.
 
 The map does not update itself either. To refresh it, delete the layers and import a new
 file. Credit the data as in **Data sources and licences**: the file sets a short credit
