@@ -53,6 +53,10 @@ A ready-made snapshot of 1 and 2 (JSON + KML), generated **1 Nov 2026**, is in
 map pins. See [`data/README.md`](data/README.md). Use it if you don't want to run the
 scrape yourself.
 
+**To see it on a map,** import [`data/helsinki_plans.kml`](data/helsinki_plans.kml) into
+your own Google My Maps; it takes a minute (see **Import into Google My Maps**). There
+is no hosted, up-to-date map.
+
 ### Example
 
 One pin from the map, the street plan for Neptunuksenkatu in Jätkäsaari:
@@ -343,10 +347,11 @@ python3 -m lautakuntamuistiot.build_zoning_kml --polygons --split   # asemakaava
 
 ## Import into Google My Maps
 
-1. Go to <https://mymaps.google.com> → **Create a new map**.
-2. **Import** → upload the `.kml`. The merged file has 6 layers, within My Maps' limits
-   of 10 layers, 2 000 pins per layer and 10 000 in total.
-3. Pins show the heading, the summary and clickable drawing and decision links.
+1. Download [`data/helsinki_plans.kml`](data/helsinki_plans.kml) (or build your own).
+2. Go to <https://mymaps.google.com> → **Create a new map**.
+3. In the first layer, click **Import** and upload the `.kml`. The file has 6 layers,
+   within My Maps' limits of 10 layers, 2 000 pins per layer and 10 000 in total.
+4. Pins show the heading, the summary and clickable drawing and decision links.
 
 A static KML does not update itself. To refresh, re-scrape, re-render and re-import.
 
