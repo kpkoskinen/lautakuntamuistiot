@@ -18,7 +18,8 @@ drawings: every PDF attachment and every image that isn't just a photo.
 
 --only-new keeps the dataset and opens only the pending hearings (see pending()):
 plan hearings not in it yet, plus the ones still open for comments, which may still
-get drawings. The hearing list has no "modified" date, so closed hearings already in
+get drawings. check_updates opens the still-open ones too and counts them only if they
+changed (changed()). The dataset is only rewritten when something in it changed. The hearing list has no "modified" date, so closed hearings already in
 the dataset are not re-read; a full run refreshes everything.
 """
 import urllib.request, json, re, argparse, time, os, html
@@ -164,9 +165,14 @@ def pending(ds, plans):
     return new, still_open
 
 
-def hearing(h, cache):
-    """(record, placed) for one hearing; fetches its details."""
-    h = get(API + (h.get("slug") or h["id"]) + "/"); time.sleep(0.2)
+def detail(h):
+    """The full hearing (sections, images, files, area) for a list entry."""
+    d = get(API + (h.get("slug") or h["id"]) + "/"); time.sleep(0.2)
+    return d
+
+
+def base_record(h):
+    """The hearing's record without a location (no geocoding)."""
     title = fi(h["title"])
     summary = text(fi(h.get("abstract")))
     t = time.strptime(h["open_at"][:10], "%Y-%m-%d")
@@ -180,12 +186,42 @@ def hearing(h, cache):
                 labels=[fi(l.get("label")) for l in h.get("labels", []) if fi(l.get("label"))],
                 drawings=drawings(h))
     base["map_url"] = base["drawings"][0][1] if base["drawings"] else None
+    return base
+
+
+def area_point(h):
+    """(lat, lon, span_km) of the hearing's own area if it lies in Helsinki, else None."""
+    c = centroid(h["geojson"]) if h.get("geojson") else None
+    if c and HKI_BBOX[0] <= c[0] <= HKI_BBOX[1] and HKI_BBOX[2] <= c[1] <= HKI_BBOX[3]:
+        return c
+    return None
+
+
+def changed(old, h):
+    """Has a hearing already in the dataset changed (text, dates, drawings, area)?"""
+    base = base_record(h)
+    keys = ("title", "summary", "date", "close_date", "drawings")
+    if any(json.dumps(base[k]) != json.dumps(old.get(k)) for k in keys):
+        return True
+    if sorted(base["labels"]) != sorted(old.get("labels") or []):   # the API varies the order
+        return True
+    c = area_point(h)
+    if old.get("geocode") == "area" or c:
+        return not (c and old.get("geocode") == "area"
+                    and abs(c[0] - old["lat"]) < 1e-5 and abs(c[1] - old["lon"]) < 1e-5)
+    return False
+
+
+def hearing(h, cache):
+    """(record, placed) for one hearing's details `h`."""
+    base = base_record(h)
+    title, summary = base["title"], base["summary"]
     # the validated place name makes the label ("Hämeentie", not "Millainen on
     # Hämeentien tulevaisuus"); the hearing's own area, when it has one, gives the point
     loc, lat, lon, conf = locate(cache, title, fallback=(summary,))
     label = loc or short_title(title)
-    c = centroid(h["geojson"]) if h.get("geojson") else None
-    if c and HKI_BBOX[0] <= c[0] <= HKI_BBOX[1] and HKI_BBOX[2] <= c[1] <= HKI_BBOX[3]:
+    c = area_point(h)
+    if c:
         return dict(base, location=label, lat=c[0], lon=c[1],
                     geocode="area", area_km=round(c[2], 2)), True
     if lat is not None:
@@ -214,11 +250,12 @@ def main():
         # replace in place (keeps the order, so other pins don't move), append the new
         records = {r["asia_id"]: r for r in ds.get("records", [])}
         unloc = {r["asia_id"]: r for r in ds.get("unlocated", [])}
+        before = json.dumps([list(records.values()), list(unloc.values())], ensure_ascii=False)
     else:
-        todo, records, unloc = plans, {}, {}
+        todo, records, unloc, before = plans, {}, {}, None
 
     for h in todo:
-        rec, placed = hearing(h, cache)
+        rec, placed = hearing(detail(h), cache)
         k = rec["asia_id"]
         if placed:
             unloc.pop(k, None); records[k] = rec
@@ -226,11 +263,14 @@ def main():
             records.pop(k, None); unloc[k] = rec
 
     records, unloc = list(records.values()), list(unloc.values())
+    save_cache(cache, args.cache)
+    if before == json.dumps([records, unloc], ensure_ascii=False) and os.path.exists(args.dataset):
+        print("  nothing changed, dataset not rewritten")
+        return
     ds = {"generated": time.strftime("%Y-%m-%d"), "source": API,
           "records": records, "unlocated": unloc}
     os.makedirs(os.path.dirname(args.dataset) or ".", exist_ok=True)
     json.dump(ds, open(args.dataset, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    save_cache(cache, args.cache)
     print(f"  {len(records)} placed ({sum(r['geocode'] == 'area' for r in records)} from the hearing's "
           f"own area), {len(unloc)} unlocated, "
           f"{sum(bool(r['drawings']) for r in records)} with drawings "

@@ -26,7 +26,7 @@ cache is seeded from the published data/geocode_cache.json (see load_cache).
 """
 import json, re, time, urllib.parse, urllib.request
 
-from .settings import USER_AGENT, DATA
+from .settings import USER_AGENT, DATA, GEOCODE_DELAY
 
 UA = {"User-Agent": USER_AGENT}
 _VIEWBOX = "24.78,60.30,25.27,60.10"            # Helsinki, lon1,lat1,lon2,lat2
@@ -232,7 +232,7 @@ def geocode_name(name, cache):
     best = None
     for street in ((False, True) if _STREET_NAME.search(name) else (False,)):
         hits = _search(name, street)
-        time.sleep(1.1)                                  # Nominatim policy: <= 1 req/s
+        time.sleep(GEOCODE_DELAY)                        # Nominatim policy: <= 1 req/s
         if hits is None:
             return None, None, "none"                    # network failure: not cached
         best = _pick(hits, name)

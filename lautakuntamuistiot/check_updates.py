@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
 Is there new material? Reads the two list endpoints (about 20 requests, no
-geocoding) and compares them with the datasets:
+geocoding), opens only a few pages, and compares them with the datasets:
 
   - committee decisions that are plans and haven't been processed yet,
   - recent decisions that had no plan drawing but now have one (it is often attached
     later; only these few decision pages are opened),
-  - Kerro kantasi plan hearings not in the dataset yet.
+  - Kerro kantasi plan hearings not in the dataset yet, and hearings still open for
+    comments whose text, dates, drawings or area changed (each open one is opened).
 
     python3 -m lautakuntamuistiot.check_updates
     python3 -m lautakuntamuistiot.check_updates --org "Kaupunkiympäristölautakunta" --recheck-days 60
@@ -16,8 +17,6 @@ Prints what it found. In a GitHub Action it also writes `decisions`, `hearings` 
 is something for it, and the same text to the run's summary page. Exit
 code is 0 either way; a failing list request is an error (exit 1).
 
-Hearings that are still open are refreshed by the scrape, but don't by themselves
-count as new material.
 """
 import argparse, os, time
 
@@ -49,12 +48,15 @@ def main():
 
     kds = load_json(args.kerrokantasi, {"records": [], "unlocated": []})
     hnew, hopen = kk.pending(kds, kk.plan_hearings(kk.list_hearings()))
-    out.append(f"\n**Kerro kantasi**: {len(hnew)} new, {len(hopen)} still open")
-    for h in hnew:
-        out.append(f"- new: {h['open_at'][:10]} [{kk.fi(h['title'])[:100]}]"
+    known = {r["asia_id"]: r for r in kds.get("records", []) + kds.get("unlocated", [])}
+    hchanged = [h for h in hopen if kk.changed(known["kk-" + h["id"]], kk.detail(h))]
+    out.append(f"\n**Kerro kantasi**: {len(hnew)} new, {len(hchanged)} of {len(hopen)} "
+               f"still open ones changed")
+    for tag, h in [("new", h) for h in hnew] + [("changed", h) for h in hchanged]:
+        out.append(f"- {tag}: {h['open_at'][:10]} [{kk.fi(h['title'])[:100]}]"
                    f"({kk.PAGE.format(h.get('slug') or h['id'])})")
 
-    decisions, hearings = bool(new or drawn), bool(hnew)
+    decisions, hearings = bool(new or drawn), bool(hnew or hchanged)
     out.append("\n**Result:** " + ("new material, fetching it" if decisions or hearings
                                    else "nothing new"))
     print("\n".join(out))

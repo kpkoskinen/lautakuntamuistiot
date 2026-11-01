@@ -1,16 +1,15 @@
 # lautakuntamuistiot — Helsinki city-plan maps
 
-> **🗺️ See what it produces: [example map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127)** (OpenStreetMap, with stage and
-> year filters) **or [on Google My Maps](https://www.google.com/maps/d/viewer?mid=1Ggf-akDtTMtHdMUAp-c-wATPfZdPT1A)**
+> **🗺️ [Daily updated map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127)** of Helsinki's committee plan decisions and
+> Kerro kantasi consultations (OpenStreetMap, with stage and year filters).
 >
-> The uMap map loads its pins from [`data/umap/`](data/umap/) in this repository each
-> time it opens, so it shows whatever data is committed here. A daily GitHub Action
-> (see **Automatic update**) adds new decisions and consultations to `data/`. The
-> My Maps one is a **snapshot** from October 2026, made with an earlier version of these
-> scripts, and is not updated. For your own map (or newer data after re-running the scripts), import
-> [`data/helsinki_plans.kml`](data/helsinki_plans.kml) into your own Google My Maps (see
-> **Import into Google My Maps**), or [`data/helsinki_plans.umap`](data/helsinki_plans.umap)
-> into [uMap](https://umap.openstreetmap.fr) (see **Show it on uMap**).
+> A GitHub Action checks every day for new decisions and consultations and adds them to
+> [`data/`](data/) (see **Automatic update**); the map loads its pins from
+> [`data/umap/`](data/umap/) each time it opens. For a map of your own, import
+> [`data/helsinki_plans.umap`](data/helsinki_plans.umap) into
+> [uMap](https://umap.openstreetmap.fr) (see **Show it on uMap**) or
+> [`data/helsinki_plans.kml`](data/helsinki_plans.kml) into Google My Maps (see
+> **Import into Google My Maps**).
 
 Scripts that collect the City of Helsinki's published **plan decisions and plan
 drawings** — street, traffic, park and zoning plans, plus public consultations — and
@@ -70,8 +69,8 @@ yourself.
 **To see it on a map,** import [`data/helsinki_plans.kml`](data/helsinki_plans.kml) into
 your own Google My Maps (see **Import into Google My Maps**), or
 [`data/helsinki_plans.umap`](data/helsinki_plans.umap) into uMap (see **Show it on uMap**).
-Either takes a minute. Of the example maps at the top, the uMap one follows the data
-in this repository; the [My Maps one](https://www.google.com/maps/d/viewer?mid=1Ggf-akDtTMtHdMUAp-c-wATPfZdPT1A) is an older snapshot.
+Either takes a minute. The [daily updated map](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127) at the top follows the data
+in this repository.
 
 ### Example
 
@@ -117,32 +116,35 @@ The public Nominatim service is a shared, volunteer-run resource, and its
 geocoding. So:
 
 - **The cache is published.** [`data/geocode_cache.json`](data/) holds every place name
-  the snapshot looked up. A scrape whose own cache is empty starts from that file, so
-  a full re-run only asks Nominatim about names that are new since the snapshot.
+  the published data has looked up. A scrape whose own cache is empty starts from that file, so
+  a full re-run only asks Nominatim about names that are not in it yet.
 - **Identify yourself.** Set `LAUTAKUNTA_CONTACT` (below) before a full scrape.
 - **Don't schedule full scrapes.** For regular updates, the policy limits scripts to
   4 requests per minute. Re-running one committee with a warm cache is fine; repeated
   cold full runs are not. The automatic update (below) only looks up names of new
-  decisions and hearings. For heavier use, run your own Nominatim or use a commercial
+  decisions and hearings, at most 4 per minute (`LAUTAKUNTA_GEOCODE_DELAY=15`). For heavier use, run your own Nominatim or use a commercial
   geocoder.
 
 ## Automatic update
 
 [`.github/workflows/update-data.yml`](.github/workflows/update-data.yml) runs daily (and on
-demand from the Actions tab) and updates the snapshot in `data/` in place
+demand from the Actions tab) and updates the published data in `data/` in place
 (`LAUTAKUNTA_OUT=data`), in three steps:
 
-1. **Check.** `check_updates` reads only the decision list and the Kerro kantasi hearing
-   list (about 20 s) and compares them with the datasets: plan decisions not processed
-   yet, recent decisions whose plan drawing has appeared since, and new plan hearings.
-   If there is nothing, the job stops here.
+1. **Check.** `check_updates` reads the decision list and the Kerro kantasi hearing list
+   and opens only a few pages: recent decisions that had no plan drawing, and hearings
+   still open for comments. It reports plan decisions not processed yet, drawings that
+   have appeared, new plan hearings and open hearings that changed. Usually under a
+   minute; if there is nothing, the job stops here.
 2. **Fetch only that.** `scrape_decisions --only-new` and `scrape_consultations --only-new`
    open and locate just the pending items and add them to the datasets; each runs only if
-   its own source has something new. Hearings still open for comments are refreshed at
-   the same time.
+   its own source has something. New place names are looked up at most 4 per minute
+   (`LAUTAKUNTA_GEOCODE_DELAY=15`). A dataset is rewritten only if something in it
+   changed.
 3. **Update.** `build_umap` and `build_kml` rebuild the maps. If anything in `data/`
    changed, `update_report` lists the pins added, changed and removed, and the job
-   commits `data/` with that list as the commit message. The uMap map loads
+   commits `data/` with that list as the commit message (or "datasets updated, map
+   unchanged", e.g. for a decision that couldn't be located). The uMap map loads
    `data/umap/`, so it shows the new pins within minutes.
 
 **What did the runs do?**
@@ -157,19 +159,29 @@ demand from the Actions tab) and updates the snapshot in `data/` in place
   and GitHub e-mails the repository owner by default.
 
 Set the repository variable `LAUTAKUNTA_CONTACT` (Settings → Secrets and variables →
-Actions → Variables) to identify the job to Nominatim. The same steps work locally:
+Actions → Variables) to identify the job to Nominatim. The same steps work locally on
+the committed data (they update `data/` in place, as the job does):
 
 ```bash
+export LAUTAKUNTA_OUT=data LAUTAKUNTA_GEOCODE_DELAY=15
 python3 -m lautakuntamuistiot.check_updates
 python3 -m lautakuntamuistiot.scrape_decisions --org "Kaupunkiympäristölautakunta" --only-new
 python3 -m lautakuntamuistiot.scrape_consultations --only-new
+python3 -m lautakuntamuistiot.build_umap -o data/helsinki_plans.umap
+python3 -m lautakuntamuistiot.build_kml -o data/helsinki_plans.kml
+python3 -m lautakuntamuistiot.update_report        # what changed, compared with the last commit
 ```
+
+Without `LAUTAKUNTA_OUT=data` they work on `output/`; `--only-new` on an empty
+`output/` would treat every decision as new, which is a full scrape.
 
 `plans_dataset.json` keeps every processed decision URL in `seen_decisions` (per
 committee), so an earlier-stage decision that isn't on the map doesn't count as new
 again. Of the several decisions of one case, the map keeps the one with a plan drawing,
 else the latest. A dataset from before `seen_decisions` existed is bootstrapped from its
-records, and decisions from the last 60 days before its newest record are opened once. Closed
+records, and decisions from the last 60 days before its newest record
+(`--bootstrap-days`) are opened once. A decision page that fails to load is retried on
+the following runs and given up after 3 failures (`fetch_failures`). Closed
 hearings already in the dataset are not re-read (the hearing list has no "modified"
 date); a full `scrape_consultations` run refreshes them all.
 
@@ -210,7 +222,7 @@ python3 -m lautakuntamuistiot.build_kml --no-dedupe                    # every d
 All output goes to **`output/`** in the repository root: datasets
 (`*_dataset.json`), the geocoding cache (`geocode_cache.json`) and the maps (`*.kml`,
 `*.umap` and `umap/*.geojson`).
-The directory is created on first run and is git-ignored. The published snapshot in
+The directory is created on first run and is git-ignored. The published data in
 [`data/`](data/) is the only data kept in the repo.
 
 Two environment variables, read by `lautakuntamuistiot/settings.py`, change the defaults:
@@ -219,6 +231,7 @@ Two environment variables, read by `lautakuntamuistiot/settings.py`, change the 
 |----------------------|--------|
 | `LAUTAKUNTA_OUT`     | output directory instead of `output/` |
 | `LAUTAKUNTA_CONTACT` | an e-mail or URL appended to the User-Agent (`lautakuntamuistiot/1.0 (…)`). Nominatim's policy asks bulk users to identify themselves, so please set it for full scrapes. |
+| `LAUTAKUNTA_GEOCODE_DELAY` | seconds between Nominatim requests (default 1.1, i.e. at most 1 per second). The scheduled job uses 15, i.e. at most 4 per minute. |
 
 Most tools also take `--dataset` / `-o` for a single run. Keep `geocode_cache.json`
 if you plan to re-scrape, because it saves hours.
@@ -227,7 +240,7 @@ if you plan to re-scrape, because it saves hours.
 
 ```
 README.md  LICENSE
-data/                         published snapshot (JSON, KML, .umap + umap/*.geojson), see data/README.md
+data/                         published data, updated daily (JSON, KML, .umap + umap/*.geojson), see data/README.md
 lautakuntamuistiot/           the Python package; run each tool with python3 -m
 ├── settings.py               output directory and User-Agent
 ├── common.py                 plan-type classifier, decision-page parsing, fetch helper
@@ -270,7 +283,8 @@ scrape_consultations  ── kerrokantasi.api.hel.fi (2014→) ─────�
   - Every processed decision URL is kept in `seen_decisions`, per committee.
   - Options: `--org "<organization_name>"`; `--only-new` opens only decisions not in
     `seen_decisions` plus recent ones still without a drawing (`--recheck-days`, default
-    60); `--since YYYY-MM-DD` limits it to meetings from that date.
+    60); `--since YYYY-MM-DD` limits it to meetings from that date; `--bootstrap-days`
+    (default 60) is only used for a dataset that has no `seen_decisions` yet.
 - **`locate`** maps a title to a place, using heuristics.
   - It extracts candidate names from the title:
     - street, park and square names in any inflection, restored to the nominative
@@ -314,14 +328,15 @@ scrape_consultations  ── kerrokantasi.api.hel.fi (2014→) ─────�
     isn't just a credited or stock photo.
   - Pins are labelled with the place name.
   - It writes `kerrokantasi_dataset.json`. With `--only-new` it keeps the dataset and opens
-    only hearings not in it yet plus the ones still open for comments.
+    only hearings not in it yet plus the ones still open for comments, and rewrites it
+    only if something changed.
 - **`check_updates`** tells whether there is new material, for the daily job: it reads
-  only the decision and hearing lists, and opens just the pages of recent decisions that
-  had no drawing. It prints what it found, writes `decisions`, `hearings` and `pending`
+  the decision and hearing lists, and opens just the pages of recent decisions that had
+  no drawing and of hearings still open for comments. It prints what it found, writes `decisions`, `hearings` and `pending`
   (true|false) to `$GITHUB_OUTPUT` and the same text to the run's summary page.
 - **`update_report`** compares the layers in `data/umap/` with the last commit and lists
-  the pins added, changed and removed (pins only nudged aside for a new neighbour are
-  just counted). With `--log FILE` it adds the list to the top of `data/update_log.md`.
+  the pins added, changed and removed (pins only nudged aside, less than 150 m, for a
+  new neighbour are just counted). With `--log FILE` it adds the list to the top of `data/update_log.md`.
 - **`build_kml`** renders pure output from the datasets, with no network.
   - **Slicing:** by year or year range and by committee, as one merged KML or one KML per
     year.
@@ -461,10 +476,10 @@ a new file.
 ### A uMap map that follows the repository
 
 `build_umap` also writes each layer as plain GeoJSON to a `umap/` folder next to its
-output (`katu.geojson`, `liikenne.geojson`, ...; the snapshot ones are in
+output (`katu.geojson`, `liikenne.geojson`, ...; the published ones are in
 [`data/umap/`](data/umap/)). A uMap layer can load such a file from a URL each time the
 map opens, so a map pointing at the files on GitHub shows whatever was last committed —
-no re-import. The [example map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127) works this way, from `data/umap/` on `main`.
+no re-import. The [daily updated map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127) works this way, from `data/umap/` on `main`.
 
 To make one, build a `.umap` whose layers point at the files instead of carrying the
 data, and import it as above:
@@ -507,7 +522,7 @@ python3 -m lautakuntamuistiot.evaluate --dataset data/plans_dataset.json \
   The automated checks can't tell whether a pin is on the *right* street, because the
   place name itself comes from the decision text.
 
-On the 1 Nov 2026 snapshot:
+On the data of 1 Nov 2026:
 
 | check | result |
 |-------|--------|

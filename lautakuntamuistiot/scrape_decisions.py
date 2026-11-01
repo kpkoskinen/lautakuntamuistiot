@@ -29,18 +29,22 @@ Only new material (the scheduled job): the decision list is always fetched whole
 few requests); --only-new then opens just the pending decisions (see pending()):
 ones not seen before, plus recent ones still without a plan drawing, since
 paatokset.hel.fi often attaches the drawing days or weeks after the meeting.
-check_updates reports the same without opening anything.
+check_updates finds the same list, but opens only the recent no-drawing pages to see
+whether a drawing has appeared.
 
     python3 -m lautakuntamuistiot.scrape_decisions --org "Kaupunkiympäristölautakunta" --only-new
     python3 -m lautakuntamuistiot.scrape_decisions --org "..." --since 2026-09-01
 
 The dataset keeps every processed decision URL in `seen_decisions` (per committee), so a decision
 that was opened but not kept (an earlier stage of a case whose later decision is on
-the map) does not count as new again.
+the map) does not count as new again. A page that fails to load is retried on the next
+runs and given up after 3 failures (`fetch_failures`), so a removed decision doesn't
+count as new forever. The dataset is only rewritten when something in it changed.
 """
 import urllib.request, json, re, argparse, time, os, calendar
 
-from .common import classify, plan_stage, EXCLUDE, TYPES, decision_page, decision_fields, load_json, DATASET, GCACHE
+from .common import (classify, plan_stage, better_decision, EXCLUDE, TYPES, decision_page,
+                     decision_fields, load_json, DATASET, GCACHE)
 from .locate import locate, load_cache, save_cache
 from .settings import USER_AGENT
 
@@ -136,12 +140,6 @@ def pending(ds, plans, seen, recheck_days=60, now=None):
     return new, recheck
 
 
-def _rank(r):
-    """Which decision of a case to keep: the one with a plan drawing, else the later one."""
-    d, m, y = (r.get("date") or "01.01.1900").split(".")
-    return bool(r.get("map_url")), (y, m, d)
-
-
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--org", required=True, help="organization_name, e.g. 'Kaupunkiympäristölautakunta'")
@@ -151,6 +149,9 @@ def main():
                     help="open only pending decisions: new ones and recent ones without a drawing")
     ap.add_argument("--recheck-days", type=int, default=60,
                     help="with --only-new: how far back to re-check decisions without a drawing")
+    ap.add_argument("--bootstrap-days", type=int, default=60,
+                    help="for a dataset without seen_decisions: decisions from this many days "
+                         "before the committee's newest record are opened once (see seen_set)")
     ap.add_argument("--since", default=None,
                     help="only open decisions from meetings on or after this date (YYYY-MM-DD)")
     args = ap.parse_args()
@@ -165,7 +166,9 @@ def main():
     hits = all_decisions(args.org)
     plans = plan_hits(hits)
     print(f"      {len(hits)} decisions -> {len(plans)} plan decisions", flush=True)
-    seen = seen_set(ds, args.org, plans, args.recheck_days)
+    seen = seen_set(ds, args.org, plans, args.bootstrap_days)
+    before = json.dumps(ds, sort_keys=True, ensure_ascii=False)
+    fails = dict(ds.get("fetch_failures") or {})
     if args.only_new:
         new, recheck = pending(ds, plans, seen, args.recheck_days)
         plans = new + recheck
@@ -188,14 +191,17 @@ def main():
 
         k = (dm, asia, key)
         page = decision_page(url)
-        if not page and (k in bykey or k in unloc):
-            # don't replace a known case with a title-only record; retried next run
-            print(f"      ! could not open {url}, kept the existing record", flush=True)
-            continue
+        if page:
+            seen.add(url); fails.pop(url, None)
+        else:                          # retried on the next runs, given up after 3 failures
+            fails[url] = fails.get(url, 0) + 1
+            if fails[url] >= 3:
+                seen.add(url)
+            print(f"      ! could not open {url} (failure {fails[url]})", flush=True)
+            if k in bykey or k in unloc:
+                continue               # don't replace a known case with a title-only record
         heading, summary, map_url = decision_fields(page) if page else (None, None, None)
         loc, lat, lon, conf = locate(cache, subject, heading, fallback=(summary,))
-        if page:                       # a page that didn't load is retried next run
-            seen.add(url)
         base = dict(committee=args.org, dm=dm, asia_id=asia, plan_type=key,
                     plan_type_label=LABEL[key], heading=heading or subject, title=subject,
                     summary=summary, date=date, year=t.tm_year, month=t.tm_mon,
@@ -203,16 +209,16 @@ def main():
         base["stage"] = plan_stage(base)
         if lat is None:
             # a case already on the map keeps its pin; else keep the better decision
-            if k not in bykey and (k not in unloc or _rank(base) >= _rank(unloc[k])):
+            if k not in bykey and (k not in unloc or better_decision(base, unloc[k])):
                 unloc[k] = base; nloc += 1
         else:
             unloc.pop(k, None)
             rec = dict(base, location=loc, lat=lat, lon=lon, geocode=conf)
             if k in bykey:
                 # several decisions per case (e.g. proposal, then approval): keep the
-                # one with a plan drawing, else the later one (same rule as build_kml).
-                # Compared by date, since --only-new may reopen an older decision.
-                if _rank(rec) >= _rank(ds["records"][bykey[k]]):
+                # one with a plan drawing, else the later one (common.better_decision,
+                # also used by build_kml); by date, as --only-new may reopen an older one
+                if better_decision(rec, ds["records"][bykey[k]]):
                     ds["records"][bykey[k]] = rec; updated += 1
             else:
                 bykey[k] = len(ds["records"]); ds["records"].append(rec); added += 1
@@ -224,10 +230,16 @@ def main():
     if not isinstance(ds.get("seen_decisions"), dict):
         ds["seen_decisions"] = {}
     ds["seen_decisions"][args.org] = sorted(u for u in seen if u)
+    ds.pop("fetch_failures", None)
+    if fails:
+        ds["fetch_failures"] = fails
+    save_cache(cache, args.cache)
+    if json.dumps(ds, sort_keys=True, ensure_ascii=False) == before and os.path.exists(args.dataset):
+        print(f"\n{args.org}: nothing changed, dataset not rewritten")
+        return
     ds["generated"] = time.strftime("%Y-%m-%d")
     os.makedirs(os.path.dirname(args.dataset) or ".", exist_ok=True)
     json.dump(ds, open(args.dataset, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    save_cache(cache, args.cache)
     print(f"\n{args.org}: +{added} new, {updated} updated, {nloc} unlocated "
           f"-> dataset now {len(ds['records'])} records ({len(ds['unlocated'])} unlocated)")
 

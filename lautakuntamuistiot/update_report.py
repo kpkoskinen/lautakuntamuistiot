@@ -2,7 +2,8 @@
 """
 What did an update change on the map? Compares the layers in data/umap/ with the
 last commit and lists, per layer, the pins added, changed and removed
-(pins only nudged aside to make room for a new neighbour are just counted).
+(pins only nudged aside, less than 150 m, to make room for a new neighbour are just
+counted).
 
     python3 -m lautakuntamuistiot.update_report                       # print it
     python3 -m lautakuntamuistiot.update_report --log data/update_log.md
@@ -34,13 +35,21 @@ def features(path, rev=None):
     return {f["properties"]["asia_id"]: f for f in data["features"]}
 
 
-def _content(f):
-    """A feature's properties without the pin-offset note, to tell a real change from a
-    pin only nudged aside to make room for a new neighbour."""
-    p = dict(f["properties"])
-    p["description"] = "\n".join(l for l in p.get("description", "").split("\n")
-                                 if not l.startswith("Location:"))
-    return p, f["properties"]["description"].rsplit("Location:", 1)[-1].split(";")[0]
+NUDGE_M = 150          # a pin moved less than this, with nothing else changed, was nudged
+
+
+def _nudged(a, b):
+    """True if a pin only moved aside to make room for a new neighbour: same properties
+    apart from the pin-offset note, and moved less than NUDGE_M metres."""
+    def content(f):
+        p = dict(f["properties"])
+        p["description"] = "\n".join(l.split("; pin offset")[0]
+                                     for l in p.get("description", "").split("\n"))
+        return p
+    if content(a) != content(b):
+        return False
+    (x0, y0), (x1, y1) = a["geometry"]["coordinates"], b["geometry"]["coordinates"]
+    return ((x1 - x0) * 55600) ** 2 + ((y1 - y0) * 111300) ** 2 < NUDGE_M ** 2
 
 
 def report(layers=LAYERS, rev="HEAD"):
@@ -51,7 +60,7 @@ def report(layers=LAYERS, rev="HEAD"):
         added = [new[a] for a in new if a not in old]
         removed = [old[a] for a in old if a not in new]
         diff = [a for a in new if a in old and new[a] != old[a]]
-        changed = [new[a] for a in diff if _content(new[a]) != _content(old[a])]
+        changed = [new[a] for a in diff if not _nudged(new[a], old[a])]
         nudged = len(diff) - len(changed)
         tot["nudged"] += nudged
         if not (added or removed or changed):

@@ -25,9 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      LAUTAKUNTA_OUT: data                       # update the committed snapshot in place
+      LAUTAKUNTA_OUT: data                       # update the published data in place
       LAUTAKUNTA_CONTACT: ${{ vars.LAUTAKUNTA_CONTACT }}
       ORG: Kaupunkiympäristölautakunta
+      LAUTAKUNTA_GEOCODE_DELAY: "15"             # new place names at most 4/minute
       PYTHONUNBUFFERED: "1"
     steps:
       - uses: actions/checkout@v4

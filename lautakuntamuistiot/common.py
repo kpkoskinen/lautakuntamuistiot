@@ -72,6 +72,17 @@ def plan_stage(rec):
     return "other"
 
 
+def better_decision(a, b):
+    """True if record `a` should replace `b` for the same case on the map: the one with a
+    plan drawing wins, otherwise the later decision; on a tie the record already kept
+    stays. Used by build_kml's dedupe and by scrape_decisions."""
+    def rank(r):
+        d = (r.get("date") or "").split(".")
+        day = int(d[0]) if len(d) == 3 and d[0].isdigit() else 0
+        return bool(r.get("map_url")), r["year"], r["month"], day
+    return rank(a) > rank(b)
+
+
 def fetch(url):
     try:
         with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=25) as r:
