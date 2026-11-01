@@ -38,6 +38,11 @@ type" filter. Hovering a pin shows its date, heading and the start of the summar
 (the `hover` property). Pins stay at their true points (no declustering): the clustering handles
 the overlaps. Its data is umap/all.geojson, which every build writes next to the
 per-type files, so the daily job keeps it current without extra options.
+
+Clustered per plan type (--cluster-per-type, the live map): the usual six layers, each
+of uMap's "Clustered" type, so count circles take the type's colour. The per-type pins
+are declustered (--min-sep), so no two share a spot and a click on a count just zooms
+in until they separate (about zoom 17 at 40 m).
 """
 import argparse, json, os
 
