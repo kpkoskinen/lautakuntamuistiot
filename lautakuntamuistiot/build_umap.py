@@ -5,6 +5,7 @@ No network — pure render.
 
     python3 -m lautakuntamuistiot.build_umap                       # all records -> helsinki_plans.umap
     python3 -m lautakuntamuistiot.build_umap --years 2020-2026 -o recent.umap
+    python3 -m lautakuntamuistiot.build_umap --remote-base URL   # layers load from URL/<type>.geojson
 
 The output is uMap's own export format (.umap: GeoJSON layers plus the map's
 settings), so one import gives the whole map: one coloured layer per plan type
@@ -15,6 +16,15 @@ Each pin's popup is its `description`, written in uMap's own markup (**bold**,
 *italic*, [[url|text]] links). The facts are also plain properties (date, year,
 stage, plan_type, location, drawing_url, decision_url, ...), so they show in
 uMap's table view and can be used in filters or a custom popup template.
+
+Each layer is also written as plain GeoJSON to a `umap/` folder next to the
+output (katu.geojson, liikenne.geojson, ...). A uMap layer can load such a file from
+a URL every time the map opens (layer settings -> Remote data), so a map that points
+at the files in a git repository shows whatever was last committed. --remote-base
+writes a .umap whose layers already point there: URL/<type>.geojson, no data inside.
+
+The background is Jawg Light, a grey OpenStreetMap map that uMap offers, so the
+coloured pins stand out.
 
 Pins are deduped and declustered exactly as in build_kml.
 """
@@ -28,6 +38,12 @@ from .settings import OUT
 # the KML paddle colours, as uMap colours
 COLOR = {"katu": "#d7301f", "liikenne": "#2b6cd6", "puisto": "#1a9850",
          "asemakaava": "#e6b400", "muu_k": "#e7298a", "kerrokantasi": "#7b3fbf"}
+# grey background, as listed by umap.openstreetmap.fr (its Positron entry needs a CARTO key)
+TILELAYER = {"name": "Jawg Light", "minZoom": 0, "maxZoom": 18, "tms": False,
+             "url_template": "https://tile.jawg.io/jawg-light/{z}/{x}/{y}.png?api-key=community",
+             "attribution": "Tiles courtesy of [[https://www.jawg.io/|jawgmaps]] - Map data "
+                            "[[http://osm.org/copyright/|&copy; OpenStreetMap contributors]], "
+                            "under ODbL."}
 CENTER = [24.94, 60.19]                                  # lon, lat — Helsinki
 ATTRIBUTION = ("Decisions: City of Helsinki (paatokset.hel.fi), Kerro kantasi; "
                "locations geocoded with Nominatim, © OpenStreetMap contributors (ODbL). "
@@ -75,7 +91,7 @@ def feature(r, pos=None):
             "geometry": {"type": "Point", "coordinates": [round(lon, 6), round(lat, 6)]}}
 
 
-def build(records, title, out, dedupe=True, min_sep=40.0, extra=()):
+def build(records, title, out, dedupe=True, min_sep=40.0, extra=(), remote_base=None):
     if dedupe:
         records = dedupe_records(records)
     records = list(records) + list(extra)
@@ -83,16 +99,25 @@ def build(records, title, out, dedupe=True, min_sep=40.0, extra=()):
     bytype = {k: [] for k in ORDER}
     for r in records:
         bytype.setdefault(r["plan_type"], []).append(r)
+    layers_dir = os.path.join(os.path.dirname(out) or ".", "umap")
+    os.makedirs(layers_dir, exist_ok=True)
     layers = []
     for k in ORDER:
         recs = sorted(bytype.get(k, []), key=lambda r: (r["year"], r["month"]))
-        layers.append({
-            "type": "FeatureCollection",
-            "features": [feature(r, pos.get(id(r))) for r in recs],
-            "properties": {"name": f"{LABEL[k]} ({len(recs)})", "color": COLOR[k],
-                           "iconClass": "Circle", "displayOnLoad": True,
-                           "browsable": True, "inCaption": True},
-        })
+        features = [feature(r, pos.get(id(r))) for r in recs]
+        with open(os.path.join(layers_dir, f"{k}.geojson"), "w", encoding="utf-8") as f:
+            json.dump({"type": "FeatureCollection", "features": features}, f,
+                      ensure_ascii=False, separators=(",", ":"))
+        props = {"name": f"{LABEL[k]} ({len(recs)})", "color": COLOR[k],
+                 "iconClass": "Circle", "displayOnLoad": True,
+                 "browsable": True, "inCaption": True}
+        if remote_base:                          # counts would go stale: leave them out
+            props["name"] = LABEL[k]
+            props["remoteData"] = {"url": f"{remote_base.rstrip('/')}/{k}.geojson",
+                                   "format": "geojson"}
+            features = []
+        layers.append({"type": "FeatureCollection", "features": features,
+                       "properties": props})
     doc = {
         "type": "umap",
         "properties": {
@@ -100,7 +125,7 @@ def build(records, title, out, dedupe=True, min_sep=40.0, extra=()):
             "description": ("Helsinki committee plan decisions and Kerro kantasi consultations, "
                             "one layer per plan type. " + ATTRIBUTION),
             "shortCredit": "Data: City of Helsinki, © OpenStreetMap contributors (ODbL)",
-            "zoom": 12, "popupShape": "Large",
+            "zoom": 12, "popupShape": "Large", "tilelayer": TILELAYER,
             "fields": [{"key": "name", "type": "String"},
                        {"key": "description", "type": "Text"},
                        {"key": "stage", "type": "String"},
@@ -116,7 +141,7 @@ def build(records, title, out, dedupe=True, min_sep=40.0, extra=()):
     with open(out, "w", encoding="utf-8") as f:
         json.dump(doc, f, ensure_ascii=False, separators=(",", ":"))
     n = sum(len(bytype.get(k, [])) for k in ORDER)
-    print(f"  {os.path.basename(out):28} {n:4} pins  "
+    print(f"  {os.path.basename(out):28} {n:4} pins  (+ {layers_dir}/*.geojson)  "
           + " ".join(f"{k}:{len(bytype.get(k, []))}" for k in ORDER))
     return n
 
@@ -133,6 +158,10 @@ def main():
     ap.add_argument("--kerrokantasi", default=KK_DATASET,
                     help="Kerro kantasi consultations dataset, added as its own layer "
                          "if the file exists ('' = leave out)")
+    ap.add_argument("--remote-base", default=None,
+                    help="URL of a folder holding the umap/*.geojson files; the layers load "
+                         "from there instead of carrying the data, e.g. https://raw."
+                         "githubusercontent.com/OWNER/REPO/main/data/umap")
     ap.add_argument("-o", "--out", default=f"{OUT}/helsinki_plans.umap")
     args = ap.parse_args()
 
@@ -150,7 +179,7 @@ def main():
     ys = sorted({r["year"] for r in recs})
     span = f"{ys[0]}" if len(ys) == 1 else f"{ys[0]}–{ys[-1]}"
     build(recs, f"Kaupunkiympäristölautakunnan suunnitelmat ja kaavat {span}", args.out,
-          not args.no_dedupe, args.min_sep, kk)
+          not args.no_dedupe, args.min_sep, kk, args.remote_base)
 
 
 if __name__ == "__main__":

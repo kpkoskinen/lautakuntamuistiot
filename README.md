@@ -3,9 +3,10 @@
 > **🗺️ See what it produces: [example map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127)** (OpenStreetMap, with stage and
 > year filters) **or [on Google My Maps](https://www.google.com/maps/d/viewer?mid=1Ggf-akDtTMtHdMUAp-c-wATPfZdPT1A)**
 >
-> Both are **snapshots** and are not updated: the uMap map is the 1 Nov 2026 data in
-> [`data/`](data/), the My Maps one is from October 2026, made with an earlier version of
-> these scripts. For your own map (or newer data after re-running the scripts), import
+> The uMap map loads its pins from [`data/umap/`](data/umap/) in this repository each
+> time it opens, so it shows whatever data is committed here (now: 1 Nov 2026). The
+> My Maps one is a **snapshot** from October 2026, made with an earlier version of these
+> scripts, and is not updated. For your own map (or newer data after re-running the scripts), import
 > [`data/helsinki_plans.kml`](data/helsinki_plans.kml) into your own Google My Maps (see
 > **Import into Google My Maps**), or [`data/helsinki_plans.umap`](data/helsinki_plans.umap)
 > into [uMap](https://umap.openstreetmap.fr) (see **Show it on uMap**).
@@ -67,8 +68,8 @@ scrape yourself.
 **To see it on a map,** import [`data/helsinki_plans.kml`](data/helsinki_plans.kml) into
 your own Google My Maps (see **Import into Google My Maps**), or
 [`data/helsinki_plans.umap`](data/helsinki_plans.umap) into uMap (see **Show it on uMap**).
-Either takes a minute. The
-[example map](https://www.google.com/maps/d/viewer?mid=1Ggf-akDtTMtHdMUAp-c-wATPfZdPT1A) at the top is an older snapshot.
+Either takes a minute. Of the example maps at the top, the uMap one follows the data
+in this repository; the [My Maps one](https://www.google.com/maps/d/viewer?mid=1Ggf-akDtTMtHdMUAp-c-wATPfZdPT1A) is an older snapshot.
 
 ### Example
 
@@ -139,7 +140,7 @@ python3 -m lautakuntamuistiot.scrape_consultations                              
 
 # 2. render (no network) — pure function of the datasets
 python3 -m lautakuntamuistiot.build_kml --years 2013-2026 -o output/helsinki_plans.kml
-python3 -m lautakuntamuistiot.build_umap -o output/helsinki_plans.umap   # same map for uMap
+python3 -m lautakuntamuistiot.build_umap -o output/helsinki_plans.umap   # same map for uMap (+ output/umap/*.geojson)
 ```
 
 Then import the `.kml` into Google My Maps or the `.umap` into uMap (see below).
@@ -157,7 +158,8 @@ python3 -m lautakuntamuistiot.build_kml --no-dedupe                    # every d
 ### Where output goes
 
 All output goes to **`output/`** in the repository root: datasets
-(`*_dataset.json`), the geocoding cache (`geocode_cache.json`) and the maps (`*.kml`).
+(`*_dataset.json`), the geocoding cache (`geocode_cache.json`) and the maps (`*.kml`,
+`*.umap` and `umap/*.geojson`).
 The directory is created on first run and is git-ignored. The published snapshot in
 [`data/`](data/) is the only data kept in the repo.
 
@@ -175,7 +177,7 @@ if you plan to re-scrape, because it saves hours.
 
 ```
 README.md  LICENSE
-data/                         published snapshot (JSON + KML), see data/README.md
+data/                         published snapshot (JSON, KML, .umap + umap/*.geojson), see data/README.md
 lautakuntamuistiot/           the Python package; run each tool with python3 -m
 ├── settings.py               output directory and User-Agent
 ├── common.py                 plan-type classifier, decision-page parsing, fetch helper
@@ -390,10 +392,34 @@ accuracy. Each pin also keeps the plain fields (`date`, `year`, `stage`, `plan_t
 `location`, `geocode`, `drawing_url`, `decision_url`, ...), so the table view and custom
 popup templates can use them.
 
-The [example map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127) was made exactly this way from the 1 Nov 2026 snapshot.
+A map made this way does not update itself: to refresh it, delete the layers and import
+a new file.
 
-The map does not update itself either. To refresh it, delete the layers and import a new
-file. Credit the data as in **Data sources and licences**: the file sets a short credit
+### A uMap map that follows the repository
+
+`build_umap` also writes each layer as plain GeoJSON to a `umap/` folder next to its
+output (`katu.geojson`, `liikenne.geojson`, ...; the snapshot ones are in
+[`data/umap/`](data/umap/)). A uMap layer can load such a file from a URL each time the
+map opens, so a map pointing at the files on GitHub shows whatever was last committed —
+no re-import. The [example map on uMap](https://umap.openstreetmap.fr/en/map/kaupunkiymparistolautakunnan-suunnitelmat-ja-kaava_1479127) works this way, from `data/umap/` on `main`.
+
+To make one, build a `.umap` whose layers point at the files instead of carrying the
+data, and import it as above:
+
+```sh
+python3 -m lautakuntamuistiot.build_umap --remote-base \
+    https://raw.githubusercontent.com/OWNER/REPO/main/data/umap -o output/live.umap
+```
+
+(Or, in an existing map, set each layer's **Remote data**: the file's raw URL, format
+**geojson**.) Then updating the map is: re-run the scrapers, rebuild into `data/`, commit
+and push. GitHub caches raw files for about 5 minutes. The layer names leave out the pin
+counts, since those would go stale.
+
+Both kinds of file use a grey background (Jawg Light) so the coloured pins stand out; pick
+another with the **Change tilelayers** button in edit mode, if you like.
+
+Credit the data as in **Data sources and licences**: the file sets a short credit
 line, but check it in the map's settings under **Credits**.
 
 ## Measuring quality
