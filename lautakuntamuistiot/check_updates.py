@@ -11,8 +11,9 @@ geocoding) and compares them with the datasets:
     python3 -m lautakuntamuistiot.check_updates
     python3 -m lautakuntamuistiot.check_updates --org "Kaupunkiympäristölautakunta" --recheck-days 60
 
-Prints what it found. In a GitHub Action it also writes `pending=true|false` to
-$GITHUB_OUTPUT, so the later steps run only when there is something to fetch. Exit
+Prints what it found. In a GitHub Action it also writes `decisions`, `hearings` and
+`pending` (each true|false) to $GITHUB_OUTPUT, so each later step runs only when there
+is something for it, and the same text to the run's summary page. Exit
 code is 0 either way; a failing list request is an error (exit 1).
 
 Hearings that are still open are refreshed by the scrape, but don't by themselves
@@ -32,27 +33,38 @@ def main():
     ap.add_argument("--kerrokantasi", default=kk.DATASET)
     ap.add_argument("--recheck-days", type=int, default=60)
     args = ap.parse_args()
+    out = []                                             # markdown, for the run summary
 
     ds = load_json(args.dataset, {"records": [], "unlocated": []})
     ds.setdefault("unlocated", [])
-    new, recheck = dec.pending(ds, dec.plan_hits(dec.all_decisions(args.org)), args.recheck_days)
+    plans = dec.plan_hits(dec.all_decisions(args.org))
+    new, recheck = dec.pending(ds, plans, dec.seen_set(ds, args.org, plans, args.recheck_days),
+                               args.recheck_days)
     drawn = [p for p in recheck if extract_pdf(decision_page(dec.decision_url(p[0])) or "")]
-    print(f"decisions ({args.org}): {len(new)} new, {len(drawn)} of {len(recheck)} recent ones "
-          f"without a drawing now have one")
-    for s, subject, _ in new:
-        print(f"  + {time.strftime('%d.%m.%Y', time.gmtime(dec.meeting_ts(s)))}  {subject[:100]}")
+    out.append(f"**Decisions** ({args.org}): {len(new)} new, {len(drawn)} of {len(recheck)} "
+               f"recent ones without a drawing now have one")
+    for tag, (s, subject, _) in [("new", p) for p in new] + [("drawing", p) for p in drawn]:
+        out.append(f"- {tag}: {time.strftime('%d.%m.%Y', time.gmtime(dec.meeting_ts(s)))} "
+                   f"[{subject[:100]}]({dec.decision_url(s)})")
 
     kds = load_json(args.kerrokantasi, {"records": [], "unlocated": []})
     hnew, hopen = kk.pending(kds, kk.plan_hearings(kk.list_hearings()))
-    print(f"Kerro kantasi: {len(hnew)} new, {len(hopen)} still open")
+    out.append(f"\n**Kerro kantasi**: {len(hnew)} new, {len(hopen)} still open")
     for h in hnew:
-        print(f"  + {h['open_at'][:10]}  {kk.fi(h['title'])[:100]}")
+        out.append(f"- new: {h['open_at'][:10]} [{kk.fi(h['title'])[:100]}]"
+                   f"({kk.PAGE.format(h.get('slug') or h['id'])})")
 
-    found = bool(new or drawn or hnew)
-    print("-> new material, run the scrape" if found else "-> nothing new")
+    decisions, hearings = bool(new or drawn), bool(hnew)
+    out.append("\n**Result:** " + ("new material, fetching it" if decisions or hearings
+                                   else "nothing new"))
+    print("\n".join(out))
     if os.environ.get("GITHUB_OUTPUT"):
         with open(os.environ["GITHUB_OUTPUT"], "a") as f:
-            f.write(f"pending={'true' if found else 'false'}\n")
+            f.write(f"decisions={str(decisions).lower()}\nhearings={str(hearings).lower()}\n"
+                    f"pending={str(decisions or hearings).lower()}\n")
+    if os.environ.get("GITHUB_STEP_SUMMARY"):
+        with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as f:
+            f.write("## 1. Check\n\n" + "\n".join(out) + "\n\n")
 
 
 if __name__ == "__main__":

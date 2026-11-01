@@ -1,9 +1,13 @@
 # Daily data update in three steps:
 #   1. check_updates reads only the decision and consultation lists (~20 s) and says
 #      whether there is new material; if not, the job stops there.
-#   2. The scrapers fetch only that material (--only-new).
-#   3. The maps are rebuilt and data/ is committed if a layer in data/umap/ changed.
+#   2. The scrapers fetch only that material (--only-new), each only if its source has
+#      something new.
+#   3. The maps are rebuilt; if anything in data/ changed, update_report lists what
+#      changed (run summary + data/update_log.md) and data/ is committed.
 # The uMap map loads data/umap/*.geojson from GitHub, so a commit updates the map.
+# Every run's summary page (Actions tab -> run) shows what the check found and what
+# changed; data/update_log.md keeps the changes of every committed update.
 name: Update data
 
 on:
@@ -35,24 +39,28 @@ jobs:
         id: check
         run: python3 -m lautakuntamuistiot.check_updates --org "$ORG"
 
-      - name: 2. Fetch only the new material
-        if: steps.check.outputs.pending == 'true'
-        run: |
-          python3 -m lautakuntamuistiot.scrape_decisions --org "$ORG" --only-new
-          python3 -m lautakuntamuistiot.scrape_consultations --only-new
+      - name: 2a. Fetch new decisions
+        if: steps.check.outputs.decisions == 'true'
+        run: python3 -m lautakuntamuistiot.scrape_decisions --org "$ORG" --only-new
 
-      - name: 3. Rebuild the maps and commit if they changed
+      - name: 2b. Fetch new consultations
+        if: steps.check.outputs.hearings == 'true'
+        run: python3 -m lautakuntamuistiot.scrape_consultations --only-new
+
+      - name: 3. Rebuild the maps and commit the changes
         if: steps.check.outputs.pending == 'true'
         run: |
           python3 -m lautakuntamuistiot.build_umap -o data/helsinki_plans.umap
           python3 -m lautakuntamuistiot.build_kml -o data/helsinki_plans.kml
-          if git diff --quiet -- data/umap; then
-            echo "Map layers unchanged; nothing committed."
+          if [ -z "$(git status --porcelain -- data)" ]; then
+            echo "Nothing changed in data/; nothing committed." | tee -a "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
-          git diff --stat -- data
+          python3 -m lautakuntamuistiot.update_report --log data/update_log.md > report.txt
+          cat report.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
           git add data
-          git commit -m "Data update $(date -u +%Y-%m-%d)"
+          git commit -q -F report.txt
+          git pull --rebase -q
           git push

@@ -61,10 +61,11 @@ the plan drawing (PDF) and the decision or consultation page it came from.
    open WFS, with real polygon geometry and the `kaavakartta` drawing. This is a separate
    product; see **Zoning archive** below.
 
-A ready-made snapshot of 1 and 2 (JSON + KML), generated **1 Nov 2026**, is in
-[`data/`](data/): 1 727 located plan decisions (2013–2026), 185 consultations and 1 807
-map pins. See [`data/README.md`](data/README.md). Use it if you don't want to run the
-scrape yourself.
+A ready-made dataset of 1 and 2 (JSON + KML) is in [`data/`](data/), and a daily GitHub
+Action adds new decisions and consultations to it (see **Automatic update**). On 1 Nov
+2026 it had 1 727 located plan decisions (2013–2026), 185 consultations and 1 807 map
+pins. See [`data/README.md`](data/README.md). Use it if you don't want to run the scrape
+yourself.
 
 **To see it on a map,** import [`data/helsinki_plans.kml`](data/helsinki_plans.kml) into
 your own Google My Maps (see **Import into Google My Maps**), or
@@ -136,11 +137,24 @@ demand from the Actions tab) and updates the snapshot in `data/` in place
    yet, recent decisions whose plan drawing has appeared since, and new plan hearings.
    If there is nothing, the job stops here.
 2. **Fetch only that.** `scrape_decisions --only-new` and `scrape_consultations --only-new`
-   open and locate just the pending items and add them to the datasets. Hearings still
-   open for comments are refreshed at the same time.
-3. **Update.** `build_umap` and `build_kml` rebuild the maps. If a layer in `data/umap/`
-   changed, the job commits `data/`; the uMap map loads those files, so it shows the new
-   pins within minutes.
+   open and locate just the pending items and add them to the datasets; each runs only if
+   its own source has something new. Hearings still open for comments are refreshed at
+   the same time.
+3. **Update.** `build_umap` and `build_kml` rebuild the maps. If anything in `data/`
+   changed, `update_report` lists the pins added, changed and removed, and the job
+   commits `data/` with that list as the commit message. The uMap map loads
+   `data/umap/`, so it shows the new pins within minutes.
+
+**What did the runs do?**
+
+- **Every run:** the Actions tab → *Update data* lists all runs (kept 90 days). Each
+  run's summary page shows what the check found (with links to the new decisions and
+  hearings) and, if it fetched anything, what changed on the map.
+- **Every update that changed something:** [`data/update_log.md`](data/update_log.md)
+  (newest first) and the git log (`git log -- data`), both with the pins added and
+  changed.
+- A run that fails (for example a hel.fi site down) shows as failed in the Actions tab,
+  and GitHub e-mails the repository owner by default.
 
 Set the repository variable `LAUTAKUNTA_CONTACT` (Settings → Secrets and variables →
 Actions → Variables) to identify the job to Nominatim. The same steps work locally:
@@ -151,8 +165,11 @@ python3 -m lautakuntamuistiot.scrape_decisions --org "Kaupunkiympäristölautaku
 python3 -m lautakuntamuistiot.scrape_consultations --only-new
 ```
 
-`plans_dataset.json` keeps every processed decision URL in `seen_decisions`, so an
-earlier-stage decision that isn't on the map doesn't count as new again. Closed
+`plans_dataset.json` keeps every processed decision URL in `seen_decisions` (per
+committee), so an earlier-stage decision that isn't on the map doesn't count as new
+again. Of the several decisions of one case, the map keeps the one with a plan drawing,
+else the latest. A dataset from before `seen_decisions` existed is bootstrapped from its
+records, and decisions from the last 60 days before its newest record are opened once. Closed
 hearings already in the dataset are not re-read (the hearing list has no "modified"
 date); a full `scrape_consultations` run refreshes them all.
 
@@ -219,6 +236,7 @@ lautakuntamuistiot/           the Python package; run each tool with python3 -m
 ├── scrape_decisions_2013.py  committee decisions 2013–2017  (hel.fi static hela)
 ├── scrape_consultations.py   Kerro kantasi consultations    (kerrokantasi API)
 ├── check_updates.py          is there new material? (lists only, for the daily job)
+├── update_report.py          what an update changed on the map (summary + update log)
 ├── scrape_zoning.py          zoning archive 1836 →          (kartta.hel.fi WFS)
 ├── build_kml.py              decisions + consultations → KML
 ├── build_umap.py             decisions + consultations → uMap (.umap)
@@ -249,7 +267,10 @@ scrape_consultations  ── kerrokantasi.api.hel.fi (2014→) ─────�
     (*Päätös* text) and the plan-**drawing** PDF, then locates it with `locate`.
   - It upserts into `plans_dataset.json`, keyed on `dm + asia_id + plan_type`.
   - Plans that can't be located go to the dataset's `unlocated` list instead of vanishing.
-  - Option: `--org "<organization_name>"`.
+  - Every processed decision URL is kept in `seen_decisions`, per committee.
+  - Options: `--org "<organization_name>"`; `--only-new` opens only decisions not in
+    `seen_decisions` plus recent ones still without a drawing (`--recheck-days`, default
+    60); `--since YYYY-MM-DD` limits it to meetings from that date.
 - **`locate`** maps a title to a place, using heuristics.
   - It extracts candidate names from the title:
     - street, park and square names in any inflection, restored to the nominative
@@ -292,7 +313,15 @@ scrape_consultations  ── kerrokantasi.api.hel.fi (2014→) ─────�
   - It lists the hearing's drawings: every PDF attachment plus every section image that
     isn't just a credited or stock photo.
   - Pins are labelled with the place name.
-  - It writes `kerrokantasi_dataset.json`.
+  - It writes `kerrokantasi_dataset.json`. With `--only-new` it keeps the dataset and opens
+    only hearings not in it yet plus the ones still open for comments.
+- **`check_updates`** tells whether there is new material, for the daily job: it reads
+  only the decision and hearing lists, and opens just the pages of recent decisions that
+  had no drawing. It prints what it found, writes `decisions`, `hearings` and `pending`
+  (true|false) to `$GITHUB_OUTPUT` and the same text to the run's summary page.
+- **`update_report`** compares the layers in `data/umap/` with the last commit and lists
+  the pins added, changed and removed (pins only nudged aside for a new neighbour are
+  just counted). With `--log FILE` it adds the list to the top of `data/update_log.md`.
 - **`build_kml`** renders pure output from the datasets, with no network.
   - **Slicing:** by year or year range and by committee, as one merged KML or one KML per
     year.
@@ -447,7 +476,7 @@ python3 -m lautakuntamuistiot.build_umap --remote-base \
 
 (Or, in an existing map, set each layer's **Remote data**: the file's raw URL, format
 **geojson**.) Then updating the map is: re-run the scrapers, rebuild into `data/`, commit
-and push. GitHub caches raw files for about 5 minutes. The layer names leave out the pin
+and push. In this repository the daily Action does that (see **Automatic update**). GitHub caches raw files for about 5 minutes. The layer names leave out the pin
 counts, since those would go stale.
 
 Both kinds of file use a grey background (Jawg Light) so the coloured pins stand out; pick

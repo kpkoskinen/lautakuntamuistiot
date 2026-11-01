@@ -34,7 +34,7 @@ check_updates reports the same without opening anything.
     python3 -m lautakuntamuistiot.scrape_decisions --org "Kaupunkiympäristölautakunta" --only-new
     python3 -m lautakuntamuistiot.scrape_decisions --org "..." --since 2026-09-01
 
-The dataset keeps every processed decision URL in `seen_decisions`, so a decision
+The dataset keeps every processed decision URL in `seen_decisions` (per committee), so a decision
 that was opened but not kept (an earlier stage of a case whose later decision is on
 the map) does not count as new again.
 """
@@ -104,22 +104,29 @@ def plan_hits(hits):
     return plans
 
 
-def seen_set(ds, plans):
-    """Decision URLs already processed. A dataset from before `seen_decisions` existed
-    counts every decision from meetings up to its `generated` date as seen."""
-    if "seen_decisions" in ds:
-        return set(ds["seen_decisions"])
-    seen = {r.get("decision_url") for r in ds["records"] + ds.get("unlocated", [])}
-    if ds.get("generated"):
-        cutoff = calendar.timegm(time.strptime(ds["generated"], "%Y-%m-%d"))
+def seen_set(ds, org, plans, margin_days=60):
+    """Decision URLs of `org` already processed (`seen_decisions[org]`).
+
+    A dataset from before seen_decisions existed has only the kept decisions, so the
+    earlier-stage ones of a case would all look new. Bootstrap: the kept decision URLs,
+    plus every plan decision from meetings more than `margin_days` before this org's
+    latest kept decision. Decisions within that margin are opened once, which also
+    catches ones the decision index published late."""
+    by_org = ds.get("seen_decisions")
+    if isinstance(by_org, dict) and org in by_org:
+        return set(by_org[org])
+    mine = [r for r in ds["records"] + ds.get("unlocated", []) if r.get("committee") == org]
+    seen = {r.get("decision_url") for r in mine}
+    dates = [calendar.timegm(time.strptime(r["date"], "%d.%m.%Y")) for r in mine if r.get("date")]
+    if dates:
+        cutoff = max(dates) - margin_days * 86400
         seen |= {decision_url(s) for s, _, _ in plans if meeting_ts(s) < cutoff}
     return seen
 
 
-def pending(ds, plans, recheck_days=60, now=None):
-    """(new, recheck): plan decisions never processed, and decisions from the last
+def pending(ds, plans, seen, recheck_days=60, now=None):
+    """(new, recheck): plan decisions not in `seen`, and decisions from the last
     `recheck_days` days whose record still has no plan drawing."""
-    seen = seen_set(ds, plans)
     no_drawing = {r.get("decision_url") for r in ds["records"] + ds.get("unlocated", [])
                   if not r.get("map_url")}
     cutoff = (now or time.time()) - recheck_days * 86400
@@ -127,6 +134,12 @@ def pending(ds, plans, recheck_days=60, now=None):
     recheck = [p for p in plans if decision_url(p[0]) in seen
                and decision_url(p[0]) in no_drawing and meeting_ts(p[0]) >= cutoff]
     return new, recheck
+
+
+def _rank(r):
+    """Which decision of a case to keep: the one with a plan drawing, else the later one."""
+    d, m, y = (r.get("date") or "01.01.1900").split(".")
+    return bool(r.get("map_url")), (y, m, d)
 
 
 def main():
@@ -152,9 +165,9 @@ def main():
     hits = all_decisions(args.org)
     plans = plan_hits(hits)
     print(f"      {len(hits)} decisions -> {len(plans)} plan decisions", flush=True)
-    seen = seen_set(ds, plans)
+    seen = seen_set(ds, args.org, plans, args.recheck_days)
     if args.only_new:
-        new, recheck = pending(ds, plans, args.recheck_days)
+        new, recheck = pending(ds, plans, seen, args.recheck_days)
         plans = new + recheck
         print(f"      {len(new)} new, {len(recheck)} recent without a drawing to re-check", flush=True)
     if args.since:
@@ -173,27 +186,33 @@ def main():
         t = time.gmtime(meeting_ts(s))
         date = time.strftime("%d.%m.%Y", t)
 
+        k = (dm, asia, key)
         page = decision_page(url)
+        if not page and (k in bykey or k in unloc):
+            # don't replace a known case with a title-only record; retried next run
+            print(f"      ! could not open {url}, kept the existing record", flush=True)
+            continue
         heading, summary, map_url = decision_fields(page) if page else (None, None, None)
         loc, lat, lon, conf = locate(cache, subject, heading, fallback=(summary,))
         if page:                       # a page that didn't load is retried next run
             seen.add(url)
-        k = (dm, asia, key)
         base = dict(committee=args.org, dm=dm, asia_id=asia, plan_type=key,
                     plan_type_label=LABEL[key], heading=heading or subject, title=subject,
                     summary=summary, date=date, year=t.tm_year, month=t.tm_mon,
                     decision_url=url, map_url=map_url)
         base["stage"] = plan_stage(base)
         if lat is None:
-            unloc[k] = base; nloc += 1
+            # a case already on the map keeps its pin; else keep the better decision
+            if k not in bykey and (k not in unloc or _rank(base) >= _rank(unloc[k])):
+                unloc[k] = base; nloc += 1
         else:
             unloc.pop(k, None)
             rec = dict(base, location=loc, lat=lat, lon=lon, geocode=conf)
             if k in bykey:
                 # several decisions per case (e.g. proposal, then approval): keep the
-                # one with a plan drawing, else the later one (same rule as build_kml)
-                old = ds["records"][bykey[k]]
-                if rec["map_url"] or not old.get("map_url"):
+                # one with a plan drawing, else the later one (same rule as build_kml).
+                # Compared by date, since --only-new may reopen an older decision.
+                if _rank(rec) >= _rank(ds["records"][bykey[k]]):
                     ds["records"][bykey[k]] = rec; updated += 1
             else:
                 bykey[k] = len(ds["records"]); ds["records"].append(rec); added += 1
@@ -202,7 +221,9 @@ def main():
             save_cache(cache, args.cache)
 
     ds["unlocated"] = list(unloc.values())
-    ds["seen_decisions"] = sorted(u for u in seen if u)
+    if not isinstance(ds.get("seen_decisions"), dict):
+        ds["seen_decisions"] = {}
+    ds["seen_decisions"][args.org] = sorted(u for u in seen if u)
     ds["generated"] = time.strftime("%Y-%m-%d")
     os.makedirs(os.path.dirname(args.dataset) or ".", exist_ok=True)
     json.dump(ds, open(args.dataset, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
