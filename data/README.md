@@ -18,7 +18,9 @@ running a multi-hour scrape. Everything here can be regenerated with the scripts
 | `update_log.md` | What each automatic update changed on the map (pins added, changed, removed), newest first. Written by `update_report`. |
 | `quality_sample.csv` | 100 random decisions (`evaluate --seed 1`) with empty verdict columns for manual review. Not reviewed yet. |
 | `helsinki_plans.umap` | The same map for [uMap](https://umap.openstreetmap.fr), built with `python3 -m lautakuntamuistiot.build_umap`: layers, colours, popups and a stage/year filter in one file. In uMap: **Import data** → this file → format **umap**. |
-| `umap/*.geojson` | The same layers as plain GeoJSON, one file per plan type (`katu`, `liikenne`, `puisto`, `asemakaava`, `muu_k`, `kerrokantasi`). The example uMap map loads them from GitHub, so updating these files updates that map. |
+| `helsinki_plans_clustered.umap` | The daily updated map's settings: one clustered layer that loads `umap/all.geojson` from GitHub, with plan type, stage and year filters (`build_umap --combined --remote-base …`). |
+| `umap/all.geojson` | Every pin in one file, at its true point, coloured by plan type, with a hover preview. The daily updated uMap map loads it from GitHub, so updating it updates that map. |
+| `umap/*.geojson` | The same pins as one file per plan type (`katu`, `liikenne`, `puisto`, `asemakaava`, `muu_k`, `kerrokantasi`), spread apart where they overlap, for a map with one layer per type. |
 | `helsinki_plans.kml` | The map built from both datasets with `python3 -m lautakuntamuistiot.build_kml`: one layer per plan type plus a consultation layer. Import it into Google My Maps or any GIS tool. |
 
 The date of the last update is in each JSON's `generated` field (the git log shows when

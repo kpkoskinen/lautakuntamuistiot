@@ -186,8 +186,11 @@ def build(records, title, out, dedupe=True, min_sep=40.0, extra=(), remote_base=
         "properties": {
             "name": title,
             "description": ("Helsinki committee plan decisions and Kerro kantasi consultations, "
-                            + ("coloured by plan type; numbers are clusters of pins, click to "
-                               "zoom in or choose. " if combined else "one layer per plan type. ")
+                            + ("coloured by plan type. Numbers are groups of pins: click to "
+                               "zoom in; where several plans share one spot, click the number "
+                               "again to fan them out, then click the pins one by one (close a "
+                               "popup with ×; a click on the map closes the fan). Hover a pin "
+                               "for a preview. " if combined else "one layer per plan type. ")
                             + ATTRIBUTION),
             "shortCredit": "Data: City of Helsinki, © OpenStreetMap contributors (ODbL)",
             "zoom": 12, "popupShape": "Large", "tilelayer": TILELAYER,
