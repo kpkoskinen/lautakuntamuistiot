@@ -14,6 +14,7 @@ running a multi-hour scrape. Everything here can be regenerated with the scripts
 | `kerrokantasi_dataset.json` | Plan-related Kerro kantasi public consultations, 2014 → snapshot date, with their drawings. |
 | `geocode_cache.json` | Every place name looked up for the snapshot and its Nominatim result. The scrapers start from it, so a re-run doesn't repeat those lookups. |
 | `quality_sample.csv` | 100 random decisions (`evaluate --seed 1`) with empty verdict columns for manual review. Not reviewed yet. |
+| `helsinki_plans.umap` | The same map for [uMap](https://umap.openstreetmap.fr), built with `python3 -m lautakuntamuistiot.build_umap`: layers, colours, popups and a stage/year filter in one file. In uMap: **Import data** → this file → format **umap**. |
 | `helsinki_plans.kml` | The map built from both datasets with `python3 -m lautakuntamuistiot.build_kml`: one layer per plan type plus a consultation layer. Import it into Google My Maps or any GIS tool. |
 
 The snapshot date is in each JSON's `generated` field. A snapshot does not update itself;

@@ -5,11 +5,13 @@
 > This is a **snapshot** (October 2026), made with an earlier version of these scripts. It is
 > a sample and is not updated. For the latest data, import
 > [`data/helsinki_plans.kml`](data/helsinki_plans.kml) into your own Google My Maps (see
-> **Import into Google My Maps**).
+> **Import into Google My Maps**), or [`data/helsinki_plans.umap`](data/helsinki_plans.umap)
+> into [uMap](https://umap.openstreetmap.fr) (see **Show it on uMap**).
 
 Scripts that collect the City of Helsinki's published **plan decisions and plan
 drawings** — street, traffic, park and zoning plans, plus public consultations — and
-turn them into **map layers (KML)** for Google My Maps or any GIS tool. Each pin links
+turn them into **map layers**: KML for Google My Maps or any GIS tool, and a `.umap`
+file for [uMap](https://umap.openstreetmap.fr) on OpenStreetMap. Each pin links
 the plan drawing (PDF) and the decision or consultation page it came from.
 
 > **Helsingin suunnitelmapäätökset kartalla.** Työkalu kokoaa Helsingin lautakuntien
@@ -61,7 +63,9 @@ map pins. See [`data/README.md`](data/README.md). Use it if you don't want to ru
 scrape yourself.
 
 **To see it on a map,** import [`data/helsinki_plans.kml`](data/helsinki_plans.kml) into
-your own Google My Maps; it takes a minute (see **Import into Google My Maps**). The
+your own Google My Maps (see **Import into Google My Maps**), or
+[`data/helsinki_plans.umap`](data/helsinki_plans.umap) into uMap (see **Show it on uMap**).
+Either takes a minute. The
 [example map](https://www.google.com/maps/d/viewer?mid=1Ggf-akDtTMtHdMUAp-c-wATPfZdPT1A) at the top is an older snapshot.
 
 ### Example
@@ -133,9 +137,10 @@ python3 -m lautakuntamuistiot.scrape_consultations                              
 
 # 2. render (no network) — pure function of the datasets
 python3 -m lautakuntamuistiot.build_kml --years 2013-2026 -o output/helsinki_plans.kml
+python3 -m lautakuntamuistiot.build_umap -o output/helsinki_plans.umap   # same map for uMap
 ```
 
-Then import the `.kml` into Google My Maps (see below).
+Then import the `.kml` into Google My Maps or the `.umap` into uMap (see below).
 
 More render options:
 
@@ -178,6 +183,7 @@ lautakuntamuistiot/           the Python package; run each tool with python3 -m
 ├── scrape_consultations.py   Kerro kantasi consultations    (kerrokantasi API)
 ├── scrape_zoning.py          zoning archive 1836 →          (kartta.hel.fi WFS)
 ├── build_kml.py              decisions + consultations → KML
+├── build_umap.py             decisions + consultations → uMap (.umap)
 ├── build_zoning_kml.py       zoning archive → KML
 ├── evaluate.py               quality metrics + random sample for manual review
 └── check_locations.py        reverse-geocode pins to spot wrong locations
@@ -361,6 +367,30 @@ python3 -m lautakuntamuistiot.build_zoning_kml --polygons --split   # asemakaava
 4. Pins show the heading, the summary and clickable drawing and decision links.
 
 A static KML does not update itself. To refresh, re-scrape, re-render and re-import.
+
+## Show it on uMap
+
+[uMap](https://umap.openstreetmap.fr) draws on OpenStreetMap and imports its own `.umap`
+format in one step: layers, colours, popups and filters. Use that file rather than the
+KML: uMap imports KML too, but only as data, without uMap's layer, popup and filter
+settings, and the popups are KML HTML rather than uMap's own text format.
+
+1. Go to <https://umap.openstreetmap.fr> → **Create a map**. To edit the map later, log
+   in first; an anonymous map is editable only through its secret edit link.
+2. Click **Import data** (the arrow-up icon on the right), choose
+   [`data/helsinki_plans.umap`](data/helsinki_plans.umap) (or your own `build_umap`
+   output), check that the format says **umap**, and click **Import data** again.
+3. Click **Save**, then share the map through **Share and download** (link or embed code).
+
+You get 6 layers in the KML's colours, a **Stage** and **Year** filter, and popups with the
+heading, decision date and stage, summary, drawing and decision links and location
+accuracy. Each pin also keeps the plain fields (`date`, `year`, `stage`, `plan_type`,
+`location`, `geocode`, `drawing_url`, `decision_url`, ...), so the table view and custom
+popup templates can use them.
+
+The map does not update itself either. To refresh it, delete the layers and import a new
+file. Credit the data as in **Data sources and licences**: the file sets a short credit
+line, but check it in the map's settings under **Credits**.
 
 ## Measuring quality
 
