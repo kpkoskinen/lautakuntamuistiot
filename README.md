@@ -98,8 +98,8 @@ Not every pin is an approved plan. Each record has a **`stage`**:
 | `other`        | the title and summary don't say (mostly pre-2017 decisions without a summary) |
 | `consultation` | a Kerro kantasi public consultation, not a decision |
 
-The stage is a keyword heuristic (`common.plan_stage`) over the title and the *Päätös*
-text, and the pin description shows it. Consultations have their own layer.
+The stage is a keyword heuristic (`common.plan_stage`) over the title and the decision
+text (*Päätös*, or *Esitys* for a proposal), and the pin description shows it. Consultations have their own layer.
 
 ## Requirements
 
@@ -260,6 +260,7 @@ lautakuntamuistiot/           the Python package; run each tool with python3 -m
 ├── scrape_consultations.py   Kerro kantasi consultations    (kerrokantasi API)
 ├── check_updates.py          is there new material? (lists only, for the daily job)
 ├── update_report.py          what an update changed on the map (summary + update log)
+├── repair_summaries.py       re-read stored decisions' summaries after a parser change
 ├── scrape_zoning.py          zoning archive 1836 →          (kartta.hel.fi WFS)
 ├── build_kml.py              decisions + consultations → KML
 ├── build_umap.py             decisions + consultations → uMap (.umap)
@@ -287,7 +288,8 @@ scrape_consultations  ── kerrokantasi.api.hel.fi (2014→) ─────�
   and classifies the subject client-side, so nothing depends on a full-text pre-filter or
   on crawling meeting pages.
   - For each plan it opens the decision page for the **heading** (`<h1>`), the **summary**
-    (*Päätös* text) and the plan-**drawing** PDF, then locates it with `locate`.
+    (the *Päätös* text, or *Esitys* when the committee proposes to the City Board) and the
+    plan-**drawing** PDF, then locates it with `locate`.
   - It upserts into `plans_dataset.json`, keyed on `dm + asia_id + plan_type`.
   - Plans that can't be located go to the dataset's `unlocated` list instead of vanishing.
   - Every processed decision URL is kept in `seen_decisions`, per committee.
@@ -348,6 +350,9 @@ scrape_consultations  ── kerrokantasi.api.hel.fi (2014→) ─────�
   the pins added, changed and removed (pins only nudged aside, less than 150 m, for a
   new neighbour are just counted), then compares the datasets for what doesn't show on
   the map: decisions checked but not shown, unlocated items, failed pages. With `--log FILE` it adds the list to the top of `data/update_log.md`.
+- **`repair_summaries`** re-reads the summary of every stored paatokset decision. A scrape
+  doesn't correct a record it already holds, so run this once after changing the summary
+  parser. It updates only `summary` and `stage`.
 - **`build_kml`** renders pure output from the datasets, with no network.
   - **Slicing:** by year or year range and by committee, as one merged KML or one KML per
     year.
@@ -573,7 +578,7 @@ On the data of 1 Nov 2026:
 | random drawing links that are real PDFs | 30 / 30 |
 | geocode precision | street 68 %, district 25 %, place 6 %, manual 0.3 % |
 | pins outside Helsinki / duplicates | 0 / 0 |
-| stage | proposal 48 %, approved 41 %, other 10 %, returned 0.7 % |
+| stage | proposal 47 %, approved 41 %, other 10 %, returned 1.8 % |
 
 The 100-record review sheet is [`data/quality_sample.csv`](data/quality_sample.csv)
 (seed 1). **It has not been reviewed yet**, so plan-type, drawing and location accuracy

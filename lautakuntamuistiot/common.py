@@ -53,7 +53,7 @@ STAGES = {
     "consultation": "public consultation (Kerro kantasi), not a decision",
 }
 _RETURNED = re.compile(r'palaut\w* asian? uudelleen valmisteltavaksi|pöydälle', re.I)
-_PROPOSAL = re.compile(r'\besity|\besittää|ehdotu|luonno|muistutu', re.I)
+_PROPOSAL = re.compile(r'\besity|\besittää|\besitti\b|ehdotu|luonno|muistutu', re.I)
 _APPROVED = re.compile(r'hyväksy', re.I)
 
 
@@ -124,21 +124,28 @@ def extract_pdf(page):
     return None
 
 
-_STOP = re.compile(r'Avaa kaikki|Päätösehdotus|Käsittely|Esittelijä|Esittelij|'
-                   r'Päätöshistoria|Muutoksenhaku|Lisätiedot|Tämä päätös')
+_STOP = re.compile(r'Avaa kaikki|Päätösehdotus|Esitysehdotus|Käsittely|Esittelijä|Esittelij|'
+                   r'Päätöshistoria|Muutoksenhaku|Lisätiedot|Tämä päätös|Sulje alue|'
+                   r'(?:Päätös|Esitys) on ehdotuksen mukainen')
 
 
 def decision_fields(page):
     """(heading, summary, map_url) from a decision-page HTML.
     heading = the <h1> (richer than the agenda line: has district + plan number);
-    summary = the committee's actual 'Päätös' text, trimmed; map_url = plan drawing."""
+    summary = the committee's actual text, trimmed; map_url = plan drawing.
+
+    The text is headed 'Päätös' or, when the committee only proposes to the City Board
+    (most zoning plans), 'Esitys'. Whichever comes first is the heading: on an 'Esitys'
+    page a later 'Päätös' is the appeal notice ('Päätös tullut nähtäväksi'), running
+    text or an earlier meeting's decision."""
     heading = None
     m = re.search(r'<h1[^>]*>(.*?)</h1>', page, re.S)
     if m:
         heading = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', m.group(1)))).strip() or None
     summary = None
     txt = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', page)))
-    s = re.search(r'\bPäätös\b\s+(.{25,}?)(?:' + _STOP.pattern + ')', txt)
+    s = re.search(r'\b(?:Päätös|Esitys)\b(?! tullut nähtäväksi)\s+(.{25,}?)\s*(?:'
+                  + _STOP.pattern + ')', txt)
     if s:
         summary = s.group(1).strip()
         if len(summary) > 320:
