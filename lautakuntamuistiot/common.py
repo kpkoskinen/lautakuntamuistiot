@@ -32,7 +32,8 @@ TYPES = [   # (key, folder label, paddle-icon, matcher over lowercased title)
 EXCLUDE = re.compile(r'oikaisuvaatimu|talousarvi|toimintasuunnitelma|maankäyttösopim|'
                      r'määrärah|virastopääll|hankinta|vuokra|kokousaj|'
                      r'lausunto|arviointi ja seuranta|seurantaraport|karvi|'
-                     r'vastaus|kuntalaisaloit|aloitteeseen|tonttivaraus|tontinvaraus|varauksen jatka', re.I)
+                     r'vastaus|kuntalaisaloit|aloitteeseen|tonttivaraus|tontinvaraus|varauksen jatka|'
+                     r'toteuttamisohjelm', re.I)   # city-wide yleiskaava programme, not a place
 
 
 def classify(title_lc):

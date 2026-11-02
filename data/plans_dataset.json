@@ -54157,26 +54157,6 @@
   {
    "committee": "Kaupunkiympäristölautakunta",
    "dm": "U540",
-   "asia_id": "hel-2016-012011",
-   "plan_type": "muu_k",
-   "plan_type_label": "Muu kaava",
-   "heading": "Helsingin uuden yleiskaavan toteuttamisohjelma",
-   "title": "Kaupunkiympäristölautakunnan esitys kaupunginhallitukselle toteuttamisohjelman hyväksymiseksi Helsingin uuden yleiskaavan mukaisen maankäytön jatkosuunnittelun aikataulutuksen pohjaksi (a-asia)",
-   "summary": "Kaupunkiympäristölautakunta esitti kaupunginhallitukselle että yleiskaavan toteuttamisohjelma hyväksytään Helsingin uuden yleiskaavan mukaisen maankäytön jatkosuunnittelun aikataulutuksen pohjaksi kuitenkin niin, että Rastilan nykyisen leirintäalueen alueen toteuttaminen siirretään toteuttamisohjelman…",
-   "date": "12.12.2017",
-   "year": 2017,
-   "month": 12,
-   "decision_url": "https://paatokset.hel.fi/fi/asia/hel-2016-012011?paatos=5de962ff-0fb6-47a3-884f-07685a2e24f0",
-   "map_url": null,
-   "stage": "proposal",
-   "location": "Rastila",
-   "lat": 60.2105408,
-   "lon": 25.1239516,
-   "geocode": "district"
-  },
-  {
-   "committee": "Kaupunkiympäristölautakunta",
-   "dm": "U540",
    "asia_id": "hel-2019-012504",
    "plan_type": "asemakaava",
    "plan_type_label": "Asemakaava (zoning)",
@@ -54263,22 +54243,6 @@
   {
    "committee": "Kaupunkiympäristölautakunta",
    "dm": "U540",
-   "asia_id": "hel-2019-004658",
-   "plan_type": "muu_k",
-   "plan_type_label": "Muu kaava",
-   "heading": "Helsingin yleiskaavan (2016) toteuttamisohjelma 2019",
-   "title": "Helsingin yleiskaavan (2016) toteuttamisohjelman seuranta 2019 ",
-   "summary": "Kaupunkiympäristölautakunta päätti merkitä tiedoksi Helsingin yleiskaavan (2016) toteuttamisohjelman seurantaraportin 2019.",
-   "date": "11.06.2019",
-   "year": 2019,
-   "month": 6,
-   "decision_url": "https://paatokset.hel.fi/fi/asia/hel-2019-004658?paatos=7f647272-3aab-4505-94d0-29d739d3b81f",
-   "map_url": null,
-   "stage": "other"
-  },
-  {
-   "committee": "Kaupunkiympäristölautakunta",
-   "dm": "U540",
    "asia_id": "hel-2019-006279",
    "plan_type": "muu_k",
    "plan_type_label": "Muu kaava",
@@ -54327,22 +54291,6 @@
   {
    "committee": "Kaupunkiympäristölautakunta",
    "dm": "U540",
-   "asia_id": "hel-2020-006894",
-   "plan_type": "muu_k",
-   "plan_type_label": "Muu kaava",
-   "heading": "Helsingin yleiskaavan (2016) toteuttamisohjelman seuranta 2020",
-   "title": "Yleiskaavan toteuttamisohjelman seuranta 2020",
-   "summary": "Kaupunkiympäristölautakunta päätti merkitä tiedoksi yleiskaavan toteuttamisohjelman seurantaraportin 2020.",
-   "date": "16.06.2020",
-   "year": 2020,
-   "month": 6,
-   "decision_url": "https://paatokset.hel.fi/fi/asia/hel-2020-006894?paatos=86df4818-f8b0-4ff5-9e07-a5e6ff101029",
-   "map_url": null,
-   "stage": "other"
-  },
-  {
-   "committee": "Kaupunkiympäristölautakunta",
-   "dm": "U540",
    "asia_id": "hel-2020-013347",
    "plan_type": "asemakaava",
    "plan_type_label": "Asemakaava (zoning)",
@@ -54355,38 +54303,6 @@
    "decision_url": "https://paatokset.hel.fi/fi/asia/hel-2020-013347?paatos=5d83723f-a893-4f8f-810a-2cebdce247a2",
    "map_url": null,
    "stage": "approved"
-  },
-  {
-   "committee": "Kaupunkiympäristölautakunta",
-   "dm": "U540",
-   "asia_id": "hel-2021-005491",
-   "plan_type": "muu_k",
-   "plan_type_label": "Muu kaava",
-   "heading": "Helsingin yleiskaavan 2016 toteuttamisohjelman seuranta 2021",
-   "title": "Helsingin yleiskaavan 2016 toteuttamisohjelman seuranta 2021",
-   "summary": "Kaupunkiympäristölautakunta päätti merkitä tiedoksi yleiskaavan toteuttamisohjelman seurantaraportin 2021.",
-   "date": "15.06.2021",
-   "year": 2021,
-   "month": 6,
-   "decision_url": "https://paatokset.hel.fi/fi/asia/hel-2021-005491?paatos=f6a5895c-cb36-48f8-b0bf-9da4753e8e3d",
-   "map_url": null,
-   "stage": "other"
-  },
-  {
-   "committee": "Kaupunkiympäristölautakunta",
-   "dm": "U540",
-   "asia_id": "hel-2021-012354",
-   "plan_type": "muu_k",
-   "plan_type_label": "Muu kaava",
-   "heading": "Helsingin yleiskaava, toteuttamisohjelma 2022",
-   "title": "Kaupunkiympäristölautakunnan esitys kaupunginhallitukselle yleiskaavan toteuttamisohjelman 2022 hyväksymiseksi",
-   "summary": "Kaupunkiympäristölautakunta esitti kaupunginhallitukselle että yleiskaavan toteuttamisohjelma 2022 hyväksytään yleiskaavan 2016 mukaisen maankäytön sekä ajantasaisen yleiskaavakokonaisuuden jatkosuunnittelun aikataulutuksen pohjaksi. että yleiskaavan toteuttamisohjelmaa tarkistetaan valtuustokausittain…",
-   "date": "01.03.2022",
-   "year": 2022,
-   "month": 3,
-   "decision_url": "https://paatokset.hel.fi/fi/asia/hel-2021-012354?paatos=13f00935-f850-4310-ae1b-85642b94a857",
-   "map_url": null,
-   "stage": "proposal"
   },
   {
    "committee": "Kaupunkiympäristölautakunta",
@@ -54435,22 +54351,6 @@
    "decision_url": "https://paatokset.hel.fi/fi/asia/hel-2025-003906?paatos=9ab7f853-3c80-4e90-b6ca-9816fc507756",
    "map_url": null,
    "stage": "approved"
-  },
-  {
-   "committee": "Kaupunkiympäristölautakunta",
-   "dm": "U540",
-   "asia_id": "hel-2025-015267",
-   "plan_type": "muu_k",
-   "plan_type_label": "Muu kaava",
-   "heading": "Helsingin yleiskaava, toteuttamisohjelma 2025",
-   "title": "Kaupunkiympäristölautakunnan esitys kaupunginhallitukselle yleiskaavan toteuttamisohjelman 2025 hyväksymiseksi",
-   "summary": "Kaupunkiympäristölautakunta esitti kaupunginhallitukselle että yleiskaavan toteuttamisohjelma 2025 hyväksytään yleiskaavan 2016 sekä ajantasaisen yleiskaavakokonaisuuden mukaisen maankäytön jatkosuunnittelun aikataulutuksen ja osayleiskaavoituksen pohjaksi. että yleiskaavan toteuttamisohjelmaa tarkistetaan…",
-   "date": "11.11.2025",
-   "year": 2025,
-   "month": 11,
-   "decision_url": "https://paatokset.hel.fi/fi/asia/hel-2025-015267?paatos=29cf338b-f177-4ec9-8b79-635627b0b295",
-   "map_url": null,
-   "stage": "proposal"
   },
   {
    "committee": "Kaupunkiympäristölautakunta",
@@ -54530,22 +54430,6 @@
    "month": 4,
    "decision_url": "https://paatokset.hel.fi/fi/asia/hel-2017-001746?paatos=03db9f47-a485-4e91-bc14-a97bec80a5cc",
    "map_url": "https://ahjojulkaisu.hel.fi/3EA5071A-4FB9-C181-8C44-5B6619400000.pdf",
-   "stage": "approved"
-  },
-  {
-   "committee": "Kaupunkisuunnittelulautakunta",
-   "dm": "51100",
-   "asia_id": "hel-2016-012011",
-   "plan_type": "muu_k",
-   "plan_type_label": "Muu kaava",
-   "heading": "Helsingin uuden yleiskaavan toteuttamisohjelma",
-   "title": "Uuden yleiskaavan toteuttamisohjelman lyhyen aikavälin painopisteet",
-   "summary": "Kaupunkisuunnittelulautakunta päätti merkitä tiedoksi uuden yleiskaavan toteuttamisohjelman lyhyen aikavälin painopisteet yhtenä vaihtoehtona. Lautakunta korosti, että painopisteet määritetään valtuuston strategiatyön pohjalta. että kaupunginvaltuuston yleiskaavakäsittelyssä hyväksymät ponnet tulee ottaa…",
-   "date": "09.05.2017",
-   "year": 2017,
-   "month": 5,
-   "decision_url": "https://paatokset.hel.fi/fi/asia/hel-2016-012011?paatos=d1e14156-d03c-4028-a1e7-552e33652662",
-   "map_url": null,
    "stage": "approved"
   },
   {
@@ -57669,32 +57553,6 @@
   {
    "committee": "Kaupunkisuunnittelulautakunta",
    "dm": "51100",
-   "asia_id": "hela-c30bda39-558e-cca5-a875-5894d350000b",
-   "plan_type": "muu_k",
-   "plan_type_label": "Muu kaava",
-   "heading": "Helsingin uuden yleiskaavan toteuttamisohjelman luonnos (a-asia)",
-   "title": "Helsingin uuden yleiskaavan toteuttamisohjelman luonnos (a-asia)",
-   "summary": null,
-   "date": "29.11.2016",
-   "year": 2016,
-   "month": 11,
-   "location": null,
-   "lat": null,
-   "lon": null,
-   "geocode": "none",
-   "decision_url": "https://www.hel.fi/static/public/hela/Kaupunkisuunnittelulautakunta/Suomi/Paatostiedote/2016/Ksv_2016-11-29_Kslk_38_Pt/C30BDA39-558E-CCA5-A875-5894D350000B/Helsingin_uuden_yleiskaavan_toteuttamisohjelman_lu.pdf",
-   "map_url": null,
-   "attachments": [
-    [
-     "Helsingin uuden yleiskaavan toteuttamisohjelman luonnos",
-     "https://www.hel.fi/static/public/hela/Kaupunkisuunnittelulautakunta/Suomi/Paatostiedote/2016/Ksv_2016-11-29_Kslk_38_Pt/D0FB9EEB-8B99-CA38-A4A6-589062500000/Liite.pdf"
-    ]
-   ],
-   "stage": "proposal"
-  },
-  {
-   "committee": "Kaupunkisuunnittelulautakunta",
-   "dm": "51100",
    "asia_id": "hela-6b3cd1e2-7639-c277-870a-5894d4200009",
    "plan_type": "asemakaava",
    "plan_type_label": "Asemakaava (zoning)",
@@ -57869,32 +57727,6 @@
     ]
    ],
    "stage": "other"
-  },
-  {
-   "committee": "Kaupunkisuunnittelulautakunta",
-   "dm": "51100",
-   "asia_id": "hela-6dcc92fc-47ca-c23d-8b06-58dd6560001f",
-   "plan_type": "muu_k",
-   "plan_type_label": "Muu kaava",
-   "heading": "Helsingin uuden yleiskaavan toteuttamisohjelman luonnos (a-asia)",
-   "title": "Helsingin uuden yleiskaavan toteuttamisohjelman luonnos (a-asia)",
-   "summary": null,
-   "date": "13.12.2016",
-   "year": 2016,
-   "month": 12,
-   "location": null,
-   "lat": null,
-   "lon": null,
-   "geocode": "none",
-   "decision_url": "https://www.hel.fi/static/public/hela/Kaupunkisuunnittelulautakunta/Suomi/Paatostiedote/2016/Ksv_2016-12-13_Kslk_39_Pt/6DCC92FC-47CA-C23D-8B06-58DD6560001F/Helsingin_uuden_yleiskaavan_toteuttamisohjelman_lu.pdf",
-   "map_url": null,
-   "attachments": [
-    [
-     "Helsingin uuden yleiskaavan toteuttamisohjelman luonnos, 13.12.2016",
-     "https://www.hel.fi/static/public/hela/Kaupunkisuunnittelulautakunta/Suomi/Paatostiedote/2016/Ksv_2016-12-13_Kslk_39_Pt/F9EE0A90-A033-C86F-864C-58BEFE700000/Liite.pdf"
-    ]
-   ],
-   "stage": "proposal"
   },
   {
    "committee": "Kaupunkisuunnittelulautakunta",
@@ -58400,58 +58232,6 @@
     [
      "Suunnitteluperiaatteet",
      "https://www.hel.fi/static/public/hela/Kaupunkisuunnittelulautakunta/Suomi/Paatostiedote/2017/Ksv_2017-04-25_Kslk_11_Pt/A226F8FD-F12F-C5C9-8686-5B65BE200000/Liite.pdf"
-    ]
-   ],
-   "stage": "other"
-  },
-  {
-   "committee": "Kaupunkisuunnittelulautakunta",
-   "dm": "51100",
-   "asia_id": "hela-5dde3d30-19f1-c44a-94d5-5b898940000d",
-   "plan_type": "muu_k",
-   "plan_type_label": "Muu kaava",
-   "heading": "Uuden yleiskaavan toteuttamisohjelman lyhyen aikavälin painopisteet (a-asia)",
-   "title": "Uuden yleiskaavan toteuttamisohjelman lyhyen aikavälin painopisteet (a-asia)",
-   "summary": null,
-   "date": "25.04.2017",
-   "year": 2017,
-   "month": 4,
-   "location": null,
-   "lat": null,
-   "lon": null,
-   "geocode": "none",
-   "decision_url": "https://www.hel.fi/static/public/hela/Kaupunkisuunnittelulautakunta/Suomi/Paatostiedote/2017/Ksv_2017-04-25_Kslk_11_Pt/5DDE3D30-19F1-C44A-94D5-5B898940000D/Uuden_yleiskaavan_toteuttamisohjelman_lyhyen_aikav.pdf",
-   "map_url": null,
-   "attachments": [
-    [
-     "Uuden yleiskaavan toteuttamisohjelman lyhyen aikavälin painopisteet",
-     "https://www.hel.fi/static/public/hela/Kaupunkisuunnittelulautakunta/Suomi/Paatostiedote/2017/Ksv_2017-04-25_Kslk_11_Pt/72BFB29B-52DE-CEB2-97B4-5B804B500004/Liite.pdf"
-    ]
-   ],
-   "stage": "other"
-  },
-  {
-   "committee": "Kaupunkisuunnittelulautakunta",
-   "dm": "51100",
-   "asia_id": "hela-6ee8c13d-9732-c9e2-9fef-5bce6420000d",
-   "plan_type": "muu_k",
-   "plan_type_label": "Muu kaava",
-   "heading": "Uuden yleiskaavan toteuttamisohjelman lyhyen aikavälin painopisteet (a-asia)",
-   "title": "Uuden yleiskaavan toteuttamisohjelman lyhyen aikavälin painopisteet (a-asia)",
-   "summary": null,
-   "date": "09.05.2017",
-   "year": 2017,
-   "month": 5,
-   "location": null,
-   "lat": null,
-   "lon": null,
-   "geocode": "none",
-   "decision_url": "https://www.hel.fi/static/public/hela/Kaupunkisuunnittelulautakunta/Suomi/Paatostiedote/2017/Ksv_2017-05-09_Kslk_12_Pt/6EE8C13D-9732-C9E2-9FEF-5BCE6420000D/Uuden_yleiskaavan_toteuttamisohjelman_lyhyen_aikav.pdf",
-   "map_url": null,
-   "attachments": [
-    [
-     "Uuden yleiskaavan toteuttamisohjelman lyhyen aikavälin painopisteet",
-     "https://www.hel.fi/static/public/hela/Kaupunkisuunnittelulautakunta/Suomi/Paatostiedote/2017/Ksv_2017-05-09_Kslk_12_Pt/72BFB29B-52DE-CEB2-97B4-5B804B500004/Liite.pdf"
     ]
    ],
    "stage": "other"

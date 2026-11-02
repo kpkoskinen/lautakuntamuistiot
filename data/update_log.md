@@ -2,6 +2,12 @@
 
 What each automatic update changed on the map, newest first.
 
+## Data update 2026-11-02: 0 pins added, 0 changed, 1 removed
+
+- **muu_k**: +0 added, 0 changed, 1 removed
+  - − [Rastila – kaava 12/2017](https://paatokset.hel.fi/fi/asia/hel-2016-012011?paatos=5de962ff-0fb6-47a3-884f-07685a2e24f0)
+- 10 other pins moved a few metres to make room
+
 ## Data update 2026-11-02: 2 pins added, 7 changed, 0 removed
 
 - **katu**: +0 added, 1 changed, 0 removed
