@@ -2,6 +2,23 @@
 
 What each automatic update changed on the map, newest first.
 
+## Data update 2026-11-02: 2 pins added, 7 changed, 0 removed
+
+- **katu**: +0 added, 1 changed, 0 removed
+  - ~ [Lauttasaari – katusuunnitelma 12/2024](https://paatokset.hel.fi/fi/asia/hel-2023-015072?paatos=13505ef0-7694-4efe-b0d4-6d9ea4185ace)
+- **puisto**: +0 added, 5 changed, 0 removed
+  - ~ [Bockinpuisto – puistosuunnitelma 02/2017](https://paatokset.hel.fi/fi/asia/hel-2016-011912?paatos=5d3da5f1-9324-4053-8cb9-0be7737f7df5)
+  - ~ [Suutarila – puistosuunnitelma 03/2017](https://paatokset.hel.fi/fi/asia/hel-2017-001985?paatos=857c7909-584d-4772-9d40-56cf2dd7bee5)
+  - ~ [Munkinpuisto – puistosuunnitelma 03/2017](https://paatokset.hel.fi/fi/asia/hel-2017-001730?paatos=31bb7715-bb1f-4344-bd04-854721448ce1)
+  - ~ [Loviseholminpuisto – puistosuunnitelma 04/2017](https://paatokset.hel.fi/fi/asia/hel-2017-003594?paatos=240bb890-0f95-42b7-a4c9-aee3597e76ec)
+  - ~ [Saukonlaituri – puistosuunnitelma 05/2017](https://paatokset.hel.fi/fi/asia/hel-2017-004890?paatos=c266e3cc-b7e7-4367-8147-eda3e0cf2a2c)
+- **asemakaava**: +1 added, 1 changed, 0 removed
+  - + [Lauttasaari – asemakaava 12/2019](https://paatokset.hel.fi/fi/asia/hel-2019-012504?paatos=49703cce-512f-4f30-bc13-32cee2514209)
+  - ~ [Vartiosaari – asemakaava 10/2017](https://paatokset.hel.fi/fi/asia/hel-2012-001559?paatos=e8273ae6-3022-42ff-b9e4-f7c2a57c5231)
+- **muu_k**: +1 added, 0 changed, 0 removed
+  - + [Rastila – kaava 12/2017](https://paatokset.hel.fi/fi/asia/hel-2016-012011?paatos=5de962ff-0fb6-47a3-884f-07685a2e24f0)
+- 13 other pins moved a few metres to make room
+
 ## Data update 2026-11-02: 0 pins added, 374 changed, 0 removed
 
 - **liikenne**: +0 added, 92 changed, 0 removed

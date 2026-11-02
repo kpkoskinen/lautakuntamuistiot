@@ -6098,5 +6098,30 @@
   60.2494494,
   25.1877274,
   "street"
+ ],
+ "Itäine": [
+  null,
+  null,
+  "none"
+ ],
+ "Pohjoine": [
+  null,
+  null,
+  "none"
+ ],
+ "Rastila": [
+  60.2105408,
+  25.1239516,
+  "district"
+ ],
+ "Hoas": [
+  null,
+  null,
+  "none"
+ ],
+ "Y-tunnus": [
+  null,
+  null,
+  "none"
  ]
 }
