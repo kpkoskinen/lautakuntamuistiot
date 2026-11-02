@@ -101,6 +101,19 @@ Not every pin is an approved plan. Each record has a **`stage`**:
 The stage is a keyword heuristic (`common.plan_stage`) over the title and the *Päätös*
 text, and the pin description shows it. Consultations have their own layer.
 
+### Beyond the map: asking questions of the decisions
+
+[`docs/meeting_content_qa_research.md`](docs/meeting_content_qa_research.md) (Nov 2026)
+looks at a question-answering service, likely an MCP server, over the *content* of the
+decisions: "what is going on in area X", "what has been decided on project Y", "all
+material and drawings concerning road Z". It covers:
+
+- prior art;
+- a map of what Helsinki's open data offers beyond what this repository uses, including
+  the full decision text and case histories;
+- the data problems to solve;
+- a four-week experiment plan.
+
 ## Requirements
 
 - **Python 3.8+**, standard library only. There is nothing to `pip install`.
@@ -251,6 +264,7 @@ if you plan to re-scrape, because it saves hours.
 ```
 README.md  LICENSE
 data/                         published data, updated daily (JSON, KML, .umap + umap/*.geojson), see data/README.md
+docs/                         research notes, e.g. meeting_content_qa_research.md (Q&A over decision content)
 lautakuntamuistiot/           the Python package; run each tool with python3 -m
 ├── settings.py               output directory and User-Agent
 ├── common.py                 plan-type classifier, decision-page parsing, fetch helper
