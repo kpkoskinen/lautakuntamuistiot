@@ -1,5 +1,10 @@
 # MCP service for municipal decisions
 
+*See also [Questions over decision content](Questions%20over%20decision%20content.md): it
+inventories Helsinki's sources beyond this repository, assesses feasibility by question type
+and sets out an experiment plan. The summary figures below predate the summary parser fix
+of 2 Nov 2026.*
+
 **Recommendation: build it, but as a staged experiment for professional users, and do not launch a public service on today's data.** A read-only MCP server over this repository is technically cheap: a localhost spike on the real data answered tool calls at p50 7.5 ms, and hosting should cost about EUR 0 to 6 a month. The niche also looks open, because no Ahjo or paatokset.hel.fi MCP server was found and the City's own decision API is closed. The hard parts are elsewhere. Only 37 % of located decisions carry a real summary, the `stage` field cannot follow a case to the City Board or Council, and an assistant will restate heuristic fields as fact. The features that would add most value, full decision text above all, are also the ones that bring GDPR duties. Municipal MCP servers exist (OpenCouncil in Greece is the closest), but none publishes usage, so "successful" currently means attention and maintenance rather than proven user value. The ten ordered steps in section 4 test data truth, assistant behaviour and demand before anything goes public, and their first three steps also improve the map if the MCP idea later fails. No lawyer or data protection officer has reviewed any of this, and no Helsinki user has been interviewed.
 
 **How to read the evidence labels.**

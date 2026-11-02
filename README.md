@@ -103,16 +103,23 @@ text (*Päätös*, or *Esitys* for a proposal), and the pin description shows it
 
 ### Beyond the map: asking questions of the decisions
 
-[`docs/meeting_content_qa_research.md`](docs/meeting_content_qa_research.md) (Nov 2026)
-looks at a question-answering service, likely an MCP server, over the *content* of the
-decisions: "what is going on in area X", "what has been decided on project Y", "all
-material and drawings concerning road Z". It covers:
+Two research reports (Nov 2026) look at an MCP server that lets Claude or another
+assistant answer questions about Helsinki's decisions:
 
-- prior art;
-- a map of what Helsinki's open data offers beyond what this repository uses, including
-  the full decision text and case histories;
-- the data problems to solve;
-- a four-week experiment plan.
+- [**MCP service for municipal decisions**](docs/reports/MCP%20service%20for%20municipal%20decisions.md)
+  covers comparable services and whether they found users, the use cases, MCP
+  engineering and hosting cost, and the legal and data constraints. It ends with ten
+  ordered experiments. Its research notes are in
+  [`docs/research_notes/`](docs/research_notes/).
+- [**Questions over decision content**](docs/reports/Questions%20over%20decision%20content.md)
+  goes beyond plan locations to the *content* of the meetings: "what is going on in area
+  X", "what has been decided on project Y", "all material and drawings concerning road
+  Z". It covers:
+  - a map of what Helsinki's open data offers beyond what this repository uses,
+    including the full decision text and each case's history across bodies;
+  - feasibility by question type;
+  - the data problems to solve;
+  - a four-week experiment plan.
 
 ## Requirements
 
@@ -264,7 +271,8 @@ if you plan to re-scrape, because it saves hours.
 ```
 README.md  LICENSE
 data/                         published data, updated daily (JSON, KML, .umap + umap/*.geojson), see data/README.md
-docs/                         research notes, e.g. meeting_content_qa_research.md (Q&A over decision content)
+docs/reports/                 research reports (an MCP service over the decisions)
+docs/research_notes/          the notes behind them
 lautakuntamuistiot/           the Python package; run each tool with python3 -m
 ├── settings.py               output directory and User-Agent
 ├── common.py                 plan-type classifier, decision-page parsing, fetch helper

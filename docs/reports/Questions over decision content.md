@@ -11,6 +11,14 @@ and decisions, not only plan locations. Typical questions:*
 *Builds on this repository's datasets. Protocol choices: read-only, MCP spec
 2026-07-28, local first.*
 
+*Companion to [MCP service for municipal decisions](MCP%20service%20for%20municipal%20decisions.md),
+which covers comparable services and their uptake, MCP engineering and hosting cost, and
+legal constraints in more depth. This report adds the inventory of Helsinki's sources
+(§2), feasibility by question type (§3) and an experiment plan built on the full decision
+text (§5). Where the two disagree on numbers, the cause is the date: this report was
+measured after the summary parser fix of 2 Nov 2026, which replaced 365 appeal-notice
+summaries.*
+
 **Verification key.**
 - **[LV]** = live-verified against the endpoint on 2026-11-02.
 - **[repo]** = measured in this repository's `data/`.
