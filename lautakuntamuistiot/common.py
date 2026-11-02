@@ -1,6 +1,6 @@
 """
-Shared pieces: the plan-type classifier, decision-page parsing (heading, 'Päätös'
-summary, plan-drawing PDF), a fetch helper and the default dataset paths.
+Shared pieces: the plan-type classifier, decision-page parsing (heading, 'Päätös' or
+'Esitys' summary, plan-drawing PDF), a fetch helper and the default dataset paths.
 """
 import urllib.request, re, json, html
 
@@ -59,7 +59,7 @@ _APPROVED = re.compile(r'hyväksy', re.I)
 
 def plan_stage(rec):
     """approved | proposal | returned | other — keyword heuristic over the title and
-    heading first, then the 'Päätös' summary (see STAGES)."""
+    heading first, then the 'Päätös' / 'Esitys' summary (see STAGES)."""
     head = f'{rec.get("title") or ""} {rec.get("heading") or ""}'
     summary = rec.get("summary") or ""
     if _RETURNED.search(summary):
@@ -137,14 +137,20 @@ def decision_fields(page):
     The text is headed 'Päätös' or, when the committee only proposes to the City Board
     (most zoning plans), 'Esitys'. Whichever comes first is the heading: on an 'Esitys'
     page a later 'Päätös' is the appeal notice ('Päätös tullut nähtäväksi'), running
-    text or an earlier meeting's decision."""
+    text or an earlier meeting's decision.
+
+    The search starts at the section heading (<h3 class="SisaltoOtsikko">Päätös|Esitys)
+    when the page has one, because the page head and breadcrumb repeat titles such as
+    'Esitys kaupunginhallitukselle …'; pages without it are searched whole."""
     heading = None
     m = re.search(r'<h1[^>]*>(.*?)</h1>', page, re.S)
     if m:
         heading = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', m.group(1)))).strip() or None
     summary = None
-    txt = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', page)))
-    s = re.search(r'\b(?:Päätös|Esitys)\b(?! tullut nähtäväksi)\s+(.{25,}?)\s*(?:'
+    sec = re.search(r'<h3[^>]*class="SisaltoOtsikko"[^>]*>\s*(?:Päätös|Esitys)\s*</h3>', page)
+    body = page[sec.start():] if sec else page
+    txt = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', body)))
+    s = re.search(r'\b(?:Päätös|Esitys)\b(?! (?:on )?tullut nähtäväksi)\s+(.{25,}?)\s*(?:'
                   + _STOP.pattern + ')', txt)
     if s:
         summary = s.group(1).strip()

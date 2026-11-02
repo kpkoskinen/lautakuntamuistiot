@@ -352,7 +352,10 @@ scrape_consultations  ── kerrokantasi.api.hel.fi (2014→) ─────�
   the map: decisions checked but not shown, unlocated items, failed pages. With `--log FILE` it adds the list to the top of `data/update_log.md`.
 - **`repair_summaries`** re-reads the summary of every stored paatokset decision. A scrape
   doesn't correct a record it already holds, so run this once after changing the summary
-  parser. It updates only `summary` and `stage`.
+  parser or the stage heuristic. It updates only `summary` and `stage` (recomputed for
+  every record), except that an unlocated decision is located again, since `locate` also
+  reads the summary, and moves onto the map if that now succeeds. It writes the dataset
+  only at the end, through a temporary file.
 - **`build_kml`** renders pure output from the datasets, with no network.
   - **Slicing:** by year or year range and by committee, as one merged KML or one KML per
     year.

@@ -10,7 +10,7 @@ so you can re-slice the same dataset any number of ways without re-scraping.
     python3 -m lautakuntamuistiot.build_kml --years 2025 --per-year      # one KML per year in range
 
 Each plan type is a Folder (= My Maps layer); each pin carries the heading,
-decision date, the 'Päätös' summary, a link to the plan drawing (when known)
+decision date, the 'Päätös' / 'Esitys' summary, a link to the plan drawing (when known)
 and to the decision page. Kerro kantasi consultations (scrape_consultations)
 are added as one more layer, with their comment period and every drawing.
 
