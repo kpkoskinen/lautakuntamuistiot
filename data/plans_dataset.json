@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-02",
+ "generated": "2026-11-06",
  "records": [
   {
    "committee": "Kaupunkiympäristölautakunta",
@@ -54173,6 +54173,26 @@
    "lat": 60.1598371,
    "lon": 24.8802249,
    "geocode": "district"
+  },
+  {
+   "committee": "Kaupunkiympäristölautakunta",
+   "dm": "U540",
+   "asia_id": "hel-2024-012380",
+   "plan_type": "asemakaava",
+   "plan_type_label": "Asemakaava (zoning)",
+   "heading": "Asemakaavan muutos nro 13029, Malmi, tontti 38220/3, Kirkonkyläntie 3, Marvea Oy",
+   "title": "Kaupunkiympäristölautakunnan esitys kaupunginhallitukselle, Ylä-Malmi, Kirkonkyläntie 3, tarkistettu asemakaavan muutosehdotus (nro 13029)",
+   "summary": "Kaupunkiympäristölautakunta esitti kaupunginhallitukselle 3.11.2026 päivätyn asemakaavan muutosehdotuksen nro 13029 (liite 3) hyväksymistä. Asemakaavan muutos koskee Helsingin kaupungin 38. kaupunginosan (Malmi, Ylä-Malmi) korttelin 38220 tonttia 3. Lisäksi lautakunta päätti ettei ehdotusta aseteta uudelleen…",
+   "date": "03.11.2026",
+   "year": 2026,
+   "month": 11,
+   "decision_url": "https://paatokset.hel.fi/fi/asia/hel-2024-012380?paatos=8301e78e-60ca-48f6-ae61-238669f65a7d",
+   "map_url": "https://ahjojulkaisu.hel.fi/7C49025F-C1BA-C970-946C-A120A5100000.pdf",
+   "stage": "proposal",
+   "location": "Kirkonkyläntie",
+   "lat": 60.2513187,
+   "lon": 25.0082053,
+   "geocode": "street"
   }
  ],
  "unlocated": [
@@ -60030,6 +60050,7 @@
    "https://paatokset.hel.fi/fi/asia/hel-2024-011730?paatos=77338411-c0ea-c3f9-8592-973490200000",
    "https://paatokset.hel.fi/fi/asia/hel-2024-011730?paatos=fdcb34f6-aeb3-49d0-8f5a-54c41b0e53ad",
    "https://paatokset.hel.fi/fi/asia/hel-2024-012369?paatos=c8ee4e61-f8cf-415c-a8db-bfaddd5503f6",
+   "https://paatokset.hel.fi/fi/asia/hel-2024-012380?paatos=8301e78e-60ca-48f6-ae61-238669f65a7d",
    "https://paatokset.hel.fi/fi/asia/hel-2024-012915?paatos=ab175bd2-1480-cfe6-8e11-9cfa9770000f",
    "https://paatokset.hel.fi/fi/asia/hel-2024-013039?paatos=aadfe947-a348-4075-bb51-9c3e9f5e1ac9",
    "https://paatokset.hel.fi/fi/asia/hel-2024-013544?paatos=08634ef9-6c04-4446-8da1-0d9e267469c5",

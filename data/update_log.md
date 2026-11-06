@@ -2,6 +2,12 @@
 
 What each automatic update changed on the map, newest first.
 
+## Data update 2026-11-06: 1 pins added, 0 changed, 0 removed
+
+- **asemakaava**: +1 added, 0 changed, 0 removed
+  - + [Kirkonkyläntie – asemakaava 11/2026](https://paatokset.hel.fi/fi/asia/hel-2024-012380?paatos=8301e78e-60ca-48f6-ae61-238669f65a7d)
+- 8 other pins moved a few metres to make room
+
 ## Data update 2026-11-02: 0 pins added, 0 changed, 1 removed
 
 - **muu_k**: +0 added, 0 changed, 1 removed
