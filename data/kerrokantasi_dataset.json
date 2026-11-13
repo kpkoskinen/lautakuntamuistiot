@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-20",
+ "generated": "2026-11-13",
  "source": "https://kerrokantasi.api.hel.fi/v1/hearing/",
  "records": [
   {
@@ -80,6 +80,7 @@
    "committee": "Kerro kantasi",
    "dm": "kerrokantasi",
    "asia_id": "kk-6gTaLdgnfC0Y2Sivegg5c9aUzVc932DB",
+   "stage": "consultation",
    "plan_type": "kerrokantasi",
    "subtype": null,
    "heading": "Vastaa Pitäjänmäen karttakyselyyn!",
@@ -94,10 +95,10 @@
     "Yritys",
     "maisemasuunnittelu",
     "Liikennesuunnittelu",
-    "Pitäjänmäki",
     "asukasosallisuus",
-    "asuntorakentaminen",
-    "osallistuminen"
+    "Pitäjänmäki",
+    "osallistuminen",
+    "asuntorakentaminen"
    ],
    "drawings": [
     [
@@ -110,8 +111,7 @@
    "lat": 60.221057963838234,
    "lon": 24.868328226391835,
    "geocode": "area",
-   "area_km": 2.58,
-   "stage": "consultation"
+   "area_km": 2.58
   },
   {
    "committee": "Kerro kantasi",
@@ -8813,6 +8813,57 @@
    "geocode": "area",
    "area_km": 1.09,
    "stage": "consultation"
+  },
+  {
+   "committee": "Kerro kantasi",
+   "dm": "kerrokantasi",
+   "asia_id": "kk-ivBnhkajdPnGUopT56WMVsUBxflkVR2u",
+   "stage": "consultation",
+   "plan_type": "kerrokantasi",
+   "subtype": null,
+   "heading": "Kerro mielipiteesi Kivelän sairaala-alueen uusista maankäyttövaihtoehdoista",
+   "title": "Kerro mielipiteesi Kivelän sairaala-alueen uusista maankäyttövaihtoehdoista",
+   "summary": "Kivelän sairaala-alueelle on tehty kolme uutta maankäyttövaihtoehtoa. Tutustu niihin ja kerro näkemyksesi vuoden 2026 loppuun mennessä.",
+   "date": "12.11.2026",
+   "close_date": "31.12.2026",
+   "year": 2026,
+   "month": 11,
+   "decision_url": "https://kerrokantasi.hel.fi/kivela2026",
+   "labels": [
+    "asuntorakentaminen",
+    "osallisuus",
+    "Töölö",
+    "osallistuminen",
+    "alueidenkäyttö"
+   ],
+   "drawings": [
+    [
+     "Kuva: Suomen Ilmakuva Oy",
+     "https://kerrokantasi.api.hel.fi/media/images/2026/11/GZGCzpd7.webp"
+    ],
+    [
+     "Vaihtoehto A",
+     "https://kerrokantasi.api.hel.fi/media/images/2026/10/uklNpGUV.webp"
+    ],
+    [
+     "Vaihtoehto B",
+     "https://kerrokantasi.api.hel.fi/media/images/2026/10/hFqJny40.webp"
+    ],
+    [
+     "Vaihtoehto C",
+     "https://kerrokantasi.api.hel.fi/media/images/2026/10/F5gSqu4H.webp"
+    ],
+    [
+     "Kuva: Suomen Ilmakuva Oy",
+     "https://kerrokantasi.api.hel.fi/media/images/2026/11/IpruBn8d.webp"
+    ]
+   ],
+   "map_url": "https://kerrokantasi.api.hel.fi/media/images/2026/11/GZGCzpd7.webp",
+   "location": "Kerro mielipiteesi Kivelän sairaala-alueen uusista…",
+   "lat": 60.178891855927425,
+   "lon": 24.918720552608917,
+   "geocode": "area",
+   "area_km": 0.58
   }
  ],
  "unlocated": [

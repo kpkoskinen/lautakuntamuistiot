@@ -2,6 +2,12 @@
 
 What each automatic update changed on the map, newest first.
 
+## Data update 2026-11-13: 1 pins added, 0 changed, 0 removed
+
+- **kerrokantasi**: +1 added, 0 changed, 0 removed
+  - + [Kerro mielipiteesi Kivelän sairaala-alueen uusista… – kerro kantasi 11/2026](https://kerrokantasi.hel.fi/kivela2026)
+- 13 other pins moved a few metres to make room
+
 ## Data update 2026-11-06: 1 pins added, 0 changed, 0 removed
 
 - **asemakaava**: +1 added, 0 changed, 0 removed
