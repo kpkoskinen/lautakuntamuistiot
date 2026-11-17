@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-06",
+ "generated": "2026-11-17",
  "records": [
   {
    "committee": "Kaupunkiympäristölautakunta",
@@ -54193,6 +54193,26 @@
    "lat": 60.2513187,
    "lon": 25.0082053,
    "geocode": "street"
+  },
+  {
+   "committee": "Kaupunkiympäristölautakunta",
+   "dm": "U540",
+   "asia_id": "hel-2025-004276",
+   "plan_type": "asemakaava",
+   "plan_type_label": "Asemakaava (zoning)",
+   "heading": "Asemakaavan muutos nro 13032, Vallila, tontti 697/1, 697/18, 697/19, 697/20, Sturenkatu 16, Elimäenkatu 2-8, Teollisuuskatu 9-15, YIT Rakennus Oy",
+   "title": "Kaupunkiympäristölautakunnan esitys kaupunginhallitukselle, Vallila, Vallila 697 Kiertotalouden kirjokortteli, tarkistettu asemakaavan muutosehdotus (nro 13032) ",
+   "summary": "Kaupunkiympäristölautakunta päätti panna asian pöydälle.",
+   "date": "10.11.2026",
+   "year": 2026,
+   "month": 11,
+   "decision_url": "https://paatokset.hel.fi/fi/asia/hel-2025-004276?paatos=db895322-9139-4f2d-a73d-14e9b7c7ccc2",
+   "map_url": "https://ahjojulkaisu.hel.fi/5A0D0FBA-26AF-CE26-9467-A152CDF00000.pdf",
+   "stage": "returned",
+   "location": "Sturenkatu",
+   "lat": 60.1861796,
+   "lon": 24.9410641,
+   "geocode": "street"
   }
  ],
  "unlocated": [
@@ -60090,6 +60110,7 @@
    "https://paatokset.hel.fi/fi/asia/hel-2025-003906?paatos=9ab7f853-3c80-4e90-b6ca-9816fc507756",
    "https://paatokset.hel.fi/fi/asia/hel-2025-003906?paatos=cb338d10-db03-cc4c-8d36-9b20e4f00000",
    "https://paatokset.hel.fi/fi/asia/hel-2025-003906?paatos=f9e84702-ddba-475a-a054-428c39f2a072",
+   "https://paatokset.hel.fi/fi/asia/hel-2025-004276?paatos=db895322-9139-4f2d-a73d-14e9b7c7ccc2",
    "https://paatokset.hel.fi/fi/asia/hel-2025-004333?paatos=af7232e1-6025-4f37-815c-bde8e412a163",
    "https://paatokset.hel.fi/fi/asia/hel-2025-005730?paatos=3e852443-0c59-4584-acb0-5cef1f69fa4f",
    "https://paatokset.hel.fi/fi/asia/hel-2025-006058?paatos=b59b4bed-7478-44fd-ba68-0eb66507a85f",
