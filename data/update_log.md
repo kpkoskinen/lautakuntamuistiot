@@ -2,6 +2,12 @@
 
 What each automatic update changed on the map, newest first.
 
+## Data update 2026-11-19: 1 pins added, 0 changed, 0 removed
+
+- **kerrokantasi**: +1 added, 0 changed, 0 removed
+  - + [Ota kantaa karttakyselyssä Bredbackan ideasuunnitelmiin – kerro kantasi 11/2026](https://kerrokantasi.hel.fi/bredbacka2026)
+- 18 other pins moved a few metres to make room
+
 ## Data update 2026-11-17: 1 pins added, 0 changed, 0 removed
 
 - **asemakaava**: +1 added, 0 changed, 0 removed

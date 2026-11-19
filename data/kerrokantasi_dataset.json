@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-13",
+ "generated": "2026-11-19",
  "source": "https://kerrokantasi.api.hel.fi/v1/hearing/",
  "records": [
   {
@@ -8864,6 +8864,34 @@
    "lon": 24.918720552608917,
    "geocode": "area",
    "area_km": 0.58
+  },
+  {
+   "committee": "Kerro kantasi",
+   "dm": "kerrokantasi",
+   "asia_id": "kk-fdcX0IE1qcAItRCx9rbXFB0ijg1nUgog",
+   "stage": "consultation",
+   "plan_type": "kerrokantasi",
+   "subtype": null,
+   "heading": "Ota kantaa karttakyselyssä Bredbackan ideasuunnitelmiin",
+   "title": "Ota kantaa karttakyselyssä Bredbackan ideasuunnitelmiin",
+   "summary": "Alueelle kaavaillaan aikaisempien suunnitelmien sijaan pääosin pientaloja luonto- ja virkistysalueiden lisäksi. Vastaa karttakyselyyn, tule tapaamaan suunnittelijoita metroasemalle, osallistu työpajaan ja hae mukaan suunnittelua tukevaan kaupunkilaisten ryhmään viimeistään 16.12.",
+   "date": "19.11.2026",
+   "close_date": "16.12.2026",
+   "year": 2026,
+   "month": 11,
+   "decision_url": "https://kerrokantasi.hel.fi/bredbacka2026",
+   "labels": [
+    "kaupunkisuunnittelu",
+    "mellunkylä",
+    "asemakaava"
+   ],
+   "drawings": [],
+   "map_url": null,
+   "location": "Ota kantaa karttakyselyssä Bredbackan ideasuunnitelmiin",
+   "lat": 60.230378010507856,
+   "lon": 25.119746004394784,
+   "geocode": "area",
+   "area_km": 1.04
   }
  ],
  "unlocated": [
