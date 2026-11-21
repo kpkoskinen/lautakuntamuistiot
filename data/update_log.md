@@ -2,6 +2,11 @@
 
 What each automatic update changed on the map, newest first.
 
+## Data update 2026-11-21: map unchanged
+
+Not on the map:
+- 3 decisions checked, not shown on the map (an earlier or later stage of a case already on it, or not located)
+
 ## Data update 2026-11-20: map unchanged
 
 Not on the map:
