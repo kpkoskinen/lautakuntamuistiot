@@ -2,6 +2,15 @@
 
 What each automatic update changed on the map, newest first.
 
+## Data update 2026-11-24: 2 pins added, 1 changed, 0 removed
+
+- **puisto**: +1 added, 0 changed, 0 removed
+  - + [Eugen Schaumanin puisto – puistosuunnitelma 11/2026](https://paatokset.hel.fi/fi/asia/hel-2025-019885/80b72bfe-af06-4cbc-886b-9e6bbf7bf353)
+- **asemakaava**: +1 added, 1 changed, 0 removed
+  - + [Meritullinkatu – asemakaava 11/2026](https://paatokset.hel.fi/fi/asia/hel-2018-002225/6031a90c-b23d-4831-935c-afe86d865eb2)
+  - ~ [Sturenkatu – asemakaava 11/2026](https://paatokset.hel.fi/fi/asia/hel-2025-004276/7d01b05d-a1c6-4e35-9005-ca2fa0016932)
+- 11 other pins moved a few metres to make room
+
 ## Data update 2026-11-21: map unchanged
 
 Not on the map:
