@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-19",
+ "generated": "2026-11-25",
  "source": "https://kerrokantasi.api.hel.fi/v1/hearing/",
  "records": [
   {
@@ -8892,6 +8892,55 @@
    "lon": 25.119746004394784,
    "geocode": "area",
    "area_km": 1.04
+  },
+  {
+   "committee": "Kerro kantasi",
+   "dm": "kerrokantasi",
+   "asia_id": "kk-amOYFaRmhVA9rJp62GrIdlOh5fWhcKrM",
+   "stage": "consultation",
+   "plan_type": "kerrokantasi",
+   "subtype": null,
+   "heading": "Malminkartanonhuippu",
+   "title": "Malminkartanonhuippu",
+   "summary": "Mitä kaikkea Malminkartanonhuipulla voisi tehdä ja kokea? Millaisia paikkoja siellä tarvitaan ulkoiluun, liikuntaan ja rentoon yhdessäoloon? Tutustu idealuonnoksiin ja kerro mielipiteesi!",
+   "date": "24.11.2026",
+   "close_date": "05.12.2026",
+   "year": 2026,
+   "month": 11,
+   "decision_url": "https://kerrokantasi.hel.fi/malminkartanonhuippu-2",
+   "labels": [
+    "Malminkartano",
+    "Malminkartanonhuippu",
+    "osallistuminen",
+    "Puistot"
+   ],
+   "drawings": [
+    [
+     "Voit suurentaa alla näkyvää kuvaa painamalla ctrl-näppäintä ja pyörittämällä hiiren rullaa.",
+     "https://kerrokantasi.api.hel.fi/media/images/2026/11/it36N9H9.webp"
+    ],
+    [
+     "Voit suurentaa alla näkyvää kuvaa painamalla ctrl-näppäintä ja pyörittämällä hiiren rullaa.",
+     "https://kerrokantasi.api.hel.fi/media/images/2026/11/2jO4aMrA.webp"
+    ],
+    [
+     "Voit suurentaa alla näkyvää kuvaa painamalla ctrl-näppäintä ja pyörittämällä hiiren rullaa.",
+     "https://kerrokantasi.api.hel.fi/media/images/2026/11/2lPvNVpZ.webp"
+    ],
+    [
+     "Voit suurentaa alla näkyvää kuvaa painamalla ctrl-näppäintä ja pyörittämällä hiiren rullaa.",
+     "https://kerrokantasi.api.hel.fi/media/images/2026/11/nfkUrzy5.webp"
+    ],
+    [
+     "Voit suurentaa alla näkyvää kuvaa painamalla ctrl-näppäintä ja pyörittämällä hiiren rullaa.",
+     "https://kerrokantasi.api.hel.fi/media/images/2026/11/rYbZPpHM.webp"
+    ]
+   ],
+   "map_url": "https://kerrokantasi.api.hel.fi/media/images/2026/11/it36N9H9.webp",
+   "location": "Malminkartanonhuippu",
+   "lat": 60.2511943,
+   "lon": 24.8438976,
+   "geocode": "district"
   }
  ],
  "unlocated": [

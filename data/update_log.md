@@ -2,6 +2,12 @@
 
 What each automatic update changed on the map, newest first.
 
+## Data update 2026-11-25: 1 pins added, 0 changed, 0 removed
+
+- **kerrokantasi**: +1 added, 0 changed, 0 removed
+  - + [Malminkartanonhuippu – kerro kantasi 11/2026](https://kerrokantasi.hel.fi/malminkartanonhuippu-2)
+- 8 other pins moved a few metres to make room
+
 ## Data update 2026-11-24: 2 pins added, 1 changed, 0 removed
 
 - **puisto**: +1 added, 0 changed, 0 removed
